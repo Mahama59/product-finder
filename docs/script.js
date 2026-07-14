@@ -131,14 +131,17 @@ function loadCheckoutCart() {
         });
 
         checkoutItems.innerHTML += 
-        "<h3>Total: $" + total + "</h3>";
+"<h3>Total: $" + total + "</h3>";
+
+    }
+
+}
+
+
 function completeOrder(){
 
     localStorage.removeItem("cart");
 
     alert("Order completed successfully!");
-
-}
-    }
 
 }
