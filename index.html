@@ -39,6 +39,12 @@
 </div>
 
 <div id="cartList"></div>
+  <div class="wishlist-box">
+    ❤️ Wishlist: <span id="wishlistCount">0</span>
+    <button onclick="viewWishlist()">View Wishlist</button>
+</div>
+
+<div id="wishlistList"></div>  
 <h2>Featured Products</h2>
 
 <div class="product-grid">
@@ -53,7 +59,7 @@
     <button>View Details</button>
 </a>
     <button onclick="addToCart('Smartphone', 499)">Add to Cart</button>
-        <button>❤️ Favorite</button>
+        <button onclick="addToWishlist('Smartphone')">❤️ Favorite</button>
     </div>
 
     <div class="product" data-category="computers">
@@ -66,7 +72,7 @@
     <button>View Details</button>
 </a>
         <button onclick="addToCart('Laptop', 899)">Add to Cart</button>
-        <button>❤️ Favorite</button>
+        <button onclick="addToWishlist('Laptop')">❤️ Favorite</button>
     </div>
 
     <div class="product" data-category="audio">
@@ -79,7 +85,7 @@
     <button>View Details</button>
 </a>
         <button onclick="addToCart('Headphones', 149)">Add to Cart</button>
-        <button>❤️ Favorite</button>
+        <button onclick="addToWishlist('Headphones')">❤️ Favorite</button>
     </div>
 
 </div>
