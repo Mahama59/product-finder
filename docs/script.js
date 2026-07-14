@@ -74,9 +74,27 @@ function viewCart() {
         });
 
     }
+
+}
+
+
+function showPaymentDetails() {
+
+    let payment = document.getElementById("paymentMethod").value;
+
+    let momo = document.getElementById("momoDetails");
+
+    if (payment === "momo") {
+
+        momo.style.display = "block";
+
+    } else {
+
+        momo.style.display = "none";
+
     }
 
-}  // CLOSE viewCart HERE
+}
 
 
 function showPaymentDetails() {
