@@ -20,7 +20,23 @@ function searchProducts() {
     });
 
 }
+function filterCategory(category) {
 
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(function(product) {
+
+        let productCategory = product.getAttribute("data-category");
+
+        if (category === "all" || productCategory === category) {
+            product.style.display = "block";
+        } else {
+            product.style.display = "none";
+        }
+
+    });
+
+}
 
 
 function addToCart(productName) {
