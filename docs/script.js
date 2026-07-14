@@ -1,4 +1,4 @@
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 
 function searchProducts() {
@@ -86,6 +86,29 @@ function showPaymentDetails() {
     } else {
 
         momo.style.display = "none";
+
+    }
+
+}
+function loadCheckoutCart() {
+
+    let checkoutItems = document.getElementById("checkoutItems");
+
+    let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (savedCart.length === 0) {
+
+        checkoutItems.innerHTML = "<p>Your cart is empty.</p>";
+
+    } else {
+
+        checkoutItems.innerHTML = "<h3>Products:</h3>";
+
+        savedCart.forEach(function(item) {
+
+            checkoutItems.innerHTML += "<p>🛒 " + item + "</p>";
+
+        });
 
     }
 
