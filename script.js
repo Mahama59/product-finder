@@ -115,3 +115,28 @@ function logoutUser(){
     window.location.href = "login.html";
 
 }
+function viewCart() {
+
+    let cartList = document.getElementById("cartList");
+
+    if (!cartList) return;
+
+    if (cart.length === 0) {
+
+        cartList.innerHTML = "<p>Your cart is empty.</p>";
+
+    } else {
+
+        cartList.innerHTML = "<h3>Your Cart</h3>";
+
+        cart.forEach(function(item, index) {
+
+            cartList.innerHTML +=
+                "<p>🛒 " + item.name + " - $" + item.price +
+                " <button onclick='removeFromCart(" + index + ")'>Remove</button></p>";
+
+        });
+
+    }
+
+}
