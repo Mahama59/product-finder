@@ -225,10 +225,6 @@ function removeFromWishlist(index) {
     viewWishlist();
 
 }
-// Wishlist Feature
-
-let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
 
 function addToWishlist(productName) {
 
