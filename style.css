@@ -71,3 +71,21 @@ footer {
     text-align: center;
     padding: 20px;
 }
+.product button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.product button:first-of-type {
+    background: #2563eb;
+    color: white;
+}
+
+.product button:last-of-type {
+    background: #ef4444;
+    color: white;
+}
