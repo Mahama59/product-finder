@@ -12,10 +12,18 @@
 <input id="searchInput" type="text" placeholder="Search products">
 
 <button onclick="searchProducts()">Search</button>
+<h2>Categories</h2>
 
+<div class="categories">
+
+    <button onclick="filterCategory('all')">All</button>
+    <button onclick="filterCategory('electronics')">📱 Electronics</button>
+    <button onclick="filterCategory('computers')">💻 Computers</button>
+    <button onclick="filterCategory('audio')">🎧 Audio</button>
+
+</div>
 <h2>Featured Products</h2>
-
-<div class="product">
+<div class="product" data-category="electronics">
     <img src="https://via.placeholder.com/200" alt="Smartphone">
     <h3>📱 Smartphone</h3>
     <p>Category: Electronics</p>
@@ -24,7 +32,7 @@
     <button onclick="addToCart('Smartphone')">Add to Cart</button>
 </div>
 
-<div class="product">
+<div class="product" data-category="computers">
     <img src="https://via.placeholder.com/200" alt="Laptop">
     <h3>💻 Laptop</h3>
     <p>Category: Computers</p>
@@ -33,7 +41,7 @@
     <button onclick="addToCart('Laptop')">Add to Cart</button>
 </div>
 
-<div class="product">
+<div class="product" data-category="audio">
     <img src="https://via.placeholder.com/200" alt="Headphones">
     <h3>🎧 Headphones</h3>
     <p>Category: Audio</p>
