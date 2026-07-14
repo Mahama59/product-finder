@@ -105,25 +105,6 @@ function showPaymentDetails() {
 }
 
 
-function showPaymentDetails() {
-    
-  let payment = document.getElementById("paymentMethod").value;
-
-    let momo = document.getElementById("momoDetails");
-
-
-        if (payment === "momo") {
-
-        momo.style.display = "block";
-
-    } else {
-
-        momo.style.display = "none";
-
-    }
-
-}  // CLOSE showPaymentDetails HERE
-
 
 function loadCheckoutCart() {
 
