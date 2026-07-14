@@ -21,11 +21,19 @@ function searchProducts() {
 }
 
 
-function addToCart(productName) {
+function addToCart(productName, productPrice) {
 
-    cart.push(productName);
+    cart.push({
+        name: productName,
+        price: productPrice
+    });
 
     localStorage.setItem("cart", JSON.stringify(cart));
+
+    let count = document.getElementById("cartCount");
+    if (count) {
+        count.innerText = cart.length;
+    }
 
     alert(productName + " added to cart!");
 
