@@ -1,0 +1,71 @@
+<h1>🛍️ Product Finder</h1>
+
+ <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+</div>
+<div class="cart-box">
+    🛒 Cart Items: <span id="cartCount">0</span>
+</div>
+
+<button onclick="viewCart()">View Cart</button>
+<a href="checkout.html">
+    <button>Proceed to Checkout</button>
+</a>
+<div id="cartList"></div>
+<p>Find and compare products easily.</p>
+
+<input id="searchInput" type="text" placeholder="Search products">
+
+<button onclick="searchProducts()">Search</button>
+<h2>Categories</h2>
+
+<div class="categories">
+
+    <button onclick="filterCategory('all')">All</button>
+    <button onclick="filterCategory('electronics')">📱 Electronics</button>
+    <button onclick="filterCategory('computers')">💻 Computers</button>
+    <button onclick="filterCategory('audio')">🎧 Audio</button>
+
+</div>
+<h2>Featured Products</h2>
+<div class="product" data-category="electronics">
+    <img src="https://via.placeholder.com/200" alt="Smartphone">
+    <h3>📱 Smartphone</h3>
+    <p>Category: Electronics</p>
+    <p>Price: $499</p>
+    <p>⭐⭐⭐⭐☆ (4.5/5)</p>
+    <a href="product-details.html">
+<button>View Details</button>
+</a>
+    <button onclick="addToCart('Smartphone')">Add to Cart</button>
+</div>
+
+<div class="product" data-category="computers">
+    <img src="https://via.placeholder.com/200" alt="Laptop">
+    <h3>💻 Laptop</h3>
+    <p>Category: Computers</p>
+    <p>Price: $899</p>
+    <p>⭐⭐⭐⭐⭐ (5/5)</p>
+  <a href="product-details.html">
+    <button>View Details</button>
+</a>
+    <button onclick="addToCart('Laptop')">Add to Cart</button>
+</div>
+
+<div class="product" data-category="audio">
+    <img src="https://via.placeholder.com/200" alt="Headphones">
+    <h3>🎧 Headphones</h3>
+    <p>Category: Audio</p>
+    <p>Price: $149</p>
+    <p>⭐⭐⭐⭐☆ (4/5)</p>
+   <a href="product-details.html">
+    <button>View Details</button>
+</a>
+    <button onclick="addToCart('Headphones')">Add to Cart</button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
