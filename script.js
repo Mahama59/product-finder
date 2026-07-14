@@ -140,3 +140,26 @@ function viewCart() {
     }
 
 }
+function removeFromCart(index) {
+
+    cart.splice(index, 1);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    let count = document.getElementById("cartCount");
+    if (count) {
+        count.innerText = cart.length;
+    }
+
+    viewCart();
+
+}
+document.addEventListener("DOMContentLoaded", function () {
+
+    let count = document.getElementById("cartCount");
+
+    if (count) {
+        count.innerText = cart.length;
+    }
+
+});
