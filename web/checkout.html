@@ -53,11 +53,31 @@
 
     <h2>Payment Method</h2>
 
+<select id="paymentMethod" onchange="showPaymentDetails()">
+    <option value="">Select Payment</option>
+    <option value="momo">🇬🇭 Ghana Mobile Money</option>
+    <option value="visa">💳 Visa Card</option>
+    <option value="mastercard">💳 MasterCard</option>
+</select>
+
+
+<div id="momoDetails" style="display:none;">
+
+    <h3>🇬🇭 Mobile Money Details</h3>
+
+    <label>Network:</label>
+
     <select>
-        <option>Mobile Money</option>
-        <option>Visa Card</option>
-        <option>MasterCard</option>
+        <option>MTN Mobile Money</option>
+        <option>Vodafone Cash</option>
+        <option>AirtelTigo Money</option>
     </select>
+
+    <br><br>
+
+    <input type="text" placeholder="Mobile Money Number">
+
+</div>
 
     <br><br>
 
