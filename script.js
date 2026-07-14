@@ -98,3 +98,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+function logoutUser(){
+
+    localStorage.removeItem("loggedIn");
+
+    alert("You have been logged out.");
+
+    window.location.href = "login.html";
+
+}
