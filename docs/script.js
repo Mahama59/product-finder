@@ -39,9 +39,12 @@ function filterCategory(category) {
 }
 
 
-function addToCart(productName) {
+function addToCart(productName, productPrice) {
 
-    cart.push(productName);
+    cart.push({
+        name: productName,
+        price: productPrice
+    });
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
@@ -91,12 +94,13 @@ function showPaymentDetails() {
 
     }
 
-}
 function loadCheckoutCart() {
 
     let checkoutItems = document.getElementById("checkoutItems");
 
     let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let total = 0;
 
     if (savedCart.length === 0) {
 
@@ -108,9 +112,15 @@ function loadCheckoutCart() {
 
         savedCart.forEach(function(item) {
 
-            checkoutItems.innerHTML += "<p>🛒 " + item + "</p>";
+            checkoutItems.innerHTML += 
+            "<p>🛒 " + item.name + " - $" + item.price + "</p>";
+
+            total += item.price;
 
         });
+
+        checkoutItems.innerHTML += 
+        "<h3>Total: $" + total + "</h3>";
 
     }
 
