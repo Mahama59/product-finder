@@ -70,7 +70,7 @@ function viewCart() {
 
         cart.forEach(function(item) {
 
-            cartList.innerHTML += "<p>🛒 " + item + "</p>";
+            cartList.innerHTML += "<p>🛒 " + item.name + " - $" + item.price + "</p>";
 
         });
 
