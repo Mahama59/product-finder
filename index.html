@@ -1,28 +1,52 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
-<h1>Product Finder</h1>
+<header>
+    <h1>🛍️ Product Finder</h1>
+    <p>Find and compare the best products</p>
+</header>
 
-<p>Find and compare products easily.</p>
+<section class="search-section">
+    <input type="text" placeholder="Search for products...">
+    <button onclick="searchProducts()">Search</button>
+</section>
 
-<input type="text" placeholder="Search products">
+<h2>Featured Products</h2>
 
-<button onclick="searchProducts()">Search</button>
-
-<h2>Popular Products</h2>
+<div class="product-grid">
 
 <div class="product">
-    <h3>Smart Phone</h3>
-    <p>Compare smartphones and prices.</p>
+<h3>📱 Smartphone</h3>
+<p>Latest Android smartphones.</p>
+<button>View</button>
 </div>
 
 <div class="product">
-    <h3>Laptop</h3>
-    <p>Find the best laptops for your needs.</p>
+<h3>💻 Laptop</h3>
+<p>Powerful laptops for work and gaming.</p>
+<button>View</button>
 </div>
 
-<div class="product"> 
-    <h3>Headphones</h3>
-    <p>Discover quality audio products.</p>
+<div class="product">
+<h3>🎧 Headphones</h3>
+<p>Premium wireless headphones.</p>
+<button>View</button>
 </div>
+
+</div>
+
+<footer>
+<p>© 2026 Product Finder. All rights reserved.</p>
+</footer>
+
 <script src="script.js"></script>
+
 </body>
+</html>
