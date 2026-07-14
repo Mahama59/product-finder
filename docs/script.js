@@ -43,6 +43,8 @@ function addToCart(productName) {
 
     cart.push(productName);
 
+    localStorage.setItem("cart", JSON.stringify(cart));
+
     document.getElementById("cartCount").innerText = cart.length;
 
     alert(productName + " added to cart!");
