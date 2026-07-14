@@ -1,5 +1,13 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+document.addEventListener("DOMContentLoaded", function() {
 
+    let count = document.getElementById("cartCount");
+
+    if (count) {
+        count.innerText = cart.length;
+    }
+
+});
 
 function searchProducts() {
 
