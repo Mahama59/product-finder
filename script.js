@@ -235,3 +235,42 @@ function completeOrder(){
     window.location.href = "success.html";
 
 }
+let compareList = JSON.parse(localStorage.getItem("compare")) || [];
+
+
+function addToCompare(name, price, category){
+
+    if(compareList.length >= 3){
+
+        alert("You can compare only 3 products at a time.");
+
+        return;
+
+    }
+
+
+    let exists = compareList.find(product => product.name === name);
+
+
+    if(exists){
+
+        alert(name + " is already in comparison.");
+
+        return;
+
+    }
+
+
+    compareList.push({
+        name:name,
+        price:price,
+        category:category
+    });
+
+
+    localStorage.setItem("compare", JSON.stringify(compareList));
+
+
+    alert(name + " added to comparison ⚖️");
+
+}
