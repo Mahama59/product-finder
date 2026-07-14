@@ -91,30 +91,3 @@
 
 </body>
 </html>
-function registerUser(){
-
-    let name = document.getElementById("registerName").value;
-    let email = document.getElementById("registerEmail").value;
-    let password = document.getElementById("registerPassword").value;
-
-    if(name === "" || email === "" || password === ""){
-
-        alert("Please fill all fields");
-
-    } else {
-
-        let user = {
-            name: name,
-            email: email,
-            password: password
-        };
-
-        localStorage.setItem("user", JSON.stringify(user));
-
-        alert("Registration successful!");
-
-        window.location.href = "login.html";
-
-    }
-
-}
