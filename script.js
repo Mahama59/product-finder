@@ -57,3 +57,29 @@ function registerUser(){
     }
 
 }
+function loginUser(){
+
+    let email = document.getElementById("loginEmail").value;
+    let password = document.getElementById("loginPassword").value;
+
+    let user = JSON.parse(localStorage.getItem("user"));
+
+    if(user === null){
+
+        alert("No account found. Please register first.");
+
+    } else if(email === user.email && password === user.password){
+
+        alert("Login successful!");
+
+        localStorage.setItem("loggedIn", "true");
+
+        window.location.href = "index.html";
+
+    } else {
+
+        alert("Incorrect email or password.");
+
+    }
+
+}
