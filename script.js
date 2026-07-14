@@ -1,5 +1,4 @@
-
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function searchProducts() {
 
@@ -26,9 +25,9 @@ function addToCart(productName) {
 
     cart.push(productName);
 
-    alert(productName + " added to cart!");
+    localStorage.setItem("cart", JSON.stringify(cart));
 
-    console.log(cart);
+    alert(productName + " added to cart!");
 
 }
 function registerUser(){
