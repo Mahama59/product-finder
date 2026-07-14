@@ -55,7 +55,6 @@ function addToCart(productName, productPrice) {
 }
 
 
-
 function viewCart() {
 
     let cartList = document.getElementById("cartList");
@@ -75,7 +74,13 @@ function viewCart() {
         });
 
     }
+    }
 
+}  // CLOSE viewCart HERE
+
+
+function showPaymentDetails() {
+    
 function showPaymentDetails() {
 
     let payment = document.getElementById("paymentMethod").value;
