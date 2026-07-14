@@ -26,10 +26,13 @@
 </header>
 
 <section class="search-section">
-    <input type="text" placeholder="Search for products...">
+    <input id="searchInput" type="text" placeholder="Search for products...">
     <button onclick="searchProducts()">Search</button>
 </section>
 <div class="cart-box">
+   <a href="checkout.html">
+    <button>Proceed to Checkout</button>
+</a> 
     🛒 Cart Items: <span id="cartCount">0</span>
     <button onclick="viewCart()">View Cart</button>
 </div>
@@ -39,29 +42,38 @@
 
 <div class="product-grid">
 
-    <div class="product">
+        <div class="product" data-category="electronics">
         <h3>📱 Smartphone</h3>
         <p><strong>Price:</strong> $499</p>
         <p>⭐⭐⭐⭐☆ (4.5/5)</p>
         <p>Latest Android smartphone with a great camera.</p>
-        <button onclick="addToCart('Smartphone')">Add to Cart</button>
+       <a href="product.html">
+    <button>View Details</button>
+</a>
+            <button onclick="addToCart('Smartphone')">Add to Cart</button>
         <button>❤️ Favorite</button>
     </div>
 
-    <div class="product">
+    <div class="product" data-category="computers">
         <h3>💻 Laptop</h3>
         <p><strong>Price:</strong> $899</p>
         <p>⭐⭐⭐⭐⭐ (5/5)</p>
         <p>Powerful laptop for work and gaming.</p>
+       <a href="product.html">
+    <button>View Details</button>
+</a>
         <button onclick="addToCart('Laptop')">Add to Cart</button>
         <button>❤️ Favorite</button>
     </div>
 
-    <div class="product">
+    <div class="product" data-category="audio">
         <h3>🎧 Headphones</h3>
         <p><strong>Price:</strong> $149</p>
         <p>⭐⭐⭐⭐☆ (4/5)</p>
         <p>Premium wireless headphones.</p>
+        <a href="product.html">
+    <button>View Details</button>
+</a>
         <button onclick="addToCart('Headphones')">Add to Cart</button>
         <button>❤️ Favorite</button>
     </div>
