@@ -1,18 +1,57 @@
+let cart = [];
+
+
 function searchProducts() {
 
-    let input = document.getElementById("searchInput").value.toLowerCase();
+    let input = document.querySelector("input").value.toLowerCase();
 
-    let products = document.getElementsByClassName("product");
+    let products = document.querySelectorAll(".product");
 
-    for (let i = 0; i < products.length; i++) {
+    products.forEach(function(product) {
 
-        let productText = products[i].innerText.toLowerCase();
+        let text = product.innerText.toLowerCase();
 
-        if (productText.includes(input)) {
-            products[i].style.display = "block";
+        if (text.includes(input)) {
+            product.style.display = "block";
         } else {
-            products[i].style.display = "none";
+            product.style.display = "none";
         }
+
+    });
+
+}
+
+
+
+function addToCart(productName) {
+
+    cart.push(productName);
+
+    document.getElementById("cartCount").innerText = cart.length;
+
+    alert(productName + " added to cart!");
+
+}
+
+
+
+function viewCart() {
+
+    let cartList = document.getElementById("cartList");
+
+    if (cart.length === 0) {
+
+        cartList.innerHTML = "<p>Your cart is empty.</p>";
+
+    } else {
+
+        cartList.innerHTML = "<h3>Your Cart</h3>";
+
+        cart.forEach(function(item) {
+
+            cartList.innerHTML += "<p>🛒 " + item + "</p>";
+
+        });
 
     }
 
