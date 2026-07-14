@@ -83,7 +83,7 @@ function showPaymentDetails() {
     let momo = document.getElementById("momoDetails");
 
 
-    if (payment === "momo") {
+        if (payment === "momo") {
 
         momo.style.display = "block";
 
@@ -93,7 +93,7 @@ function showPaymentDetails() {
 
     }
 
-}  // <-- ADD THIS
+}  // CLOSE showPaymentDetails HERE
 
 
 function loadCheckoutCart() {
@@ -114,8 +114,7 @@ function loadCheckoutCart() {
 
         savedCart.forEach(function(item) {
 
-            checkoutItems.innerHTML += 
-            "<p>🛒 " + item.name + " - $" + item.price + "</p>";
+            checkoutItems.innerHTML += "<p>🛒 " + item.name + " - $" + item.price + "</p>";
 
             total += item.price;
 
