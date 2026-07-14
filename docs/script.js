@@ -130,8 +130,8 @@ function loadCheckoutCart() {
 
         });
 
-        checkoutItems.innerHTML += 
-"<h3>Total: $" + total + "</h3>";
+                checkoutItems.innerHTML += 
+        "<h3>Total: $" + total + "</h3>";
 
     }
 
