@@ -145,3 +145,22 @@ function completeOrder(){
     alert("Order completed successfully!");
 
 }
+function confirmMomoPayment(){
+
+    let momoNumber = document.getElementById("momoNumber").value;
+
+    if(momoNumber === ""){
+
+        alert("Please enter your Mobile Money number");
+
+    } else {
+
+        alert("Payment request sent to " + momoNumber);
+
+        completeOrder();
+
+        window.location.href = "success.html";
+
+    }
+
+}
