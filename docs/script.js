@@ -81,9 +81,7 @@ function viewCart() {
 
 function showPaymentDetails() {
     
-function showPaymentDetails() {
-
-    let payment = document.getElementById("paymentMethod").value;
+  let payment = document.getElementById("paymentMethod").value;
 
     let momo = document.getElementById("momoDetails");
 
