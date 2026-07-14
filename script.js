@@ -296,3 +296,12 @@ function removeFromWishlist(index) {
     viewWishlist();
 
 }
+function completeOrder(){
+
+    localStorage.removeItem("cart");
+
+    alert("Order completed successfully!");
+
+    window.location.href = "success.html";
+
+}
