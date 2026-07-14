@@ -76,7 +76,6 @@ function viewCart() {
 
     }
 
-}
 function showPaymentDetails() {
 
     let payment = document.getElementById("paymentMethod").value;
@@ -93,6 +92,9 @@ function showPaymentDetails() {
         momo.style.display = "none";
 
     }
+
+}  // <-- ADD THIS
+
 
 function loadCheckoutCart() {
 
