@@ -83,3 +83,18 @@ function loginUser(){
     }
 
 }
+document.addEventListener("DOMContentLoaded", function () {
+
+    let welcome = document.getElementById("welcomeUser");
+
+    if (welcome) {
+
+        let user = JSON.parse(localStorage.getItem("user"));
+
+        if (user) {
+            welcome.innerText = "👋 Welcome, " + user.name;
+        }
+
+    }
+
+});
