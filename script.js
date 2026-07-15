@@ -1288,3 +1288,158 @@ function loadAdminDashboard(){
     }
 
 }
+// ================= ADMIN MARKETPLACE CONTROL =================
+
+
+function loadAdminProducts(){
+
+    let box =
+    document.getElementById("adminProducts");
+
+
+    if(!box) return;
+
+
+    let products =
+    JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+    if(products.length === 0){
+
+        box.innerHTML =
+        "<p>No products available.</p>";
+
+        return;
+
+    }
+
+
+    box.innerHTML = "";
+
+
+    products.forEach(function(product,index){
+
+
+        box.innerHTML += `
+
+        <div class="product">
+
+        <h3>${product.name}</h3>
+
+        <p>Price: $${product.price}</p>
+
+        <p>${product.category}</p>
+
+
+        <button onclick="adminDeleteProduct(${index})">
+
+        🗑 Remove Product
+
+        </button>
+
+
+        </div>
+
+        `;
+
+
+    });
+
+
+}
+
+
+
+function adminDeleteProduct(index){
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+products.splice(index,1);
+
+
+localStorage.setItem(
+"merchantProducts",
+JSON.stringify(products)
+);
+
+
+loadAdminProducts();
+
+
+alert("Product removed");
+
+}
+
+
+
+
+function loadAdminOrders(){
+
+
+let box =
+document.getElementById("adminOrders");
+
+
+if(!box) return;
+
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+
+if(orders.length===0){
+
+box.innerHTML =
+"<p>No orders yet.</p>";
+
+return;
+
+}
+
+
+
+box.innerHTML="";
+
+
+
+orders.forEach(function(order,index){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>Order #${index+1}</h3>
+
+<p>Total: $${order.total}</p>
+
+<p>Status: ${order.status}</p>
+
+</div>
+
+`;
+
+
+});
+
+
+}
+
+
+
+// load admin sections
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+loadAdminProducts();
+
+loadAdminOrders();
+
+});
