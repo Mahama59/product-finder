@@ -720,21 +720,14 @@ return;
 }
 
 
-
-
 let product={
 
-
 name:name,
-
 price:Number(price),
-
 category:category,
-
 description:description,
-
-image:image
-
+image:image,
+status:"Pending"
 
 };
 
