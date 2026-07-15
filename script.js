@@ -1956,7 +1956,6 @@ function adminLogin(){
 }
 
 
-}
 // ================= ADMIN REGISTER =================
 
 function registerAdmin(){
