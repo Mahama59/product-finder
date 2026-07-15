@@ -63,7 +63,18 @@
 <footer>
 <p>© 2026 Product Finder</p>
 </footer>
+<script>
 
+let merchantLoggedIn = localStorage.getItem("merchantLoggedIn");
+
+
+if(merchantLoggedIn !== "true"){
+
+    window.location.href = "merchant-login.html";
+
+}
+
+</script>
 <script src="script.js"></script>
 
 <script>
