@@ -666,3 +666,10 @@ function loadMyOrders() {
     });
 
 }
+function submitRating() {
+
+    let rating = document.getElementById("ratingValue").value;
+
+    alert("Thank you! You rated this product " + rating + " stars.");
+
+}
