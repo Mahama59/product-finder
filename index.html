@@ -1,124 +1,407 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Finder</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Product Finder</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
+
 <body>
 
-<nav>
-    <h2>🛍️ Product Finder</h2>
 
-    <div class="menu">
-        <a href="#">Home</a>
-        <a href="#">Products</a>
-        <a href="#">Categories</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-    </div>
+<nav>
+
+<h2>🛍️ Product Finder</h2>
+
+<div class="menu">
+
+<a href="index.html">Home</a>
+<a href="categories.html">Categories</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+
+</div>
+
 </nav>
 
+
+
 <header>
-    <h1>🛍️ Product Finder</h1>
-    <p>Find and compare the best products</p>
+
+<h1>🛍️ Product Finder</h1>
+
+<p>Find and compare the best products</p>
+
 </header>
+
+
+
 <h3 id="welcomeUser"></h3>
-    <button onclick="logoutUser()">Logout</button>
+
+<button onclick="logoutUser()">
+Logout
+</button>
+
+
+
 <section class="search-section">
-    <input id="searchInput" type="text" placeholder="Search for products...">
-    <button onclick="searchProducts()">Search</button>
+
+<input 
+id="searchInput" 
+type="text" 
+placeholder="Search for products...">
+
+
+<button onclick="searchProducts()">
+Search
+</button>
+
 </section>
+
+
+
+<h2>🔍 Filter Products</h2>
+
+
+<select id="categoryFilter" onchange="filterProducts()">
+
+<option value="all">All Categories</option>
+
+<option value="electronics">
+Electronics
+</option>
+
+<option value="computers">
+Computers
+</option>
+
+<option value="audio">
+Audio
+</option>
+
+</select>
+
+
+<br><br>
+
+
+<input
+type="number"
+id="maxPrice"
+placeholder="Maximum Price"
+onkeyup="filterProducts()">
+
+
+
 <div class="cart-box">
-    <div class="compare-box">
+
+
+<div class="compare-box">
 
 ⚖️ Compare Products:
 
 <a href="compare.html">
+
 <button>
 View Comparison
 </button>
+
 </a>
 
-    </div>
-   <a href="checkout.html">
-    <button>Proceed to Checkout</button>
-</a> 
-    🛒 Cart Items: <span id="cartCount">0</span>
-    <button onclick="viewCart()">View Cart</button>
 </div>
+
+
+
+<a href="checkout.html">
+
+<button>
+Proceed to Checkout
+</button>
+
+</a>
+
+
+<br><br>
+
+
+🛒 Cart Items:
+
+<span id="cartCount">
+0
+</span>
+
+
+<button onclick="viewCart()">
+View Cart
+</button>
+
+
+</div>
+
+
 
 <div id="cartList"></div>
-  <div class="wishlist-box">
-    ❤️ Wishlist: <span id="wishlistCount">0</span>
-    <button onclick="viewWishlist()">View Wishlist</button>
+
+
+
+<div class="wishlist-box">
+
+
+❤️ Wishlist:
+
+<span id="wishlistCount">
+0
+</span>
+
+
+<button onclick="viewWishlist()">
+View Wishlist
+</button>
+
+
 </div>
 
-<div id="wishlistList"></div>  
-<h2>Featured Products</h2>
+
+
+<div id="wishlistList"></div>
+
+
+
+
 <h2>🏪 Merchant Products</h2>
+
 
 <div id="merchantMarketplace" class="product-grid">
 
 </div>
+
+
+
+
+<h2>⭐ Featured Products</h2>
+
+
 <div class="product-grid">
 
-        <div class="product" data-category="electronics">
-        <img src="https://via.placeholder.com/200" alt="Smartphone">
+
+
+<div class="product" data-category="electronics">
+
+
+<img src="https://via.placeholder.com/200" alt="Smartphone">
+
+
 <h3>📱 Smartphone</h3>
-        <p><strong>Price:</strong> $499</p>
-        <p>⭐⭐⭐⭐☆ (4.5/5)</p>
-        <p>Latest Android smartphone with a great camera.</p>
-       <a href="product.html">
-    <button>View Details</button>
-</a>
-    <button onclick="addToCart('Smartphone', 499)">Add to Cart</button>
-      <button onclick="addToCompare('Smartphone',499,'Electronics')">
-⚖️ Compare
-</button>
-            <button onclick="addToWishlist('Smartphone')">❤️ Favorite</button>
-    </div>
 
-    <div class="product" data-category="computers">
-        <img src="https://via.placeholder.com/200" alt="Laptop">
-<h3>💻 Laptop</h3>
-        <p><strong>Price:</strong> $899</p>
-        <p>⭐⭐⭐⭐⭐ (5/5)</p>
-        <p>Powerful laptop for work and gaming.</p>
-       <a href="product.html">
-    <button>View Details</button>
-</a>
-        <button onclick="addToCart('Laptop', 899)">Add to Cart</button>
-       <button onclick="addToCompare('Laptop',899,'Computers')">
-⚖️ Compare
-</button>
-        <button onclick="addToWishlist('Laptop')">❤️ Favorite</button>
-    </div>
 
-    <div class="product" data-category="audio">
-        <img src="https://via.placeholder.com/200" alt="Headphones">
-<h3>🎧 Headphones</h3>
-        <p><strong>Price:</strong> $149</p>
-        <p>⭐⭐⭐⭐☆ (4/5)</p>
-        <p>Premium wireless headphones.</p>
-        <a href="product.html">
-    <button>View Details</button>
-</a>
-        <button onclick="addToCart('Headphones', 149)">Add to Cart</button>
-        <button onclick="addToCompare('Headphones',149,'Audio')">
-⚖️ Compare
+<p>
+<strong>Price:</strong> $499
+</p>
+
+
+<p>
+⭐⭐⭐⭐☆ (4.5/5)
+</p>
+
+
+<p>
+Latest Android smartphone with a great camera.
+</p>
+
+
+
+<a href="product.html">
+
+<button>
+View Details
 </button>
-        <button onclick="addToWishlist('Headphones')">❤️ Favorite</button>
-    </div>
+
+</a>
+
+
+<button onclick="addToCart('Smartphone',499)">
+🛒 Add to Cart
+</button>
+
+
+
+<button onclick="addToCompare('Smartphone',499,'Electronics')">
+
+⚖️ Compare
+
+</button>
+
+
+
+<button onclick="addToWishlist('Smartphone')">
+
+❤️ Favorite
+
+</button>
+
 
 </div>
 
+
+
+
+
+<div class="product" data-category="computers">
+
+
+<img src="https://via.placeholder.com/200" alt="Laptop">
+
+
+<h3>💻 Laptop</h3>
+
+
+<p>
+<strong>Price:</strong> $899
+</p>
+
+
+<p>
+⭐⭐⭐⭐⭐ (5/5)
+</p>
+
+
+<p>
+Powerful laptop for work and gaming.
+</p>
+
+
+
+<a href="product.html">
+
+<button>
+View Details
+</button>
+
+</a>
+
+
+<button onclick="addToCart('Laptop',899)">
+🛒 Add to Cart
+</button>
+
+
+
+<button onclick="addToCompare('Laptop',899,'Computers')">
+
+⚖️ Compare
+
+</button>
+
+
+
+<button onclick="addToWishlist('Laptop')">
+
+❤️ Favorite
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+<div class="product" data-category="audio">
+
+
+<img src="https://via.placeholder.com/200" alt="Headphones">
+
+
+<h3>🎧 Headphones</h3>
+
+
+<p>
+<strong>Price:</strong> $149
+</p>
+
+
+<p>
+⭐⭐⭐⭐☆ (4/5)
+</p>
+
+
+<p>
+Premium wireless headphones.
+</p>
+
+
+
+<a href="product.html">
+
+<button>
+View Details
+</button>
+
+</a>
+
+
+<button onclick="addToCart('Headphones',149)">
+🛒 Add to Cart
+</button>
+
+
+
+<button onclick="addToCompare('Headphones',149,'Audio')">
+
+⚖️ Compare
+
+</button>
+
+
+
+<button onclick="addToWishlist('Headphones')">
+
+❤️ Favorite
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
 <footer>
-    <p>© 2026 Product Finder. All rights reserved.</p>
+
+<p>
+© 2026 Product Finder. All rights reserved.
+</p>
+
+
 </footer>
+
+
+
 
 <script src="script.js"></script>
 
+
+<script>
+
+loadMarketplaceProducts();
+
+</script>
+
+
+
 </body>
+
 </html>
