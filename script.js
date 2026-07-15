@@ -1953,6 +1953,7 @@ function adminLogin(){
 
     }
 
+}  // ✅ CLOSE adminLogin HERE
 
 
 // ================= ADMIN REGISTER =================
