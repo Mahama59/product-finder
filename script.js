@@ -1975,3 +1975,34 @@ function adminLogin(){
 
 
 }
+// ================= ADMIN REGISTER =================
+
+function registerAdmin(){
+
+    let name = document.getElementById("adminName").value;
+    let email = document.getElementById("adminEmail").value;
+    let password = document.getElementById("adminPassword").value;
+
+    if(name === "" || email === "" || password === ""){
+
+        alert("Please fill all fields.");
+        return;
+
+    }
+
+    let admin = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    localStorage.setItem(
+        "admin",
+        JSON.stringify(admin)
+    );
+
+    alert("Admin account created successfully!");
+
+    window.location.href = "admin-login.html";
+
+}
