@@ -450,7 +450,7 @@ function saveProduct() {
     let price = document.getElementById("productPrice").value;
     let category = document.getElementById("productCategory").value;
     let description = document.getElementById("productDescription").value;
-
+    let image = document.getElementById("productImage").value;
     if (name === "" || price === "" || category === "" || description === "") {
 
         alert("Please fill all fields.");
@@ -459,11 +459,12 @@ function saveProduct() {
     }
 
     let product = {
-        name: name,
-        price: price,
-        category: category,
-        description: description
-    };
+    name: name,
+    price: price,
+    category: category,
+    description: description,
+    image: image
+};
 
     merchantProducts.push(product);
 
@@ -495,7 +496,7 @@ function loadMarketplaceProducts() {
 
         container.innerHTML += `
             <div class="product">
-
+<img src="${product.image}" alt="${product.name}" width="200">
                 <h3>${product.name}</h3>
 
                 <p><strong>Price:</strong> $${product.price}</p>
