@@ -540,3 +540,21 @@ function loadMerchantProducts() {
     });
 
 }
+function loadDashboard() {
+
+    let products = JSON.parse(localStorage.getItem("merchantProducts")) || [];
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    let compare = JSON.parse(localStorage.getItem("compare")) || [];
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    let totalProducts = document.getElementById("totalProducts");
+    let totalOrders = document.getElementById("totalOrders");
+    let totalWishlist = document.getElementById("totalWishlist");
+    let totalCompare = document.getElementById("totalCompare");
+
+    if (totalProducts) totalProducts.innerText = products.length;
+    if (totalOrders) totalOrders.innerText = orders.length;
+    if (totalWishlist) totalWishlist.innerText = wishlist.length;
+    if (totalCompare) totalCompare.innerText = compare.length;
+
+}
