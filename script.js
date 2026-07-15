@@ -1161,3 +1161,103 @@ function filterProducts(){
 
 
 }
+function loadMerchantOrders(){
+
+    let box = document.getElementById("merchantOrders");
+
+    if(!box) return;
+
+
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+
+    if(orders.length === 0){
+
+        box.innerHTML = "<h2>No customer orders yet.</h2>";
+        return;
+
+    }
+
+
+    box.innerHTML = "";
+
+
+    orders.forEach(function(order,index){
+
+
+        box.innerHTML += `
+
+        <div class="product">
+
+        <h3>Order #${index + 1}</h3>
+
+        <p>
+        Total: $${order.total}
+        </p>
+
+
+        <p>
+        Date: ${order.date}
+        </p>
+
+
+        <p>
+        Status:
+        <strong>${order.status}</strong>
+        </p>
+
+
+
+        <select onchange="updateOrderStatus(${index}, this.value)">
+
+        <option value="Pending">
+        Pending
+        </option>
+
+
+        <option value="Processing">
+        Processing
+        </option>
+
+
+        <option value="Shipped">
+        Shipped
+        </option>
+
+
+        <option value="Delivered">
+        Delivered
+        </option>
+
+
+        </select>
+
+
+        </div>
+
+        `;
+
+
+    });
+
+
+}
+function updateOrderStatus(index,status){
+
+
+    let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
+
+
+    orders[index].status = status;
+
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
+
+
+    alert("Order status updated!");
+
+}
