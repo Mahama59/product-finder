@@ -396,3 +396,29 @@ document.addEventListener("DOMContentLoaded", function(){
     displayReviews();
 
 });
+function registerMerchant() {
+
+    let name = document.getElementById("merchantName").value;
+    let email = document.getElementById("merchantEmail").value;
+    let phone = document.getElementById("merchantPhone").value;
+
+    if (name === "" || email === "" || phone === "") {
+
+        alert("Please fill all fields.");
+        return;
+
+    }
+
+    let merchant = {
+        name: name,
+        email: email,
+        phone: phone
+    };
+
+    localStorage.setItem("merchant", JSON.stringify(merchant));
+
+    alert("Merchant registration successful!");
+
+    window.location.href = "merchant-dashboard.html";
+
+}
