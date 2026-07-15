@@ -2073,7 +2073,7 @@ function payWithPaystack(){
 
     let handler = PaystackPop.setup({
 
-        key: "YOUR_PUBLIC_KEY",
+        key: pk_test_f4ae21eeec7c8ae8c3d3764b03b9f67967fc2a0d
 
         email: "customer@email.com",
 
