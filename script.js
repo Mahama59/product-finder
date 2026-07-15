@@ -422,3 +422,35 @@ function registerMerchant() {
     window.location.href = "merchant-dashboard.html";
 
 }
+let merchantProducts = JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+function saveProduct() {
+
+    let name = document.getElementById("productName").value;
+    let price = document.getElementById("productPrice").value;
+    let category = document.getElementById("productCategory").value;
+    let description = document.getElementById("productDescription").value;
+
+    if (name === "" || price === "" || category === "" || description === "") {
+
+        alert("Please fill all fields.");
+        return;
+
+    }
+
+    let product = {
+        name: name,
+        price: price,
+        category: category,
+        description: description
+    };
+
+    merchantProducts.push(product);
+
+    localStorage.setItem("merchantProducts", JSON.stringify(merchantProducts));
+
+    alert("Product added successfully!");
+
+    window.location.href = "merchant-products.html";
+
+}
