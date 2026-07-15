@@ -2107,3 +2107,64 @@ function payWithPaystack(){
     handler.openIframe();
 
 }
+// ================= CHECKOUT CART DISPLAY =================
+
+function loadCheckout(){
+
+    let checkoutItems =
+    document.getElementById("checkoutItems");
+
+
+    let checkoutTotal =
+    document.getElementById("checkoutTotal");
+
+
+    if(!checkoutItems || !checkoutTotal){
+        return;
+    }
+
+
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+
+    if(cart.length === 0){
+
+        checkoutItems.innerHTML =
+        "<p>Your cart is empty.</p>";
+
+        checkoutTotal.innerText = "0";
+
+        return;
+
+    }
+
+
+    checkoutItems.innerHTML = "";
+
+
+    let total = 0;
+
+
+    cart.forEach(function(item){
+
+
+        checkoutItems.innerHTML += `
+
+        <p>
+        🛒 ${item.name} - $${item.price}
+        </p>
+
+        `;
+
+
+        total += Number(item.price);
+
+
+    });
+
+
+    checkoutTotal.innerText = total;
+
+
+}
