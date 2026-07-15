@@ -13,16 +13,16 @@
 </head>
 
 
-<body onload="loadAdminDashboard(); loadAdminUsers(); loadAdminMerchants(); loadAdminProducts(); loadAdminOrders();">
+<body>
 
 
 <nav>
 
 <h2>🛍️ Product Finder Admin</h2>
 
-<a href="index.html">
-Home
-</a>
+<a href="index.html">Home</a>
+
+<a href="admin-login.html">Logout</a>
 
 </nav>
 
@@ -32,7 +32,7 @@ Home
 
 <h1>🛠️ Admin Dashboard</h1>
 
-<p>Manage Product Finder Marketplace</p>
+<p>Manage Product Finder marketplace</p>
 
 </header>
 
@@ -41,25 +41,13 @@ Home
 
 <div class="product">
 
-<h2>📊 Marketplace Statistics</h2>
+<h2>📊 Marketplace Overview</h2>
 
+<p>Total Users: <span id="totalUsers">0</span></p>
 
-<p>
-Total Users:
-<span id="totalUsers">0</span>
-</p>
+<p>Total Merchants: <span id="totalMerchants">0</span></p>
 
-
-<p>
-Total Merchants:
-<span id="totalMerchants">0</span>
-</p>
-
-
-<p>
-Total Products:
-<span id="totalProducts">0</span>
-</p>
+<p>Total Products: <span id="totalProducts">0</span></p>
 
 
 </div>
@@ -69,9 +57,13 @@ Total Products:
 
 <div class="product">
 
-<h2>👥 User Management</h2>
+<h2>👤 Users Management</h2>
 
-<div id="adminUsers"></div>
+<div id="adminUsers">
+
+<p>Loading users...</p>
+
+</div>
 
 </div>
 
@@ -83,7 +75,11 @@ Total Products:
 
 <h2>🏪 Merchant Management</h2>
 
-<div id="adminMerchants"></div>
+<div id="adminMerchants">
+
+<p>Loading merchants...</p>
+
+</div>
 
 </div>
 
@@ -93,9 +89,13 @@ Total Products:
 
 <div class="product">
 
-<h2>📦 Product Management</h2>
+<h2>📦 Product Approval</h2>
 
-<div id="adminProducts"></div>
+<div id="adminProducts">
+
+<p>Loading products...</p>
+
+</div>
 
 </div>
 
@@ -105,9 +105,13 @@ Total Products:
 
 <div class="product">
 
-<h2>🚚 Order Management</h2>
+<h2>🚚 Orders</h2>
 
-<div id="adminOrders"></div>
+<div id="adminOrders">
+
+<p>Loading orders...</p>
+
+</div>
 
 </div>
 
@@ -117,15 +121,58 @@ Total Products:
 
 <footer>
 
-<p>
-© 2026 Product Finder
-</p>
+<p>© 2026 Product Finder</p>
 
 </footer>
 
 
 
+
+
+<script>
+
+
+let adminLoggedIn = localStorage.getItem("adminLoggedIn");
+
+
+if(adminLoggedIn !== "true"){
+
+    window.location.href = "admin-login.html";
+
+}
+
+
+
+</script>
+
+
+
 <script src="script.js"></script>
+
+
+
+<script>
+
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+loadAdminDashboard();
+
+loadAdminUsers();
+
+loadAdminMerchants();
+
+loadAdminProducts();
+
+loadAdminOrders();
+
+});
+
+
+</script>
+
 
 
 </body>
