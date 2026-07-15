@@ -19,7 +19,19 @@
 <h1>🏪 Merchant Dashboard</h1>
 <p id="merchantWelcome"></p>
 </header>
+<div class="product">
 
+<h2>📊 Dashboard Summary</h2>
+
+<p>📦 Total Products: <span id="totalProducts">0</span></p>
+
+<p>🛒 Total Orders: <span id="totalOrders">0</span></p>
+
+<p>❤️ Wishlist Saves: <span id="totalWishlist">0</span></p>
+
+<p>⚖️ Compared Products: <span id="totalCompare">0</span></p>
+
+</div>
 <div class="product">
 
 <h2>Seller Menu</h2>
@@ -61,6 +73,7 @@ if(merchant){
     document.getElementById("merchantWelcome").innerText =
     "Welcome, " + merchant.name;
 }
+    loadDashboard();
 </script>
 
 </body>
