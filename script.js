@@ -625,3 +625,43 @@ function showPaymentDetails(){
     }
 
 }
+function loadMyOrders() {
+
+    let container = document.getElementById("myOrders");
+
+    if (!container) return;
+
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    if (orders.length === 0) {
+        container.innerHTML = "<h2>No orders yet.</h2>";
+        return;
+    }
+
+    container.innerHTML = "";
+
+    orders.forEach(function(order, index) {
+
+        let progress = 25;
+
+        if (order.status === "Processing") progress = 50;
+        if (order.status === "Shipped") progress = 75;
+        if (order.status === "Delivered") progress = 100;
+
+        container.innerHTML += `
+        <div class="product">
+
+            <h3>Order #${index + 1}</h3>
+
+            <p><strong>Total:</strong> $${order.total}</p>
+
+            <p><strong>Status:</strong> ${order.status}</p>
+
+            <progress value="${progress}" max="100"></progress>
+
+        </div>
+        `;
+
+    });
+
+}
