@@ -1925,3 +1925,53 @@ function deleteMerchant(){
     loadAdminMerchants();
 
 }
+// ================= ADMIN LOGIN =================
+
+function adminLogin(){
+
+    let email =
+    document.getElementById("adminEmail").value;
+
+
+    let password =
+    document.getElementById("adminPassword").value;
+
+
+    // Admin account
+    let admin = {
+
+        email:"admin@productfinder.com",
+
+        password:"admin123"
+
+    };
+
+
+    if(
+        email === admin.email &&
+        password === admin.password
+    ){
+
+        localStorage.setItem(
+            "adminLoggedIn",
+            "true"
+        );
+
+
+        alert("Admin login successful");
+
+
+        window.location.href =
+        "admin-dashboard.html";
+
+
+    }else{
+
+
+        alert("Incorrect admin details");
+
+
+    }
+
+
+}
