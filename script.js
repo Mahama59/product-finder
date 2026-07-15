@@ -1510,3 +1510,149 @@ function completeOrder(){
     window.location.href="success.html";
 
 }
+// ================= ADMIN USER MANAGEMENT =================
+
+
+function loadAdminUsers(){
+
+    let box = document.getElementById("adminUsers");
+
+    if(!box) return;
+
+
+    let user = JSON.parse(localStorage.getItem("user"));
+
+
+    if(!user){
+
+        box.innerHTML =
+        "<p>No users registered.</p>";
+
+        return;
+
+    }
+
+
+    box.innerHTML = `
+
+    <div class="product">
+
+    <h3>
+    👤 ${user.name}
+    </h3>
+
+
+    <p>
+    Email: ${user.email}
+    </p>
+
+
+    <button onclick="deleteUser()">
+
+    🗑 Delete User
+
+    </button>
+
+
+    </div>
+
+    `;
+
+
+}
+
+
+
+
+function deleteUser(){
+
+    localStorage.removeItem("user");
+
+
+    alert("User deleted successfully");
+
+
+    loadAdminUsers();
+
+
+}
+
+
+
+
+// ================= ADMIN MERCHANT MANAGEMENT =================
+
+
+function loadAdminMerchants(){
+
+    let box =
+    document.getElementById("adminMerchants");
+
+
+    if(!box) return;
+
+
+
+    let merchant =
+    JSON.parse(localStorage.getItem("merchant"));
+
+
+
+    if(!merchant){
+
+
+        box.innerHTML =
+        "<p>No merchants registered.</p>";
+
+        return;
+
+    }
+
+
+
+    box.innerHTML = `
+
+    <div class="product">
+
+    <h3>
+    🏪 ${merchant.name}
+    </h3>
+
+
+    <p>
+    Email: ${merchant.email}
+    </p>
+
+
+    <p>
+    Phone: ${merchant.phone}
+    </p>
+
+
+    <button onclick="deleteMerchant()">
+
+    🗑 Remove Merchant
+
+    </button>
+
+
+    </div>
+
+    `;
+
+
+}
+
+
+
+function deleteMerchant(){
+
+    localStorage.removeItem("merchant");
+
+
+    alert("Merchant removed");
+
+
+    loadAdminMerchants();
+
+}
