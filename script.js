@@ -703,3 +703,81 @@ function getAverageRating(productName) {
     return average.toFixed(1) + "/5 ⭐ (" + ratings[productName].length + " reviews)";
 }
 }
+let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
+
+
+function submitRating(productName){
+
+    let rating = document.getElementById("ratingValue").value;
+
+
+    if(!ratings[productName]){
+
+        ratings[productName] = [];
+
+    }
+
+
+    ratings[productName].push(Number(rating));
+
+
+    localStorage.setItem(
+        "ratings",
+        JSON.stringify(ratings)
+    );
+
+
+    alert("Thank you for rating ⭐");
+
+
+    loadRating(productName);
+
+}
+
+
+
+function loadRating(productName){
+
+    let box = document.getElementById("productRating");
+
+
+    if(!box) return;
+
+
+    let productRatings = ratings[productName] || [];
+
+
+    if(productRatings.length === 0){
+
+        box.innerHTML = "No ratings yet.";
+
+        return;
+
+    }
+
+
+    let total = productRatings.reduce(
+        (a,b)=>a+b,0
+    );
+
+
+    let average = total / productRatings.length;
+
+
+    box.innerHTML =
+    "⭐".repeat(Math.round(average)) +
+    " (" + average.toFixed(1) + "/5 from " +
+    productRatings.length +
+    " customers)";
+
+}
+
+
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+    loadRating("Smartphone");
+
+});
