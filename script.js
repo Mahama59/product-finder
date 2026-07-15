@@ -1925,53 +1925,35 @@ function deleteMerchant(){
     loadAdminMerchants();
 
 }
-// ================= ADMIN LOGIN =================
-
 function adminLogin(){
 
-    let email =
-    document.getElementById("adminEmail").value;
+    let email = document.getElementById("adminEmail").value;
+    let password = document.getElementById("adminPassword").value;
 
+    let admin = JSON.parse(localStorage.getItem("admin"));
 
-    let password =
-    document.getElementById("adminPassword").value;
+    if(!admin){
 
+        alert("No admin account found. Please register first.");
+        return;
 
-    // Admin account
-    let admin = {
+    }
 
-        email:"admin@productfinder.com",
+    if(email === admin.email && password === admin.password){
 
-        password:"admin123"
-
-    };
-
-
-    if(
-        email === admin.email &&
-        password === admin.password
-    ){
-
-        localStorage.setItem(
-            "adminLoggedIn",
-            "true"
-        );
-
+        localStorage.setItem("adminLoggedIn","true");
 
         alert("Admin login successful");
 
-
-        window.location.href =
-        "admin-dashboard.html";
-
+        window.location.href="admin-dashboard.html";
 
     }else{
 
-
         alert("Incorrect admin details");
 
-
     }
+
+}
 
 
 }
