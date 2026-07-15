@@ -1261,3 +1261,30 @@ function updateOrderStatus(index,status){
     alert("Order status updated!");
 
 }
+function loadAdminDashboard(){
+
+    let users = JSON.parse(localStorage.getItem("user")) || null;
+    let merchants = JSON.parse(localStorage.getItem("merchant")) || null;
+    let products = JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+    let totalUsers = document.getElementById("totalUsers");
+    let totalMerchants = document.getElementById("totalMerchants");
+    let totalProducts = document.getElementById("totalProducts");
+
+
+    if(totalUsers){
+        totalUsers.innerText = users ? 1 : 0;
+    }
+
+
+    if(totalMerchants){
+        totalMerchants.innerText = merchants ? 1 : 0;
+    }
+
+
+    if(totalProducts){
+        totalProducts.innerText = products.length;
+    }
+
+}
