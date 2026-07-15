@@ -463,9 +463,9 @@ function saveProduct() {
     price: price,
     category: category,
     description: description,
-    image: image
+    image: image,
+    rating: 5
 };
-
     merchantProducts.push(product);
 
     localStorage.setItem("merchantProducts", JSON.stringify(merchantProducts));
@@ -498,7 +498,7 @@ function loadMarketplaceProducts() {
             <div class="product">
 <img src="${product.image}" alt="${product.name}" width="200">
                 <h3>${product.name}</h3>
-
+<p>⭐⭐⭐⭐⭐ (${product.rating}/5)</p>
                 <p><strong>Price:</strong> $${product.price}</p>
 
                 <p><strong>Category:</strong> ${product.category}</p>
