@@ -673,3 +673,33 @@ function submitRating() {
     alert("Thank you! You rated this product " + rating + " stars.");
 
 }
+function submitRating(productName) {
+
+    let rating = Number(document.getElementById("ratingValue").value);
+
+    let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
+
+    if (!ratings[productName]) {
+        ratings[productName] = [];
+    }
+
+    ratings[productName].push(rating);
+
+    localStorage.setItem("ratings", JSON.stringify(ratings));
+
+    alert("Thank you! You rated " + productName + " " + rating + " stars.");
+function getAverageRating(productName) {
+
+    let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
+
+    if (!ratings[productName] || ratings[productName].length === 0) {
+        return "No ratings yet";
+    }
+
+    let total = ratings[productName].reduce((sum, value) => sum + value, 0);
+
+    let average = total / ratings[productName].length;
+
+    return average.toFixed(1) + "/5 ⭐ (" + ratings[productName].length + " reviews)";
+}
+}
