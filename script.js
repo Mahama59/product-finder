@@ -1987,3 +1987,53 @@ function registerAdmin(){
     window.location.href = "admin-login.html";
 
 }
+// ================= MERCHANT LOGIN =================
+
+function merchantLogin(){
+
+    let email =
+    document.getElementById("merchantEmail").value;
+
+
+    let phone =
+    document.getElementById("merchantPhone").value;
+
+
+    let merchant =
+    JSON.parse(localStorage.getItem("merchant"));
+
+
+    if(!merchant){
+
+        alert("No merchant account found. Please register first.");
+
+        return;
+
+    }
+
+
+    if(email === merchant.email && phone === merchant.phone){
+
+
+        localStorage.setItem(
+            "merchantLoggedIn",
+            "true"
+        );
+
+
+        alert("Merchant login successful");
+
+
+        window.location.href =
+        "merchant-dashboard.html";
+
+
+    }else{
+
+
+        alert("Incorrect merchant details");
+
+
+    }
+
+}
