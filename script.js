@@ -1443,3 +1443,70 @@ loadAdminProducts();
 loadAdminOrders();
 
 });
+// ================= COMPLETE ORDER =================
+
+function completeOrder(){
+
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+
+    if(cart.length === 0){
+
+        alert("Your cart is empty.");
+
+        return;
+
+    }
+
+
+    let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
+
+
+
+    let total = cart.reduce(
+        (sum,item)=> sum + Number(item.price),
+        0
+    );
+
+
+
+    let order = {
+
+        id: Date.now(),
+
+        items: cart,
+
+        total: total,
+
+        date: new Date().toLocaleString(),
+
+        status: "Pending"
+
+    };
+
+
+
+    orders.push(order);
+
+
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
+
+
+
+    localStorage.removeItem("cart");
+
+
+
+    alert("Order completed successfully!");
+
+
+
+    window.location.href="success.html";
+
+}
