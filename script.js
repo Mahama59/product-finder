@@ -558,3 +558,33 @@ function loadDashboard() {
     if (totalCompare) totalCompare.innerText = compare.length;
 
 }
+function loadCheckoutCart() {
+
+    let checkoutItems = document.getElementById("checkoutItems");
+
+    if (!checkoutItems) return;
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+        checkoutItems.innerHTML = "<p>Your cart is empty.</p>";
+        return;
+    }
+
+    let total = 0;
+
+    checkoutItems.innerHTML = "<h3>Your Order</h3>";
+
+    cart.forEach(function(item) {
+
+        checkoutItems.innerHTML +=
+            "<p>🛒 " + item.name + " - $" + item.price + "</p>";
+
+        total += Number(item.price);
+
+    });
+
+    checkoutItems.innerHTML +=
+        "<hr><h3>Total: $" + total + "</h3>";
+
+}
