@@ -588,3 +588,20 @@ function loadCheckoutCart() {
         "<hr><h3>Total: $" + total + "</h3>";
 
 }
+function showPaymentDetails(){
+
+    let payment = document.getElementById("paymentMethod").value;
+
+    let momo = document.getElementById("momoDetails");
+
+    if(payment === "momo"){
+
+        momo.style.display = "block";
+
+    } else {
+
+        momo.style.display = "none";
+
+    }
+
+}
