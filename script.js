@@ -1,19 +1,32 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function searchProducts() {
 
-    let input = document.querySelector("input").value.toLowerCase();
+// ================= SEARCH =================
+
+function searchProducts(){
+
+    let input = document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase();
+
 
     let products = document.querySelectorAll(".product");
 
-    products.forEach(function(product) {
+
+    products.forEach(function(product){
 
         let text = product.innerText.toLowerCase();
 
-        if (text.includes(input)) {
+
+        if(text.includes(input)){
+
             product.style.display = "block";
-        } else {
+
+        }else{
+
             product.style.display = "none";
+
         }
 
     });
@@ -21,694 +34,1000 @@ function searchProducts() {
 }
 
 
-function addToCart(productName, productPrice) {
+
+// ================= CART =================
+
+
+function addToCart(productName, productPrice){
 
     cart.push({
+
         name: productName,
         price: productPrice
+
     });
 
-    localStorage.setItem("cart", JSON.stringify(cart));
 
-    let count = document.getElementById("cartCount");
-    if (count) {
-        count.innerText = cart.length;
-    }
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+
+    updateCartCount();
+
 
     alert(productName + " added to cart!");
 
 }
-function registerUser(){
 
-    let name = document.getElementById("registerName").value;
-    let email = document.getElementById("registerEmail").value;
-    let password = document.getElementById("registerPassword").value;
 
-    if(name === "" || email === "" || password === ""){
 
-        alert("Please fill all fields");
+function updateCartCount(){
 
-    } else {
+    let count =
+    document.getElementById("cartCount");
 
-        let user = {
-            name: name,
-            email: email,
-            password: password
-        };
 
-        localStorage.setItem("user", JSON.stringify(user));
+    if(count){
 
-        alert("Registration successful!");
-
-        window.location.href = "login.html";
-
-    }
-
-}
-function loginUser(){
-
-    let email = document.getElementById("loginEmail").value;
-    let password = document.getElementById("loginPassword").value;
-
-    let user = JSON.parse(localStorage.getItem("user"));
-
-    if(user === null){
-
-        alert("No account found. Please register first.");
-
-    } else if(email === user.email && password === user.password){
-
-        alert("Login successful!");
-
-        localStorage.setItem("loggedIn", "true");
-
-        window.location.href = "index.html";
-
-    } else {
-
-        alert("Incorrect email or password.");
-
-    }
-
-}
-document.addEventListener("DOMContentLoaded", function () {
-
-    let welcome = document.getElementById("welcomeUser");
-
-    if (welcome) {
-
-        let user = JSON.parse(localStorage.getItem("user"));
-
-        if (user) {
-            welcome.innerText = "👋 Welcome, " + user.name;
-        }
-
-    }
-
-});
-function logoutUser(){
-
-    localStorage.removeItem("loggedIn");
-
-    alert("You have been logged out.");
-
-    window.location.href = "login.html";
-
-}
-function viewCart() {
-
-    let cartList = document.getElementById("cartList");
-
-    if (!cartList) return;
-
-    if (cart.length === 0) {
-
-        cartList.innerHTML = "<p>Your cart is empty.</p>";
-
-    } else {
-
-        cartList.innerHTML = "<h3>Your Cart</h3>";
-
-        cart.forEach(function(item, index) {
-
-            cartList.innerHTML +=
-                "<p>🛒 " + item.name + " - $" + item.price +
-                " <button onclick='removeFromCart(" + index + ")'>Remove</button></p>";
-
-        });
-
-    }
-
-}
-function removeFromCart(index) {
-
-    cart.splice(index, 1);
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    let count = document.getElementById("cartCount");
-    if (count) {
         count.innerText = cart.length;
+
     }
+
+}
+
+
+
+function viewCart(){
+
+    let cartList =
+    document.getElementById("cartList");
+
+
+    if(!cartList) return;
+
+
+    if(cart.length === 0){
+
+        cartList.innerHTML =
+        "<p>Your cart is empty.</p>";
+
+        return;
+
+    }
+
+
+    cartList.innerHTML =
+    "<h3>Your Cart</h3>";
+
+
+    cart.forEach(function(item,index){
+
+
+        cartList.innerHTML += `
+
+        <p>
+        🛒 ${item.name} - $${item.price}
+
+        <button onclick="removeFromCart(${index})">
+        Remove
+        </button>
+
+        </p>
+
+        `;
+
+    });
+
+
+}
+
+
+
+function removeFromCart(index){
+
+    cart.splice(index,1);
+
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+
+    updateCartCount();
+
 
     viewCart();
 
 }
-document.addEventListener("DOMContentLoaded", function () {
 
-    let count = document.getElementById("cartCount");
 
-    if (count) {
-        count.innerText = cart.length;
-    }
+
+
+// ================= USER =================
+
+
+function registerUser(){
+
+
+let name =
+document.getElementById("registerName").value;
+
+
+let email =
+document.getElementById("registerEmail").value;
+
+
+let password =
+document.getElementById("registerPassword").value;
+
+
+
+if(name==="" || email==="" || password===""){
+
+alert("Please fill all fields");
+
+return;
+
+}
+
+
+
+let user={
+
+name:name,
+email:email,
+password:password
+
+};
+
+
+localStorage.setItem(
+"user",
+JSON.stringify(user)
+);
+
+
+
+alert("Registration successful!");
+
+
+window.location.href="login.html";
+
+
+}
+
+
+
+
+function loginUser(){
+
+
+let email =
+document.getElementById("loginEmail").value;
+
+
+let password =
+document.getElementById("loginPassword").value;
+
+
+
+let user =
+JSON.parse(localStorage.getItem("user"));
+
+
+
+if(!user){
+
+alert("Please register first.");
+
+return;
+
+}
+
+
+
+if(email===user.email && password===user.password){
+
+
+localStorage.setItem(
+"loggedIn",
+"true"
+);
+
+
+alert("Login successful");
+
+
+window.location.href="index.html";
+
+
+}else{
+
+
+alert("Incorrect login details");
+
+
+}
+
+
+}
+
+
+
+function logoutUser(){
+
+localStorage.removeItem("loggedIn");
+
+
+alert("Logged out");
+
+
+window.location.href="login.html";
+
+
+}
+
+
+
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+updateCartCount();
+
+
+let welcome =
+document.getElementById("welcomeUser");
+
+
+let user =
+JSON.parse(localStorage.getItem("user"));
+
+
+if(welcome && user){
+
+welcome.innerText =
+"👋 Welcome, "+user.name;
+
+}
+
 
 });
-// Wishlist
-let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+// ================= WISHLIST =================
 
-function addToWishlist(productName) {
 
-    if (wishlist.includes(productName)) {
-        alert(productName + " is already in your wishlist!");
-        return;
-    }
+let wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
 
-    wishlist.push(productName);
 
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
 
-    let count = document.getElementById("wishlistCount");
-    if (count) {
-        count.innerText = wishlist.length;
-    }
+function addToWishlist(productName){
 
-    alert(productName + " added to your wishlist!");
-}
 
-function viewWishlist() {
+if(wishlist.includes(productName)){
 
-    let wishlistList = document.getElementById("wishlistList");
 
-    if (!wishlistList) return;
+alert(productName + " already in wishlist");
 
-    if (wishlist.length === 0) {
-
-        wishlistList.innerHTML = "<p>Your wishlist is empty.</p>";
-
-    } else {
-
-        wishlistList.innerHTML = "<h3>❤️ Your Wishlist</h3>";
-
-        wishlist.forEach(function(item, index) {
-
-            wishlistList.innerHTML +=
-                "<p>❤️ " + item +
-                " <button onclick='removeFromWishlist(" + index + ")'>Remove</button></p>";
-
-        });
-
-    }
+return;
 
 }
 
-function removeFromWishlist(index) {
 
-    wishlist.splice(index, 1);
 
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+wishlist.push(productName);
 
-    let count = document.getElementById("wishlistCount");
-    if (count) {
-        count.innerText = wishlist.length;
-    }
 
-    viewWishlist();
+
+localStorage.setItem(
+"wishlist",
+JSON.stringify(wishlist)
+);
+
+
+
+updateWishlistCount();
+
+
+
+alert(productName + " added ❤️");
+
 
 }
 
-function completeOrder() {
-
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    if (cart.length === 0) {
-        alert("Your cart is empty.");
-        return;
-    }
-
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-    let order = {
-        id: Date.now(),
-        items: cart,
-        total: cart.reduce((sum, item) => sum + Number(item.price), 0),
-        date: new Date().toLocaleString(),
-        status: "Pending"
-    };
-
-    orders.push(order);
-
-    localStorage.setItem("orders", JSON.stringify(orders));
-
-    localStorage.removeItem("cart");
-
-    alert("Order completed successfully!");
-
-    window.location.href = "success.html";
-}
-let compareList = JSON.parse(localStorage.getItem("compare")) || [];
 
 
-function addToCompare(name, price, category){
 
-    if(compareList.length >= 3){
-
-        alert("You can compare only 3 products at a time.");
-
-        return;
-
-    }
+function updateWishlistCount(){
 
 
-    let exists = compareList.find(product => product.name === name);
+let count =
+document.getElementById("wishlistCount");
 
 
-    if(exists){
 
-        alert(name + " is already in comparison.");
+if(count){
 
-        return;
-
-    }
-
-
-    compareList.push({
-        name:name,
-        price:price,
-        category:category
-    });
-
-
-    localStorage.setItem("compare", JSON.stringify(compareList));
-
-
-    alert(name + " added to comparison ⚖️");
+count.innerText =
+wishlist.length;
 
 }
+
+
+}
+
+
+
+
+function viewWishlist(){
+
+
+let box =
+document.getElementById("wishlistList");
+
+
+
+if(!box) return;
+
+
+
+if(wishlist.length===0){
+
+
+box.innerHTML =
+"<p>Your wishlist is empty.</p>";
+
+
+return;
+
+}
+
+
+
+box.innerHTML =
+"<h3>❤️ Your Wishlist</h3>";
+
+
+
+wishlist.forEach(function(item,index){
+
+
+
+box.innerHTML += `
+
+
+<p>
+
+❤️ ${item}
+
+
+<button onclick="removeFromWishlist(${index})">
+
+Remove
+
+</button>
+
+
+</p>
+
+
+`;
+
+
+
+});
+
+
+}
+
+
+
+function removeFromWishlist(index){
+
+
+wishlist.splice(index,1);
+
+
+
+localStorage.setItem(
+"wishlist",
+JSON.stringify(wishlist)
+);
+
+
+
+updateWishlistCount();
+
+
+viewWishlist();
+
+
+}
+
+
+
+
+
+// ================= COMPARE =================
+
+
+
+let compareList =
+JSON.parse(localStorage.getItem("compare")) || [];
+
+
+
+
+function addToCompare(name,price,category){
+
+
+
+if(compareList.length >=3){
+
+
+alert("Only 3 products can be compared");
+
+
+return;
+
+}
+
+
+
+
+let exists =
+compareList.find(
+product=>product.name===name
+);
+
+
+
+if(exists){
+
+
+alert("Already added");
+
+
+return;
+
+}
+
+
+
+
+compareList.push({
+
+name:name,
+
+price:price,
+
+category:category
+
+});
+
+
+
+localStorage.setItem(
+"compare",
+JSON.stringify(compareList)
+);
+
+
+
+alert(name+" added to comparison ⚖️");
+
+
+}
+
+
+
+
 function loadCompare(){
 
-    let compareDiv = document.getElementById("compareList");
 
-    if(!compareDiv) return;
-
-
-    let compareList = JSON.parse(localStorage.getItem("compare")) || [];
+let box =
+document.getElementById("compareList");
 
 
-    if(compareList.length === 0){
 
-        compareDiv.innerHTML = "<p>No products selected for comparison.</p>";
-
-        return;
-
-    }
+if(!box) return;
 
 
-    compareDiv.innerHTML = `
-    <h2>⚖️ Product Comparison</h2>
 
-    <table border="1">
-
-    <tr>
-        <th>Product</th>
-        <th>Price</th>
-        <th>Category</th>
-    </tr>
-    `;
+let list =
+JSON.parse(localStorage.getItem("compare")) || [];
 
 
-    compareList.forEach(function(product){
 
-        compareDiv.innerHTML += `
-
-        <tr>
-
-        <td>${product.name}</td>
-
-        <td>$${product.price}</td>
-
-        <td>${product.category}</td>
-
-        </tr>
-
-        `;
-
-    });
+if(list.length===0){
 
 
-    compareDiv.innerHTML += "</table>";
-
-        }
-let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+box.innerHTML =
+"<p>No products selected.</p>";
 
 
-function addReview(){
-
-    let input = document.getElementById("reviewInput");
-
-    if(!input) return;
-
-
-    let review = input.value;
-
-
-    if(review === ""){
-
-        alert("Please write a review.");
-
-        return;
-
-    }
-
-
-    reviews.push(review);
-
-
-    localStorage.setItem("reviews", JSON.stringify(reviews));
-
-
-    input.value = "";
-
-
-    displayReviews();
-
-
-    alert("Review added successfully ⭐");
+return;
 
 }
 
 
 
-function displayReviews(){
 
-    let reviewList = document.getElementById("reviewList");
+box.innerHTML = `
 
-
-    if(!reviewList) return;
+<h2>⚖️ Product Comparison</h2>
 
 
-    reviewList.innerHTML = "<h3>Customer Reviews</h3>";
+<table border="1">
 
 
-    reviews.forEach(function(review){
+<tr>
 
-        reviewList.innerHTML +=
+<th>Product</th>
 
-        "<p>💬 " + review + "</p>";
+<th>Price</th>
 
-    });
+<th>Category</th>
 
-}
+</tr>
+
+
+`;
 
 
 
-document.addEventListener("DOMContentLoaded", function(){
+list.forEach(function(product){
 
-    displayReviews();
+
+box.innerHTML += `
+
+<tr>
+
+<td>${product.name}</td>
+
+<td>$${product.price}</td>
+
+<td>${product.category}</td>
+
+</tr>
+
+`;
+
 
 });
-function registerMerchant() {
 
-    let name = document.getElementById("merchantName").value;
-    let email = document.getElementById("merchantEmail").value;
-    let phone = document.getElementById("merchantPhone").value;
 
-    if (name === "" || email === "" || phone === "") {
 
-        alert("Please fill all fields.");
-        return;
-
-    }
-
-    let merchant = {
-        name: name,
-        email: email,
-        phone: phone
-    };
-
-    localStorage.setItem("merchant", JSON.stringify(merchant));
-
-    alert("Merchant registration successful!");
-
-    window.location.href = "merchant-dashboard.html";
+box.innerHTML += "</table>";
 
 }
-let merchantProducts = JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
-function saveProduct() {
 
-    let name = document.getElementById("productName").value;
-    let price = document.getElementById("productPrice").value;
-    let category = document.getElementById("productCategory").value;
-    let description = document.getElementById("productDescription").value;
-    let image = document.getElementById("productImage").value;
-    if (name === "" || price === "" || category === "" || description === "") {
 
-        alert("Please fill all fields.");
-        return;
 
-    }
+// update counters when page loads
 
-    let product = {
-    name: name,
-    price: price,
-    category: category,
-    description: description,
-    image: image,
-    rating: 5
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+updateWishlistCount();
+
+});
+// ================= MERCHANT SYSTEM =================
+
+
+let merchantProducts =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+
+function registerMerchant(){
+
+
+let name =
+document.getElementById("merchantName").value;
+
+
+let email =
+document.getElementById("merchantEmail").value;
+
+
+let phone =
+document.getElementById("merchantPhone").value;
+
+
+
+if(name==="" || email==="" || phone===""){
+
+
+alert("Please fill all fields");
+
+return;
+
+}
+
+
+
+let merchant={
+
+name:name,
+
+email:email,
+
+phone:phone
+
 };
-    merchantProducts.push(product);
 
-    localStorage.setItem("merchantProducts", JSON.stringify(merchantProducts));
 
-    alert("Product added successfully!");
 
-    window.location.href = "merchant-products.html";
+localStorage.setItem(
+"merchant",
+JSON.stringify(merchant)
+);
 
-}
-function loadMarketplaceProducts() {
 
-    let container = document.getElementById("merchantMarketplace");
 
-    if (!container) return;
+alert("Merchant registration successful!");
 
-    let products = JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
-    container.innerHTML = "";
 
-    if (products.length === 0) {
+window.location.href =
+"merchant-dashboard.html";
 
-        container.innerHTML = "<p>No merchant products available yet.</p>";
-        return;
-
-    }
-
-    products.forEach(function(product) {
-
-        container.innerHTML += `
-            <div class="product">
-<img src="${product.image}" alt="${product.name}" width="200">
-                <h3>${product.name}</h3>
-<p>⭐⭐⭐⭐⭐ (${product.rating}/5)</p>
-                <p><strong>Price:</strong> $${product.price}</p>
-
-                <p><strong>Category:</strong> ${product.category}</p>
-
-                <p>${product.description}</p>
-
-                <button onclick="addToCart('${product.name}', ${product.price})">
-                    🛒 Add to Cart
-                </button>
-
-                <button onclick="addToWishlist('${product.name}')">
-                    ❤️ Favorite
-                </button>
-
-                <button onclick="addToCompare('${product.name}', ${product.price}, '${product.category}')">
-                    ⚖️ Compare
-                </button>
-
-            </div>
-        `;
-
-    });
 
 }
-function deleteProduct(index) {
 
-    merchantProducts.splice(index, 1);
 
-    localStorage.setItem("merchantProducts", JSON.stringify(merchantProducts));
 
-    loadMerchantProducts();
 
-}
-function loadMerchantProducts() {
+function saveProduct(){
 
-    let container = document.getElementById("merchantProductsList");
 
-    if (!container) return;
 
-    container.innerHTML = "";
+let name =
+document.getElementById("productName").value;
 
-    merchantProducts.forEach(function(product, index) {
 
-        container.innerHTML += `
-        <div class="product">
+let price =
+document.getElementById("productPrice").value;
 
-            <h3>${product.name}</h3>
 
-            <p>$${product.price}</p>
+let category =
+document.getElementById("productCategory").value;
 
-            <p>${product.category}</p>
 
-            <button onclick="deleteProduct(${index})">
-                🗑 Delete
-            </button>
+let description =
+document.getElementById("productDescription").value;
 
-        </div>
-        `;
 
-    });
+let image =
+document.getElementById("productImage").value;
 
-}
-function loadDashboard() {
 
-    let products = JSON.parse(localStorage.getItem("merchantProducts")) || [];
-    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    let compare = JSON.parse(localStorage.getItem("compare")) || [];
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-    let totalProducts = document.getElementById("totalProducts");
-    let totalOrders = document.getElementById("totalOrders");
-    let totalWishlist = document.getElementById("totalWishlist");
-    let totalCompare = document.getElementById("totalCompare");
+if(name==="" || price==="" || category===""){
 
-    if (totalProducts) totalProducts.innerText = products.length;
-    if (totalOrders) totalOrders.innerText = orders.length;
-    if (totalWishlist) totalWishlist.innerText = wishlist.length;
-    if (totalCompare) totalCompare.innerText = compare.length;
+
+alert("Please complete product information");
+
+return;
 
 }
-function loadCheckoutCart() {
 
-    let checkoutItems = document.getElementById("checkoutItems");
 
-    if (!checkoutItems) return;
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    if (cart.length === 0) {
-        checkoutItems.innerHTML = "<p>Your cart is empty.</p>";
-        return;
-    }
+let product={
 
-    let total = 0;
 
-    checkoutItems.innerHTML = "<h3>Your Order</h3>";
+name:name,
 
-    cart.forEach(function(item) {
+price:Number(price),
 
-        checkoutItems.innerHTML +=
-            "<p>🛒 " + item.name + " - $" + item.price + "</p>";
+category:category,
 
-        total += Number(item.price);
+description:description,
 
-    });
+image:image
 
-    checkoutItems.innerHTML +=
-        "<hr><h3>Total: $" + total + "</h3>";
 
-}
-function showPaymentDetails(){
+};
 
-    let payment = document.getElementById("paymentMethod").value;
 
-    let momo = document.getElementById("momoDetails");
 
-    if(payment === "momo"){
+merchantProducts.push(product);
 
-        momo.style.display = "block";
 
-    } else {
 
-        momo.style.display = "none";
+localStorage.setItem(
 
-    }
+"merchantProducts",
+
+JSON.stringify(merchantProducts)
+
+);
+
+
+
+alert("Product added successfully!");
+
+
+
+window.location.href =
+"merchant-products.html";
+
 
 }
-function loadMyOrders() {
 
-    let container = document.getElementById("myOrders");
 
-    if (!container) return;
 
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-    if (orders.length === 0) {
-        container.innerHTML = "<h2>No orders yet.</h2>";
-        return;
-    }
+function loadMarketplaceProducts(){
 
-    container.innerHTML = "";
 
-    orders.forEach(function(order, index) {
 
-        let progress = 25;
+let container =
+document.getElementById("merchantMarketplace");
 
-        if (order.status === "Processing") progress = 50;
-        if (order.status === "Shipped") progress = 75;
-        if (order.status === "Delivered") progress = 100;
 
-        container.innerHTML += `
-        <div class="product">
 
-            <h3>Order #${index + 1}</h3>
+if(!container) return;
 
-            <p><strong>Total:</strong> $${order.total}</p>
 
-            <p><strong>Status:</strong> ${order.status}</p>
 
-            <progress value="${progress}" max="100"></progress>
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
-        </div>
-        `;
 
-    });
+
+container.innerHTML="";
+
+
+
+if(products.length===0){
+
+
+container.innerHTML =
+"<p>No merchant products available.</p>";
+
+
+return;
 
 }
-function submitRating() {
 
-    let rating = document.getElementById("ratingValue").value;
 
-    alert("Thank you! You rated this product " + rating + " stars.");
+
+
+
+products.forEach(function(product){
+
+
+
+container.innerHTML += `
+
+
+<div class="product">
+
+
+<img src="${product.image || 'https://via.placeholder.com/200'}"
+width="200">
+
+
+
+<h3>${product.name}</h3>
+
+
+
+<p>
+💰 Price: $${product.price}
+</p>
+
+
+
+<p>
+📂 Category: ${product.category}
+</p>
+
+
+
+<p>
+${product.description}
+</p>
+
+
+
+<button onclick="addToCart('${product.name}',${product.price})">
+
+🛒 Add To Cart
+
+</button>
+
+
+
+<button onclick="addToWishlist('${product.name}')">
+
+❤️ Favorite
+
+</button>
+
+
+
+<button onclick="addToCompare('${product.name}',${product.price},'${product.category}')">
+
+⚖️ Compare
+
+</button>
+
+
+</div>
+
+
+`;
+
+
+
+});
+
+
 
 }
-function submitRating(productName) {
 
-    let rating = Number(document.getElementById("ratingValue").value);
 
-    let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
 
-    if (!ratings[productName]) {
-        ratings[productName] = [];
-    }
 
-    ratings[productName].push(rating);
+function loadMerchantProducts(){
 
-    localStorage.setItem("ratings", JSON.stringify(ratings));
 
-    alert("Thank you! You rated " + productName + " " + rating + " stars.");
-function getAverageRating(productName) {
 
-    let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
+let box =
+document.getElementById("merchantProductsList");
 
-    if (!ratings[productName] || ratings[productName].length === 0) {
-        return "No ratings yet";
-    }
 
-    let total = ratings[productName].reduce((sum, value) => sum + value, 0);
 
-    let average = total / ratings[productName].length;
+if(!box) return;
 
-    return average.toFixed(1) + "/5 ⭐ (" + ratings[productName].length + " reviews)";
+
+
+box.innerHTML="";
+
+
+
+merchantProducts.forEach(function(product,index){
+
+
+
+box.innerHTML += `
+
+
+<div class="product">
+
+
+<h3>${product.name}</h3>
+
+
+<p>$${product.price}</p>
+
+
+<p>${product.category}</p>
+
+
+
+<button onclick="deleteProduct(${index})">
+
+🗑 Delete
+
+</button>
+
+
+
+</div>
+
+
+`;
+
+
+});
+
+
 }
+
+
+
+
+
+function deleteProduct(index){
+
+
+merchantProducts.splice(index,1);
+
+
+
+localStorage.setItem(
+
+"merchantProducts",
+
+JSON.stringify(merchantProducts)
+
+);
+
+
+
+loadMerchantProducts();
+
+
 }
+
+
+
+
+
+function loadDashboard(){
+
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+let wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
+
+
+let compare =
+JSON.parse(localStorage.getItem("compare")) || [];
+
+
+
+let a =
+document.getElementById("totalProducts");
+
+
+let b =
+document.getElementById("totalOrders");
+
+
+let c =
+document.getElementById("totalWishlist");
+
+
+let d =
+document.getElementById("totalCompare");
+
+
+
+if(a) a.innerText=products.length;
+
+if(b) b.innerText=orders.length;
+
+if(c) c.innerText=wishlist.length;
+
+if(d) d.innerText=compare.length;
+
+
+}
+// PRODUCT RATINGS SYSTEM
+
 let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
 
 
 function submitRating(productName){
 
-    let rating = document.getElementById("ratingValue").value;
+    let ratingBox = document.getElementById("ratingValue");
+
+    if(!ratingBox){
+        return;
+    }
+
+    let rating = Number(ratingBox.value);
 
 
     if(!ratings[productName]){
@@ -718,7 +1037,7 @@ function submitRating(productName){
     }
 
 
-    ratings[productName].push(Number(rating));
+    ratings[productName].push(rating);
 
 
     localStorage.setItem(
@@ -727,7 +1046,7 @@ function submitRating(productName){
     );
 
 
-    alert("Thank you for rating ⭐");
+    alert("Thank you for rating " + productName + " ⭐");
 
 
     loadRating(productName);
@@ -741,7 +1060,9 @@ function loadRating(productName){
     let box = document.getElementById("productRating");
 
 
-    if(!box) return;
+    if(!box){
+        return;
+    }
 
 
     let productRatings = ratings[productName] || [];
@@ -757,7 +1078,8 @@ function loadRating(productName){
 
 
     let total = productRatings.reduce(
-        (a,b)=>a+b,0
+        (sum, value)=> sum + value,
+        0
     );
 
 
@@ -766,7 +1088,9 @@ function loadRating(productName){
 
     box.innerHTML =
     "⭐".repeat(Math.round(average)) +
-    " (" + average.toFixed(1) + "/5 from " +
+    " (" +
+    average.toFixed(1) +
+    "/5 from " +
     productRatings.length +
     " customers)";
 
