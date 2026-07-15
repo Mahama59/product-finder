@@ -4,54 +4,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Product Details - Product Finder</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <nav>
-    <h2>🛍️ Product Finder</h2>
-    <a href="index.html">← Back to Home</a>
+
+<h2>🛍️ Product Finder</h2>
+
+<a href="index.html">← Back to Home</a>
+
 </nav>
+
+
+<header>
+
+<h1>📱 Product Details</h1>
+
+</header>
+
 
 <div class="product">
 
-    <img src="https://via.placeholder.com/300" alt="Smartphone">
 
-    <h1>📱 Smartphone</h1>
+<img src="https://via.placeholder.com/300" alt="Smartphone">
 
-    <h2>$499</h2>
 
-    <p>
-        A powerful Android smartphone with a high-quality camera,
-        long battery life, fast processor, and beautiful display.
-    </p>
+<h1>📱 Smartphone</h1>
 
-    <h3>Features</h3>
 
-    <ul>
-        <li>📸 50 MP Camera</li>
-        <li>🔋 5000 mAh Battery</li>
-        <li>💾 256 GB Storage</li>
-        <li>📱 6.7-inch Display</li>
-    </ul>
+<h2>$499</h2>
 
-    <button onclick="addToCart('Smartphone',499)">
-        Add to Cart
-    </button>
 
-    <a href="checkout.html">
-        <button>Buy Now</button>
-    </a>
+<p>
+A powerful Android smartphone with a high-quality camera,
+long battery life, fast processor, and beautiful display.
+</p>
+
+
+<h3>⭐ Rating</h3>
+
+<p>
+⭐⭐⭐⭐☆ (4.5/5)
+</p>
+
+
+<h3>Features</h3>
+
+<ul>
+
+<li>📸 50 MP Camera</li>
+
+<li>🔋 5000 mAh Battery</li>
+
+<li>💾 256 GB Storage</li>
+
+<li>📱 6.7-inch Display</li>
+
+</ul>
+
+
+<button onclick="addToCart('Smartphone',499)">
+🛒 Add to Cart
+</button>
+
+
+<button onclick="addToWishlist('Smartphone')">
+❤️ Favorite
+</button>
+
+
+<button onclick="addToCompare('Smartphone',499,'Electronics')">
+⚖️ Compare
+</button>
+
+
+<a href="checkout.html">
+
+<button>
+Buy Now
+</button>
+
+</a>
+
+
+
+<h3>💬 Customer Reviews</h3>
+
+
+<div>
+
+<p>⭐⭐⭐⭐⭐ Great phone. Excellent camera!</p>
+
+<p>⭐⭐⭐⭐ Good battery and performance.</p>
 
 </div>
 
+
+<h3>Add Your Review</h3>
+
+
+<input id="reviewInput" type="text" placeholder="Write your review">
+
+
+<button onclick="addReview()">
+Submit Review
+</button>
+
+
+<div id="reviewList"></div>
+
+
+</div>
+
+
 <footer>
-    <p>© 2026 Product Finder. All rights reserved.</p>
+
+<p>© 2026 Product Finder. All rights reserved.</p>
+
 </footer>
+
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
