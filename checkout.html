@@ -2,130 +2,220 @@
 <html lang="en">
 
 <head>
-   <script src="https://js.paystack.co/v1/inline.js"></script> 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Product Finder</title>
-    <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout - Product Finder</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 
-<body onload="loadCheckoutCart()">
+
+<body onload="loadCheckout()">
+
+
 
 <nav>
-    <h2>🛍️ Product Finder</h2>
 
-    <div class="menu">
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="categories.html">Categories</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-    </div>
+<h2>🛍️ Product Finder</h2>
+
+<div class="menu">
+
+<a href="index.html">Home</a>
+<a href="categories.html">Categories</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+
+</div>
+
 </nav>
 
+
+
 <header>
-    <h1>🛒 Checkout</h1>
-    <p>Complete your purchase</p>
+
+<h1>🛒 Checkout</h1>
+
+<p>Complete your purchase</p>
+
 </header>
+
+
+
 
 <div class="product">
 
-    <h2>Your Order</h2>
 
-    <div id="checkoutItems">
-        <p>Your cart items will appear here.</p>
-    </div>
+<h2>🛍️ Your Order</h2>
 
 
-    <h2>Customer Information</h2>
+<div id="checkoutItems">
 
-    <input type="text" placeholder="Full Name">
+<p>Loading cart...</p>
 
-    <br><br>
-
-    <input type="email" placeholder="Email Address">
-
-    <br><br>
-
-    <input type="text" placeholder="Delivery Address">
+</div>
 
 
-    <h2>Payment Method</h2>
 
-<select id="paymentMethod" onchange="showPaymentDetails()">
-    <option value="">Select Payment</option>
-    <option value="momo">🇬🇭 Ghana Mobile Money</option>
-    <option value="visa">💳 Visa Card</option>
-    <option value="mastercard">💳 MasterCard</option>
-</select>
+<h3>
+
+💰 Total: $<span id="checkoutTotal">0</span>
+
+</h3>
 
 
-<div id="momoDetails" style="display:none;">
 
-    <h3>🇬🇭 Mobile Money Details</h3>
+<hr>
 
-    <label>Network:</label>
 
-    <select>
-        <option>MTN Mobile Money</option>
-        <option>Vodafone Cash</option>
-        <option>AirtelTigo Money</option>
-    </select>
 
-    <br><br>
+<h2>👤 Customer Information</h2>
 
-    <input 
-id="momoNumber" 
-type="text" 
-placeholder="Mobile Money Number">
+
+<input 
+id="customerName"
+type="text"
+placeholder="Full Name">
 
 
 <br><br>
 
 
 <input 
-id="paymentReference" 
-type="text" 
-placeholder="Payment Reference">
+id="customerEmail"
+type="email"
+placeholder="Email Address">
+
 
 <br><br>
 
-<button onclick="confirmMomoPayment()">
-    Confirm Mobile Money Payment
-</button>
+
+<input 
+id="customerAddress"
+type="text"
+placeholder="Delivery Address">
+
+
+
+<hr>
+
+
+
+
+<h2>💳 Payment Method</h2>
+
+
+<select id="paymentMethod">
+
+
+<option value="momo">
+🇬🇭 Ghana Mobile Money
+</option>
+
+
+<option value="card">
+💳 Card Payment
+</option>
+
+
+</select>
+
+
+
+<br><br>
+
+
+
+<div id="momoDetails">
+
+
+<h3>
+🇬🇭 Mobile Money
+</h3>
+
+
+
+<select id="momoNetwork">
+
+
+<option>
+MTN Mobile Money
+</option>
+
+
+<option>
+Vodafone Cash
+</option>
+
+
+<option>
+AirtelTigo Money
+</option>
+
+
+</select>
+
+
+
+<br><br>
+
+
+
+<input
+
+id="momoNumber"
+
+type="text"
+
+placeholder="MoMo Number">
+
 
 </div>
 
-    <br><br>
 
-    <button onclick="completeOrder()">
-    Complete Order
+
+<br><br>
+
+
+
+<button onclick="payWithPaystack()">
+
+💳 Pay Now
+
 </button>
 
+
+
+<br><br>
+
+
+
+<button onclick="completeOrder()">
+
+✅ Complete Order
+
+</button>
+
+
+
 </div>
+
+
+
 
 
 <footer>
-    <p>© 2026 Product Finder. All rights reserved.</p>
+
+<p>
+© 2026 Product Finder. All rights reserved.
+</p>
+
 </footer>
-<script src="script.js"></script>
 
-</body>
 
-</html>
-<button onclick="payWithPaystack()">
-💳 Pay Now
-</button>
-<h3>Payment Method</h3>
 
-<select id="paymentMethod">
-    <option value="momo">Mobile Money</option>
-    <option value="card">Card</option>
-</select>
 
-<br><br>
-
-<input 
-id="momoNumber"
-type="text"
-placeholder="MoMo Number (e.g. 024xxxxxxx)">
+<script src="https://js.paystack.co
