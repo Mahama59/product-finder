@@ -2048,3 +2048,62 @@ function merchantLogout(){
     window.location.href="merchant-login.html";
 
 }
+// ================= PAYSTACK PAYMENT =================
+
+function payWithPaystack(){
+
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+
+    if(cart.length === 0){
+
+        alert("Your cart is empty");
+
+        return;
+
+    }
+
+
+    let total = cart.reduce(
+        (sum,item)=> sum + Number(item.price),
+        0
+    );
+
+
+    let handler = PaystackPop.setup({
+
+        key: "YOUR_PUBLIC_KEY",
+
+        email: "customer@email.com",
+
+        amount: total * 100,
+
+        currency: "GHS",
+
+
+        callback: function(response){
+
+            alert(
+            "Payment successful! Reference: "
+            + response.reference
+            );
+
+
+            completeOrder();
+
+        },
+
+
+        onClose: function(){
+
+            alert("Payment cancelled");
+
+        }
+
+    });
+
+
+    handler.openIframe();
+
+}
