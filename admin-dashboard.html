@@ -2,52 +2,117 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Admin Dashboard - Product Finder</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
-<body onload="loadAdminDashboard()">
+
+<body onload="loadAdminDashboard(); loadAdminUsers();">
+
 
 <nav>
+
 <h2>🛍️ Product Finder Admin</h2>
-<a href="index.html">Home</a>
+
+<a href="index.html">
+Home
+</a>
+
 </nav>
 
+
+
 <header>
+
 <h1>🛠️ Admin Dashboard</h1>
-<p>Manage your marketplace</p>
+
+<p>Manage Product Finder Marketplace</p>
+
 </header>
+
+
+
 
 <div class="product">
 
-<h2>Marketplace Statistics</h2>
+<h2>📊 Marketplace Statistics</h2>
 
-<p>Total Users: <span id="totalUsers">0</span></p>
 
-<p>Total Merchants: <span id="totalMerchants">0</span></p>
+<p>
+Total Users:
+<span id="totalUsers">0</span>
+</p>
 
-<p>Total Products: <span id="totalProducts">0</span></p>
+
+<p>
+Total Merchants:
+<span id="totalMerchants">0</span>
+</p>
+
+
+<p>
+Total Products:
+<span id="totalProducts">0</span>
+</p>
+
 
 </div>
-<h2>🏪 Merchant Products</h2>
 
-<div id="adminProducts">
+
+
+
+<div class="product">
+
+
+<h2>👥 User Management</h2>
+
+
+<div id="adminUsers">
 
 </div>
 
 
-<h2>📦 Customer Orders</h2>
+</div>
 
-<div id="adminOrders">
+
+
+
+
+<div class="product">
+
+
+<h2>🏪 Merchant Management</h2>
+
+
+<div id="adminMerchants">
 
 </div>
+
+
+</div>
+
+
+
+
+
 <footer>
-<p>© 2026 Product Finder</p>
+
+<p>
+© 2026 Product Finder
+</p>
+
 </footer>
 
+
+
 <script src="script.js"></script>
+
 
 </body>
 
