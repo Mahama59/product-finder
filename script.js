@@ -1649,3 +1649,115 @@ function deleteMerchant(){
     loadAdminMerchants();
 
 }
+function loadAdminProducts(){
+
+let box = document.getElementById("adminProducts");
+
+if(!box) return;
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+box.innerHTML="";
+
+
+if(products.length===0){
+
+box.innerHTML="<p>No products submitted.</p>";
+
+return;
+
+}
+
+
+products.forEach(function(product,index){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>${product.name}</h3>
+
+<p>Price: $${product.price}</p>
+
+<p>Category: ${product.category}</p>
+
+<p>Status: ${product.status}</p>
+
+
+<button onclick="approveProduct(${index})">
+
+✅ Approve
+
+</button>
+
+
+<button onclick="rejectProduct(${index})">
+
+❌ Reject
+
+</button>
+
+
+</div>
+
+`;
+
+
+});
+
+
+}
+
+
+
+
+function approveProduct(index){
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+products[index].status="Approved";
+
+
+localStorage.setItem(
+"merchantProducts",
+JSON.stringify(products)
+);
+
+
+alert("Product approved");
+
+
+loadAdminProducts();
+
+}
+
+
+
+
+function rejectProduct(index){
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+products.splice(index,1);
+
+
+localStorage.setItem(
+"merchantProducts",
+JSON.stringify(products)
+);
+
+
+alert("Product rejected");
+
+
+loadAdminProducts();
+
+}
