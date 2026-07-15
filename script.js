@@ -2037,3 +2037,14 @@ function merchantLogin(){
     }
 
 }
+// ================= MERCHANT LOGOUT =================
+
+function merchantLogout(){
+
+    localStorage.removeItem("merchantLoggedIn");
+
+    alert("Merchant logged out");
+
+    window.location.href="merchant-login.html";
+
+}
