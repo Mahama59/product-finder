@@ -1105,3 +1105,59 @@ function(){
     loadRating("Smartphone");
 
 });
+// ================= PRODUCT FILTER =================
+
+function filterProducts(){
+
+    let category =
+    document.getElementById("categoryFilter").value;
+
+
+    let maxPrice =
+    Number(document.getElementById("maxPrice").value);
+
+
+    let products =
+    document.querySelectorAll(".product");
+
+
+    products.forEach(function(product){
+
+
+        let productCategory =
+        product.getAttribute("data-category");
+
+
+        let priceText =
+        product.innerText.match(/\$([0-9]+)/);
+
+
+        let price = priceText ? Number(priceText[1]) : 0;
+
+
+
+        let categoryMatch =
+        (category === "all" || productCategory === category);
+
+
+
+        let priceMatch =
+        (!maxPrice || price <= maxPrice);
+
+
+
+        if(categoryMatch && priceMatch){
+
+            product.style.display="block";
+
+        }else{
+
+            product.style.display="none";
+
+        }
+
+
+    });
+
+
+}
