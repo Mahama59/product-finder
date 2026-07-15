@@ -274,3 +274,57 @@ function addToCompare(name, price, category){
     alert(name + " added to comparison ⚖️");
 
 }
+function loadCompare(){
+
+    let compareDiv = document.getElementById("compareList");
+
+    if(!compareDiv) return;
+
+
+    let compareList = JSON.parse(localStorage.getItem("compare")) || [];
+
+
+    if(compareList.length === 0){
+
+        compareDiv.innerHTML = "<p>No products selected for comparison.</p>";
+
+        return;
+
+    }
+
+
+    compareDiv.innerHTML = `
+    <h2>⚖️ Product Comparison</h2>
+
+    <table border="1">
+
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Category</th>
+    </tr>
+    `;
+
+
+    compareList.forEach(function(product){
+
+        compareDiv.innerHTML += `
+
+        <tr>
+
+        <td>${product.name}</td>
+
+        <td>$${product.price}</td>
+
+        <td>${product.category}</td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    compareDiv.innerHTML += "</table>";
+
+        }
