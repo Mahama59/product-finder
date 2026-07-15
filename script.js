@@ -797,7 +797,8 @@ return;
 
 
 
-products.forEach(function(product){
+products.filter(product => product.status === "Approved")
+.forEach(function(product){
 
 
 
@@ -1761,3 +1762,35 @@ alert("Product rejected");
 loadAdminProducts();
 
 }
+function updateOldProducts(){
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+products.forEach(function(product){
+
+    if(!product.status){
+
+        product.status = "Approved";
+
+    }
+
+});
+
+
+localStorage.setItem(
+"merchantProducts",
+JSON.stringify(products)
+);
+
+}
+
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+updateOldProducts();
+
+});
