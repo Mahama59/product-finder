@@ -454,3 +454,51 @@ function saveProduct() {
     window.location.href = "merchant-products.html";
 
 }
+function loadMarketplaceProducts() {
+
+    let container = document.getElementById("merchantMarketplace");
+
+    if (!container) return;
+
+    let products = JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+    container.innerHTML = "";
+
+    if (products.length === 0) {
+
+        container.innerHTML = "<p>No merchant products available yet.</p>";
+        return;
+
+    }
+
+    products.forEach(function(product) {
+
+        container.innerHTML += `
+            <div class="product">
+
+                <h3>${product.name}</h3>
+
+                <p><strong>Price:</strong> $${product.price}</p>
+
+                <p><strong>Category:</strong> ${product.category}</p>
+
+                <p>${product.description}</p>
+
+                <button onclick="addToCart('${product.name}', ${product.price})">
+                    🛒 Add to Cart
+                </button>
+
+                <button onclick="addToWishlist('${product.name}')">
+                    ❤️ Favorite
+                </button>
+
+                <button onclick="addToCompare('${product.name}', ${product.price}, '${product.category}')">
+                    ⚖️ Compare
+                </button>
+
+            </div>
+        `;
+
+    });
+
+}
