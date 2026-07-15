@@ -502,3 +502,41 @@ function loadMarketplaceProducts() {
     });
 
 }
+function deleteProduct(index) {
+
+    merchantProducts.splice(index, 1);
+
+    localStorage.setItem("merchantProducts", JSON.stringify(merchantProducts));
+
+    loadMerchantProducts();
+
+}
+function loadMerchantProducts() {
+
+    let container = document.getElementById("merchantProductsList");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    merchantProducts.forEach(function(product, index) {
+
+        container.innerHTML += `
+        <div class="product">
+
+            <h3>${product.name}</h3>
+
+            <p>$${product.price}</p>
+
+            <p>${product.category}</p>
+
+            <button onclick="deleteProduct(${index})">
+                🗑 Delete
+            </button>
+
+        </div>
+        `;
+
+    });
+
+}
