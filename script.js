@@ -328,3 +328,71 @@ function loadCompare(){
     compareDiv.innerHTML += "</table>";
 
         }
+let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+
+function addReview(){
+
+    let input = document.getElementById("reviewInput");
+
+    if(!input) return;
+
+
+    let review = input.value;
+
+
+    if(review === ""){
+
+        alert("Please write a review.");
+
+        return;
+
+    }
+
+
+    reviews.push(review);
+
+
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+
+
+    input.value = "";
+
+
+    displayReviews();
+
+
+    alert("Review added successfully ⭐");
+
+}
+
+
+
+function displayReviews(){
+
+    let reviewList = document.getElementById("reviewList");
+
+
+    if(!reviewList) return;
+
+
+    reviewList.innerHTML = "<h3>Customer Reviews</h3>";
+
+
+    reviews.forEach(function(review){
+
+        reviewList.innerHTML +=
+
+        "<p>💬 " + review + "</p>";
+
+    });
+
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    displayReviews();
+
+});
