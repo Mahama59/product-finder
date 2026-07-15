@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,7 +13,7 @@
 </head>
 
 
-<body onload="loadAdminDashboard(); loadAdminUsers(); loadAdminMerchants(); loadAdminProducts();">
+<body onload="loadAdminDashboard(); loadAdminUsers(); loadAdminMerchants(); loadAdminProducts(); loadAdminOrders();">
 
 
 <nav>
@@ -69,14 +69,9 @@ Total Products:
 
 <div class="product">
 
-
 <h2>👥 User Management</h2>
 
-
-<div id="adminUsers">
-
-</div>
-
+<div id="adminUsers"></div>
 
 </div>
 
@@ -85,29 +80,40 @@ Total Products:
 
 
 <div class="product">
-
 
 <h2>🏪 Merchant Management</h2>
 
-
-<div id="adminMerchants">
-
-</div>
-
+<div id="adminMerchants"></div>
 
 </div>
+
+
 
 
 
 <div class="product">
 
-<h2>📦 Product Approval</h2>
+<h2>📦 Product Management</h2>
 
-<div id="adminProducts">
+<div id="adminProducts"></div>
+
+</div>
+
+
+
+
+
+<div class="product">
+
+<h2>🚚 Order Management</h2>
+
+<div id="adminOrders"></div>
 
 </div>
 
-</div>
+
+
+
 
 <footer>
 
