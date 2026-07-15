@@ -1504,59 +1504,6 @@ function completeOrder(){
     window.location.href="success.html";
 
 }
-// ================= ADMIN USER MANAGEMENT =================
-
-
-function loadAdminUsers(){
-
-    let box = document.getElementById("adminUsers");
-
-    if(!box) return;
-
-
-    let user = JSON.parse(localStorage.getItem("user"));
-
-
-    if(!user){
-
-        box.innerHTML =
-        "<p>No users registered.</p>";
-
-        return;
-
-    }
-
-
-    box.innerHTML = `
-
-    <div class="product">
-
-    <h3>
-    👤 ${user.name}
-    </h3>
-
-
-    <p>
-    Email: ${user.email}
-    </p>
-
-
-    <button onclick="deleteUser()">
-
-    🗑 Delete User
-
-    </button>
-
-
-    </div>
-
-    `;
-
-
-}
-
-
-
 
 function deleteUser(){
 
@@ -1650,71 +1597,6 @@ function deleteMerchant(){
     loadAdminMerchants();
 
 }
-function loadAdminProducts(){
-
-let box = document.getElementById("adminProducts");
-
-if(!box) return;
-
-
-let products =
-JSON.parse(localStorage.getItem("merchantProducts")) || [];
-
-
-box.innerHTML="";
-
-
-if(products.length===0){
-
-box.innerHTML="<p>No products submitted.</p>";
-
-return;
-
-}
-
-
-products.forEach(function(product,index){
-
-
-box.innerHTML += `
-
-<div class="product">
-
-<h3>${product.name}</h3>
-
-<p>Price: $${product.price}</p>
-
-<p>Category: ${product.category}</p>
-
-<p>Status: ${product.status}</p>
-
-
-<button onclick="approveProduct(${index})">
-
-✅ Approve
-
-</button>
-
-
-<button onclick="rejectProduct(${index})">
-
-❌ Reject
-
-</button>
-
-
-</div>
-
-`;
-
-
-});
-
-
-}
-
-
-
 
 function approveProduct(index){
 
@@ -1912,19 +1794,6 @@ function loadAdminMerchants(){
 
 }
 
-
-
-function deleteMerchant(){
-
-    localStorage.removeItem("merchant");
-
-
-    alert("Merchant removed successfully");
-
-
-    loadAdminMerchants();
-
-}
 function adminLogin(){
 
     let email = document.getElementById("adminEmail").value;
@@ -2073,7 +1942,7 @@ function payWithPaystack(){
 
     let handler = PaystackPop.setup({
 
-        key: pk_test_f4ae21eeec7c8ae8c3d3764b03b9f67967fc2a0d
+        key: "pk_test_f4ae21eeec7c8ae8c3d3764b03b9f67967fc2a0d",
 
         email: "customer@email.com",
 
