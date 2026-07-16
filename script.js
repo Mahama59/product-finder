@@ -1603,10 +1603,37 @@ function completeOrder(){
         JSON.stringify(orders)
     );
 
+// ================= REDUCE PRODUCT STOCK =================
 
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+cart.forEach(function(cartItem){
+
+    let product =
+    products.find(
+        p => p.name === cartItem.name
+    );
+
+
+    if(product){
+
+        product.stock =
+        Number(product.stock || 0) - 1;
+
+    }
+
+});
+
+
+localStorage.setItem(
+    "merchantProducts",
+    JSON.stringify(products)
+);
     localStorage.removeItem("cart");
 
-
+ 
     alert("Order completed successfully!");
 
 
