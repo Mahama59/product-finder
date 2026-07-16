@@ -1495,6 +1495,8 @@ loadAdminProducts();
 
 loadAdminOrders();
 
+loadAdminAnalytics();
+
 });
 // ================= COMPLETE ORDER =================
 
