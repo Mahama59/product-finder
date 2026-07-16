@@ -1192,8 +1192,14 @@ function loadMerchantOrders(){
 
             items += `
             <p>
-            🛒 ${item.name} - $${item.price}
-            </p>
+🚚 Order Status:
+<strong>${order.status}</strong>
+</p>
+
+
+${order.status === "Pending" ? 
+"<h3>🔔 New Order Received</h3>" 
+: ""}
             `;
 
         });
@@ -2095,6 +2101,31 @@ function loadCheckout(){
 
 
     checkoutTotal.innerText = total;
+
+
+}
+// ================= NEW ORDER COUNT =================
+
+function loadNewOrders(){
+
+let box =
+document.getElementById("newOrders");
+
+
+if(!box) return;
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+let pending =
+orders.filter(
+order => order.status === "Pending"
+);
+
+
+box.innerText = pending.length;
 
 
 }
