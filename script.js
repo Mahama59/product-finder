@@ -750,31 +750,22 @@ window.location.href =
 
 function saveProduct(){
 
-
-
 let name =
 document.getElementById("productName").value;
-
 
 let price =
 document.getElementById("productPrice").value;
 
-
 let category =
 document.getElementById("productCategory").value;
-
 
 let description =
 document.getElementById("productDescription").value;
 
-
-let image =
-document.getElementById("productImage").value;
-
-
+let imageFile =
+document.getElementById("productImage").files[0];
 
 if(name==="" || price==="" || category===""){
-
 
 alert("Please complete product information");
 
@@ -782,43 +773,50 @@ return;
 
 }
 
+let reader = new FileReader();
+
+reader.onload=function(e){
 
 let product={
 
 name:name,
+
 price:Number(price),
+
 category:category,
+
 description:description,
-image:image,
+
+image:e.target.result,
+
 stock:10,
+
 status:"Pending"
 
 };
 
-
-
 merchantProducts.push(product);
 
-
-
 localStorage.setItem(
-
 "merchantProducts",
-
 JSON.stringify(merchantProducts)
-
 );
-
-
 
 alert("Product added successfully!");
 
+window.location.href="merchant-products.html";
 
+};
 
-window.location.href =
-"merchant-products.html";
+if(imageFile){
 
+reader.readAsDataURL(imageFile);
 
+}else{
+
+alert("Please choose a product image.");
+
+}
 }
 
 
