@@ -777,6 +777,10 @@ let reader = new FileReader();
 
 reader.onload=function(e){
 
+let stock =
+Number(document.getElementById("productStock").value);
+
+
 let product={
 
 name:name,
@@ -789,7 +793,7 @@ description:description,
 
 image:e.target.result,
 
-stock:10,
+stock:stock,
 
 status:"Pending"
 
