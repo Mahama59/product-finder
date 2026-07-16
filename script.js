@@ -143,15 +143,41 @@ function viewCart(){
         cartList.innerHTML += `
 
         <p>
-         🛒 ${item.name} - $${item.price}
+
+🛒 ${item.name}
+
 <br>
-Quantity: ${item.quantity || 1}
 
-        <button onclick="removeFromCart(${index})">
-        Remove
-        </button>
+💰 Price: $${item.price}
 
-        </p>
+<br>
+
+Quantity:
+
+<button onclick="changeQuantity(${index}, -1)">
+➖
+</button>
+
+
+${item.quantity || 1}
+
+
+<button onclick="changeQuantity(${index}, 1)">
+➕
+</button>
+
+
+<br>
+
+Total:
+$${Number(item.price) * Number(item.quantity || 1)}
+
+
+<button onclick="removeFromCart(${index})">
+🗑 Remove
+</button>
+
+</p>
 
         `;
 
@@ -2330,5 +2356,52 @@ alert("Product updated successfully!");
 
 
 loadMerchantProducts();
+
+}
+// ================= CHANGE CART QUANTITY =================
+
+function changeQuantity(index, amount){
+
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+
+    let item = cart[index];
+
+
+    let newQuantity =
+    Number(item.quantity || 1) + amount;
+
+
+    if(newQuantity <= 0){
+
+        cart.splice(index,1);
+
+    }else{
+
+
+        if(newQuantity <= Number(item.stock || 999)){
+
+            item.quantity = newQuantity;
+
+        }else{
+
+            alert("Maximum stock reached");
+
+            return;
+
+        }
+
+    }
+
+
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+
+    viewCart();
 
 }
