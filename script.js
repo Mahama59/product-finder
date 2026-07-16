@@ -818,10 +818,9 @@ width="200">
 
 
 
-<p>
+ <p>
 💰 Price: $${product.price}
 </p>
-
 
 
 <p>
@@ -829,11 +828,14 @@ width="200">
 </p>
 
 
+<p>
+📦 Stock: ${product.stock || 0}
+</p>
+
 
 <p>
 ${product.description}
 </p>
-
 
 
 <button onclick="addToCart('${product.name}',${product.price})">
@@ -910,6 +912,13 @@ box.innerHTML += `
 
 <p>${product.category}</p>
 
+
+
+<button onclick="editProduct(${index})">
+
+✏️ Edit
+
+</button>
 
 
 <button onclick="deleteProduct(${index})">
@@ -2207,5 +2216,55 @@ function loadAdminAnalytics(){
         sold;
 
     }
+
+}
+function editProduct(index){
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+let product = products[index];
+
+
+let newPrice = prompt(
+"Enter new price:",
+product.price
+);
+
+
+let newStock = prompt(
+"Enter new stock quantity:",
+product.stock
+);
+
+
+if(newPrice !== null){
+
+product.price = Number(newPrice);
+
+}
+
+
+if(newStock !== null){
+
+product.stock = Number(newStock);
+
+}
+
+
+products[index] = product;
+
+
+localStorage.setItem(
+"merchantProducts",
+JSON.stringify(products)
+);
+
+
+alert("Product updated successfully!");
+
+
+loadMerchantProducts();
 
 }
