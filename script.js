@@ -958,7 +958,17 @@ box.innerHTML="";
 merchantProducts.forEach(function(product,index){
 
 
+let stockStatus = "";
 
+if(product.stock <= 0){
+    stockStatus = "🔴 Out of Stock";
+}
+else if(product.stock <= 5){
+    stockStatus = "🟡 Low Stock";
+}
+else{
+    stockStatus = "🟢 In Stock";
+}
 box.innerHTML += `
 
 
@@ -973,7 +983,9 @@ box.innerHTML += `
 
 <p>${product.category}</p>
 
+<p>📦 Stock: ${product.stock}</p>
 
+<p>${stockStatus}</p>
 
 <button onclick="editProduct(${index})">
 
