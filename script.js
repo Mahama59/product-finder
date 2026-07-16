@@ -977,7 +977,11 @@ box.innerHTML += `
 
 
 <p>${product.category}</p>
-
+<p>
+<p>
+Status:
+<strong>${product.status}</strong>
+</p>
 <p>📦 Stock: ${product.stock}</p>
 
 <p>${stockStatus}</p>
