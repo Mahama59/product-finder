@@ -727,6 +727,7 @@ price:Number(price),
 category:category,
 description:description,
 image:image,
+stock:10,
 status:"Pending"
 
 };
