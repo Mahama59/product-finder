@@ -163,7 +163,8 @@ document.addEventListener(
 function(){
 
 loadAdminDashboard();
-
+loadAdminAnalytics();
+loadNewOrders();
 loadAdminUsers();
 
 loadAdminMerchants();
@@ -182,3 +183,43 @@ loadAdminOrders();
 </body>
 
 </html>
+<div class="product">
+
+<h2>📊 Marketplace Analytics</h2>
+
+<p>
+👤 Total Users:
+<span id="totalUsers">0</span>
+</p>
+
+<p>
+🏪 Total Merchants:
+<span id="totalMerchants">0</span>
+</p>
+
+<p>
+📦 Total Products:
+<span id="totalProducts">0</span>
+</p>
+
+<p>
+🛒 Total Orders:
+<span id="adminTotalOrders">0</span>
+</p>
+
+<p>
+💰 Total Revenue:
+$<span id="adminTotalRevenue">0</span>
+</p>
+
+<p>
+📈 Products Sold:
+<span id="adminProductsSold">0</span>
+</p>
+
+<p>
+🔔 New Orders:
+<span id="newOrders">0</span>
+</p>
+
+</div>
