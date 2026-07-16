@@ -1500,6 +1500,19 @@ loadAdminOrders();
 });
 // ================= COMPLETE ORDER =================
 
+
+function deleteUser(){
+
+    localStorage.removeItem("user");
+
+
+    alert("User deleted successfully");
+
+
+    loadAdminUsers();
+
+
+}
 function completeOrder(){
 
     let cart =
@@ -1515,21 +1528,45 @@ function completeOrder(){
     }
 
 
+    let customerName =
+    document.getElementById("customerName").value;
+
+    let customerEmail =
+    document.getElementById("customerEmail").value;
+
+    let customerAddress =
+    document.getElementById("customerAddress").value;
+
+    let paymentMethod =
+    document.getElementById("paymentMethod").value;
+
+    let momoNumber =
+    document.getElementById("momoNumber").value;
+
+
     let orders =
     JSON.parse(localStorage.getItem("orders")) || [];
 
 
-
     let total = cart.reduce(
-        (sum,item)=> sum + Number(item.price),
+        (sum,item)=>sum + Number(item.price),
         0
     );
-
 
 
     let order = {
 
         id: Date.now(),
+
+        customerName: customerName,
+
+        customerEmail: customerEmail,
+
+        customerAddress: customerAddress,
+
+        paymentMethod: paymentMethod,
+
+        momoNumber: momoNumber,
 
         items: cart,
 
@@ -1542,9 +1579,7 @@ function completeOrder(){
     };
 
 
-
     orders.push(order);
-
 
 
     localStorage.setItem(
@@ -1553,32 +1588,15 @@ function completeOrder(){
     );
 
 
-
     localStorage.removeItem("cart");
-
 
 
     alert("Order completed successfully!");
 
 
-
     window.location.href="success.html";
 
 }
-
-function deleteUser(){
-
-    localStorage.removeItem("user");
-
-
-    alert("User deleted successfully");
-
-
-    loadAdminUsers();
-
-
-}
-
 
 
 
