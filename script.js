@@ -840,10 +840,8 @@ ${product.description}
 </p>
 
 
-<button onclick="addToCart('${product.name}',${product.price})">
-
+<button onclick="addToCart('${product.name}',${product.price},${product.stock || 0})">
 🛒 Add To Cart
-
 </button>
 
 
