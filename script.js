@@ -110,7 +110,6 @@ function updateCartCount(){
 }
 
 
-
 function viewCart(){
 
     let cartList =
@@ -137,51 +136,46 @@ function viewCart(){
     cart.forEach(function(item,index){
 
 
+        let subtotal =
+        Number(item.price) * Number(item.quantity || 1);
+
+
         cartList.innerHTML += `
 
+        <div class="product">
+
         <p>
+        🛒 ${item.name}
+        </p>
 
-🛒 ${item.name}
+        <p>
+        Price: $${item.price}
+        </p>
 
-<br>
+        <p>
+        Quantity: ${item.quantity || 1}
+        </p>
 
-💰 Price: $${item.price}
-
-<br>
-
-Quantity:
-
-<button onclick="changeQuantity(${index}, -1)">
-➖
-</button>
-
-
-${item.quantity || 1}
+        <p>
+        Subtotal: $${subtotal}
+        </p>
 
 
-<button onclick="changeQuantity(${index}, 1)">
-➕
-</button>
+        <button onclick="removeFromCart(${index})">
+        Remove
+        </button>
 
 
-<br>
-
-Total:
-$${Number(item.price) * Number(item.quantity || 1)}
-
-
-<button onclick="removeFromCart(${index})">
-🗑 Remove
-</button>
-
-</p>
+        </div>
 
         `;
+
 
     });
 
 
 }
+
 
 
 
