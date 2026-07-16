@@ -1670,7 +1670,7 @@ cart.forEach(function(cartItem){
         if(product.name === cartItem.name){
 
             product.stock =
-            Number(product.stock || 0) - 1;
+            Number(product.stock || 0) - Number(cartItem.quantity || 1);
 
         }
 
