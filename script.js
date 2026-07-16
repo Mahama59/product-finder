@@ -2145,3 +2145,64 @@ box.innerText = pending.length;
 
 
 }
+// ================= ADMIN ANALYTICS =================
+
+function loadAdminAnalytics(){
+
+    let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
+
+
+    let totalOrders =
+    document.getElementById("adminTotalOrders");
+
+
+    let totalRevenue =
+    document.getElementById("adminTotalRevenue");
+
+
+    let productsSold =
+    document.getElementById("adminProductsSold");
+
+
+    let revenue = orders.reduce(
+        (sum, order)=> sum + Number(order.total),
+        0
+    );
+
+
+    let sold = 0;
+
+
+    orders.forEach(function(order){
+
+        sold += order.items.length;
+
+    });
+
+
+
+    if(totalOrders){
+
+        totalOrders.innerText =
+        orders.length;
+
+    }
+
+
+    if(totalRevenue){
+
+        totalRevenue.innerText =
+        revenue;
+
+    }
+
+
+    if(productsSold){
+
+        productsSold.innerText =
+        sold;
+
+    }
+
+}
