@@ -38,8 +38,14 @@ function searchProducts(){
 // ================= CART =================
 
 
-function addToCart(productName, productPrice){
+function addToCart(productName, productPrice, stock){
+if(stock <= 0){
 
+alert("Sorry, this product is out of stock");
+
+return;
+
+}
     cart.push({
 
         name: productName,
