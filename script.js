@@ -1417,60 +1417,59 @@ function loadAdminDashboard(){
 // ================= ADMIN MARKETPLACE CONTROL =================
 
 
-function loadAdminProducts(){
+ function loadAdminProducts(){
 
-    let box =
-    document.getElementById("adminProducts");
-
+    let box = document.getElementById("adminProducts");
 
     if(!box) return;
-
 
     let products =
     JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
-
     if(products.length === 0){
 
-        box.innerHTML =
-        "<p>No products available.</p>";
-
+        box.innerHTML = "<p>No products submitted.</p>";
         return;
 
     }
 
-
     box.innerHTML = "";
 
-
     products.forEach(function(product,index){
-
 
         box.innerHTML += `
 
         <div class="product">
 
-        <h3>${product.name}</h3>
+            <h3>${product.name}</h3>
 
-        <p>Price: $${product.price}</p>
+            <p>💰 Price: $${product.price}</p>
 
-        <p>${product.category}</p>
+            <p>📂 Category: ${product.category}</p>
 
+            <p>📦 Stock: ${product.stock || 0}</p>
 
-        <button onclick="adminDeleteProduct(${index})">
+            <p>Status:
+            <strong>${product.status}</strong>
+            </p>
 
-        🗑 Remove Product
+            <button onclick="approveProduct(${index})">
+            ✅ Approve
+            </button>
 
-        </button>
+            <button onclick="rejectProduct(${index})">
+            ❌ Reject
+            </button>
 
+            <button onclick="adminDeleteProduct(${index})">
+            🗑 Remove
+            </button>
 
         </div>
 
         `;
 
-
     });
-
 
 }
 
