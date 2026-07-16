@@ -2,42 +2,134 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Add Product - Product Finder</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
+
 <nav>
+
 <h2>🛍️ Product Finder</h2>
-<a href="merchant-dashboard.html">← Dashboard</a>
+
+<a href="merchant-dashboard.html">
+← Dashboard
+</a>
+
 </nav>
 
+
+
 <header>
+
 <h1>➕ Add Product</h1>
+
 </header>
+
+
+
 
 <div class="product">
 
-<input id="productName" type="text" placeholder="Product Name">
+
+<label>
+Product Name
+</label>
+
+<br>
+
+<input 
+id="productName"
+type="text"
+placeholder="Product Name">
+
 
 <br><br>
 
-<input id="productPrice" type="number" placeholder="Price">
+
+
+<label>
+Price
+</label>
+
+<br>
+
+<input 
+id="productPrice"
+type="number"
+placeholder="Price">
+
+
 
 <br><br>
 
-<input id="productCategory" type="text" placeholder="Category">
+
+
+<label>
+Category
+</label>
+
+<br>
+
+<input 
+id="productCategory"
+type="text"
+placeholder="Category">
+
+
 
 <br><br>
 
-<textarea id="productDescription" placeholder="Product Description"></textarea>
+
+
+<label>
+Product Description
+</label>
+
+<br>
+
+<textarea 
+id="productDescription"
+placeholder="Product Description">
+</textarea>
+
+
+
 
 <br><br>
 
-<label>Product Image</label>
+
+
+<label>
+Stock Quantity
+</label>
+
+<br>
+
+<input
+id="productStock"
+type="number"
+placeholder="Enter stock quantity">
+
+
+
+
+
+<br><br>
+
+
+
+<label>
+Product Image
+</label>
 
 <br>
 
@@ -46,26 +138,44 @@ type="file"
 id="productImage"
 accept="image/*">
 
+
+
+
+
 <br><br>
 
+
+
 <button onclick="saveProduct()">
+
 Save Product
+
 </button>
+
+
 
 </div>
 
+
+
+
+
 <footer>
-<p>© 2026 Product Finder</p>
+
+<p>
+© 2026 Product Finder
+</p>
+
 </footer>
 
+
+
+
+
 <script src="script.js"></script>
+
+
 
 </body>
 
 </html>
-<label>Product Image URL</label>
-<br>
-<input
-    type="text"
-    id="productImage"
-    placeholder="https://example.com/image.jpg">
