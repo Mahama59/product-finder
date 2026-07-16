@@ -1596,9 +1596,9 @@ function completeOrder(){
 
 
     let total = cart.reduce(
-        (sum,item)=>sum + Number(item.price),
-        0
-    );
+(sum,item)=> sum + (Number(item.price) * Number(item.quantity || 1)),
+0
+);
 
 
     let order = {
