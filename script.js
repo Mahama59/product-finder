@@ -35,23 +35,54 @@ function searchProducts(){
 
 
 
-// ================= CART =================
+ function addToCart(productName, productPrice, stock){
+
+    if(stock <= 0){
+
+        alert("Sorry, this product is out of stock");
+
+        return;
+
+    }
 
 
-function addToCart(productName, productPrice, stock){
-if(stock <= 0){
+    let existing =
+    cart.find(
+        item => item.name === productName
+    );
 
-alert("Sorry, this product is out of stock");
 
-return;
+    if(existing){
 
-}
-    cart.push({
+        if(existing.quantity < stock){
 
-        name: productName,
-        price: productPrice
+            existing.quantity++;
 
-    });
+        }else{
+
+            alert("Maximum stock reached");
+
+            return;
+
+        }
+
+    }else{
+
+
+        cart.push({
+
+            name: productName,
+
+            price: productPrice,
+
+            quantity: 1,
+
+            stock: stock
+
+        });
+
+    }
+
 
 
     localStorage.setItem(
@@ -66,8 +97,6 @@ return;
     alert(productName + " added to cart!");
 
 }
-
-
 
 function updateCartCount(){
 
@@ -114,7 +143,9 @@ function viewCart(){
         cartList.innerHTML += `
 
         <p>
-        🛒 ${item.name} - $${item.price}
+         🛒 ${item.name} - $${item.price}
+<br>
+Quantity: ${item.quantity || 1}
 
         <button onclick="removeFromCart(${index})">
         Remove
