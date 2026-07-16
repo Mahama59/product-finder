@@ -821,7 +821,9 @@ width="200">
  <p>
 💰 Price: $${product.price}
 </p>
-
+<p>
+📦 Available Stock: ${product.stock || 0}
+</p>
 
 <p>
 📂 Category: ${product.category}
