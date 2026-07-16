@@ -2006,17 +2006,23 @@ function payWithPaystack(){
         currency: "GHS",
 
 
-        callback: function(response){
+        callback:function(response){
 
-            alert(
-            "Payment successful! Reference: "
-            + response.reference
-            );
+    localStorage.setItem(
+        "paymentReference",
+        response.reference
+    );
 
 
-            completeOrder();
+    alert(
+    "Payment successful! Reference: "
+    + response.reference
+    );
 
-        },
+
+    completeOrder();
+
+},
 
 
         onClose: function(){
