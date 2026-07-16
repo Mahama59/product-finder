@@ -1155,19 +1155,25 @@ function filterProducts(){
 
 
 }
+// ================= MERCHANT ORDERS =================
+
 function loadMerchantOrders(){
 
     let box = document.getElementById("merchantOrders");
 
+
     if(!box) return;
 
 
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
 
 
     if(orders.length === 0){
 
-        box.innerHTML = "<h2>No customer orders yet.</h2>";
+        box.innerHTML =
+        "<h2>No customer orders yet.</h2>";
+
         return;
 
     }
@@ -1179,19 +1185,71 @@ function loadMerchantOrders(){
     orders.forEach(function(order,index){
 
 
+        let items = "";
+
+
+        order.items.forEach(function(item){
+
+            items += `
+            <p>
+            🛒 ${item.name} - $${item.price}
+            </p>
+            `;
+
+        });
+
+
+
         box.innerHTML += `
 
         <div class="product">
 
-        <h3>Order #${index + 1}</h3>
+
+        <h3>
+        📦 Order #${index + 1}
+        </h3>
+
 
         <p>
-        Total: $${order.total}
+        👤 Customer:
+        ${order.customerName || "Not provided"}
         </p>
 
 
         <p>
-        Date: ${order.date}
+        📧 Email:
+        ${order.customerEmail || "Not provided"}
+        </p>
+
+
+        <p>
+        📍 Address:
+        ${order.customerAddress || "Not provided"}
+        </p>
+
+
+        <h4>
+        Products:
+        </h4>
+
+        ${items}
+
+
+        <p>
+        💰 Total:
+        $${order.total}
+        </p>
+
+
+        <p>
+        💳 Payment:
+        ${order.paymentMethod || "Paystack"}
+        </p>
+
+
+        <p>
+        📅 Date:
+        ${order.date}
         </p>
 
 
@@ -1202,29 +1260,26 @@ function loadMerchantOrders(){
 
 
 
-        <select onchange="updateOrderStatus(${index}, this.value)">
+        <select onchange="updateOrderStatus(${index},this.value)">
 
-        <option value="Pending">
+        <option>
         Pending
         </option>
 
-
-        <option value="Processing">
+        <option>
         Processing
         </option>
 
-
-        <option value="Shipped">
+        <option>
         Shipped
         </option>
 
-
-        <option value="Delivered">
+        <option>
         Delivered
         </option>
 
-
         </select>
+
 
 
         </div>
