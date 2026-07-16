@@ -1666,7 +1666,32 @@ function completeOrder(){
 
 
     orders.push(order);
+// Reduce product stock after successful order
 
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+cart.forEach(function(cartItem){
+
+    products.forEach(function(product){
+
+        if(product.name === cartItem.name){
+
+            product.stock =
+            Number(product.stock || 0) - 1;
+
+        }
+
+    });
+
+});
+
+
+localStorage.setItem(
+    "merchantProducts",
+    JSON.stringify(products)
+);
 
     localStorage.setItem(
         "orders",
