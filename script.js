@@ -1190,19 +1190,15 @@ function loadMerchantOrders(){
 
         order.items.forEach(function(item){
 
-            items += `
-            <p>
-🚚 Order Status:
-<strong>${order.status}</strong>
-</p>
+    items += `
 
+    <p>
+    🛒 ${item.name} - $${item.price}
+    </p>
 
-${order.status === "Pending" ? 
-"<h3>🔔 New Order Received</h3>" 
-: ""}
-            `;
+    `;
 
-        });
+});
 
 
 
@@ -1263,7 +1259,9 @@ ${order.status === "Pending" ?
         Status:
         <strong>${order.status}</strong>
         </p>
-
+${order.status === "Pending" ? 
+"<h3>🔔 New Order Received</h3>" 
+: ""}
 
 
         <select onchange="updateOrderStatus(${index},this.value)">
