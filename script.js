@@ -35,7 +35,8 @@ function searchProducts(){
 
 
 
- function addToCart(productName, productPrice, stock){
+ 
+function addToCart(productName, productPrice, stock){
 
     if(stock <= 0){
 
@@ -47,9 +48,7 @@ function searchProducts(){
 
 
     let existing =
-    cart.find(
-        item => item.name === productName
-    );
+    cart.find(item => item.name === productName);
 
 
     if(existing){
@@ -75,11 +74,10 @@ function searchProducts(){
 
             price: productPrice,
 
-            quantity: 1,
-
-            stock: stock
+            quantity: 1
 
         });
+
 
     }
 
@@ -97,7 +95,6 @@ function searchProducts(){
     alert(productName + " added to cart!");
 
 }
-
 function updateCartCount(){
 
     let count =
