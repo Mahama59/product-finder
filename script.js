@@ -2240,7 +2240,6 @@ function loadCheckout(){
 
         `;
 
-
         total += Number(item.price) * Number(item.quantity || 1);
 
 
