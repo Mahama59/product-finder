@@ -1651,7 +1651,7 @@ cart.forEach(function(cartItem){
     if(product){
 
         product.stock =
-        Number(product.stock || 0) - 1;
+Number(product.stock || 0) - Number(cartItem.quantity || 1);
 
     }
 
