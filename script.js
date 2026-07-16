@@ -902,7 +902,7 @@ ${product.description}
 </p>
 
 
-<button onclick="addToCart('${product.name}',${product.price},${product.stock || 0})">
+<button onclick="addToCart('${product.name}',${product.price},${product.stock})">
 🛒 Add To Cart
 </button>
 
