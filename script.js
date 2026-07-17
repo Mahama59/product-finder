@@ -2097,3 +2097,63 @@ function loadMerchantProducts() {
     });
 
 }
+// ================= MARKETPLACE PRODUCTS =================
+
+function loadMarketplaceProducts() {
+
+    let box = document.getElementById("merchantMarketplace");
+
+    if (!box) return;
+
+    let products =
+        JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+    let approvedProducts =
+        products.filter(product => product.status === "Approved");
+
+    if (approvedProducts.length === 0) {
+
+        box.innerHTML = "<p>No approved products available.</p>";
+        return;
+
+    }
+
+    box.innerHTML = "";
+
+    approvedProducts.forEach(function(product) {
+
+        let image = product.image
+            ? product.image
+            : "https://via.placeholder.com/200";
+
+        box.innerHTML += `
+
+        <div class="product">
+
+            <img src="${image}" width="180">
+
+            <h3>${product.name}</h3>
+
+            <p><strong>Price:</strong> $${product.price}</p>
+
+            <p><strong>Category:</strong> ${product.category}</p>
+
+            <p>${product.description}</p>
+
+            <p>Stock: ${product.stock}</p>
+
+            <button onclick="addToCart('${product.name}', ${product.price}, ${product.stock})">
+                🛒 Add to Cart
+            </button>
+
+            <button onclick="addToWishlist('${product.name}')">
+                ❤️ Wishlist
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
