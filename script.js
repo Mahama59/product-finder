@@ -8,40 +8,51 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // ================= ADVANCED PRODUCT SEARCH =================
 
+ // ================= SMART SEARCH PART 22 =================
+
+
 function searchProducts(){
 
-    let search =
-    document.getElementById("searchInput").value.toLowerCase();
 
-
-    let products =
-    document.querySelectorAll(".product");
-
-
-    products.forEach(function(product){
-
-
-        let name =
-        product.innerText.toLowerCase();
+let input =
+document.getElementById("searchInput")
+.value
+.toLowerCase();
 
 
 
-        if(name.includes(search)){
-
-            product.style.display="block";
-
-        }else{
-
-            product.style.display="none";
-
-        }
+let products =
+document.querySelectorAll(".product");
 
 
-    });
+
+products.forEach(function(product){
+
+
+let text =
+product.innerText.toLowerCase();
+
+
+
+if(text.includes(input)){
+
+
+product.style.display="block";
+
+
+}else{
+
+
+product.style.display="none";
 
 
 }
 
+
+});
+
+
+}
 
 function addToCart(name, price, stock){
 
