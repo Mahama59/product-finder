@@ -1252,15 +1252,15 @@ document.addEventListener(
 "DOMContentLoaded",
 function(){
 
-
 loadAdminDashboard();
+
+loadAdminAnalytics();
 
 loadAdminProducts();
 
 loadAdminUsers();
 
 loadAdminMerchants();
-
 
 });
     // ================= ORDERS & CHECKOUT SYSTEM PART 4 =================
