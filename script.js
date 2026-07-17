@@ -1605,7 +1605,9 @@ JSON.parse(localStorage.getItem("selectedProduct"));
 
 
 if(!product) return;
+loadReviews(product.name);
 
+loadRecommendations();
 
 
 let name =
