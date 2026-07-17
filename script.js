@@ -3228,3 +3228,72 @@ loadCustomerDashboard();
 
 
 }
+function loadRecentProducts(){
+
+
+let box =
+document.getElementById("recentProducts");
+
+
+if(!box) return;
+
+
+
+let recent =
+JSON.parse(localStorage.getItem("recentProducts")) || [];
+
+
+
+if(recent.length===0){
+
+box.innerHTML =
+"<p>No recently viewed products.</p>";
+
+return;
+
+}
+
+
+
+box.innerHTML="";
+
+
+
+recent.forEach(function(product){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+
+<img src="${product.image || 'https://via.placeholder.com/200'}"
+width="150">
+
+
+<h3>
+${product.name}
+</h3>
+
+
+<p>
+💰 $${product.price}
+</p>
+
+
+<button onclick='openProduct(${JSON.stringify(product)})'>
+
+View Again
+
+</button>
+
+
+</div>
+
+`;
+
+
+});
+
+
+}
