@@ -1392,82 +1392,97 @@ window.location.href="success.html";
 
 function loadCustomerOrders(){
 
+    let box = document.getElementById("myOrders");
 
-let box =
-document.getElementById("myOrders");
-
-
-
-if(!box) return;
+    if(!box) return;
 
 
-
-let orders =
-JSON.parse(localStorage.getItem("orders")) || [];
-
+    let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
 
 
-if(orders.length===0){
+    if(orders.length === 0){
+
+        box.innerHTML =
+        "<p>No orders found.</p>";
+
+        return;
+
+    }
 
 
-box.innerHTML =
-"<p>No orders found.</p>";
-
-return;
+    box.innerHTML = "";
 
 
-}
+    orders.forEach(function(order,index){
+
+
+        let items = "";
+
+
+        order.items.forEach(function(item){
+
+            items += `
+            <li>
+            ${item.name} × ${item.quantity}
+            </li>
+            `;
+
+        });
 
 
 
-box.innerHTML="";
+        box.innerHTML += `
+
+        <div class="product">
 
 
-
-orders.forEach(function(order,index){
-
-
-box.innerHTML += `
+        <h3>
+        📦 Order #${index + 1}
+        </h3>
 
 
-<div class="product">
+        <p>
+        🛍 Products:
+        </p>
 
 
-<h3>
-📦 Order #${index+1}
-</h3>
+        <ul>
+        ${items}
+        </ul>
 
 
-<p>
-👤 ${order.customerName}
-</p>
+        <p>
+        💰 Total:
+        $${order.total}
+        </p>
 
 
-<p>
-💰 Total: $${order.total}
-</p>
+        <p>
+        💳 Payment:
+        ${order.paymentMethod}
+        </p>
 
 
-<p>
-💳 Payment:
-${order.paymentMethod || "Cash"}
-</p>
+        <p>
+        🚚 Status:
+        <strong>${order.status}</strong>
+        </p>
 
-<p>
-📅 Date:
-${order.date}
-</p>
 
-<p>
-🚚 Status:
-<strong>${order.status}</strong>
-</p>
+        <p>
+        📅 Date:
+        ${order.date}
+        </p>
 
-</div>
 
-`;
+        </div>
 
-});
+        `;
+
+
+    });
+
 
 }
   // ================= PAYMENT SYSTEM PART 5 =================
