@@ -2437,3 +2437,84 @@ function changeQuantity(index, amount){
     viewCart();
 
 }
+// ================= CUSTOMER ORDERS =================
+
+function loadCustomerOrders(){
+
+    let box =
+    document.getElementById("myOrders");
+
+    if(!box) return;
+
+    let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
+
+    if(orders.length === 0){
+
+        box.innerHTML =
+        "<p>No orders found.</p>";
+
+        return;
+
+    }
+
+    box.innerHTML = "";
+
+    orders.forEach(function(order,index){
+
+        let items = "";
+
+        order.items.forEach(function(item){
+
+            items += `
+            <p>
+            🛒 ${item.name}
+            </p>
+
+            <p>
+            Price: $${item.price}
+            </p>
+
+            <p>
+            Quantity: ${item.quantity || 1}
+            </p>
+
+            <hr>
+            `;
+
+        });
+
+        box.innerHTML += `
+
+        <div class="product">
+
+        <h3>📦 Order #${index + 1}</h3>
+
+        ${items}
+
+        <p>
+        💰 Total: $${order.total}
+        </p>
+
+        <p>
+        💳 Payment: ${order.paymentMethod || "Paystack"}
+        </p>
+
+        <p>
+        📅 Date: ${order.date}
+        </p>
+
+        <p>
+        🚚 Status:
+        <strong>${order.status}</strong>
+        </p>
+
+        </div>
+
+        <br>
+
+        `;
+
+    });
+
+}
