@@ -3401,3 +3401,82 @@ View Again
 
 
 }
+// ================= ADMIN CONTROL PART 27 =================
+
+
+function loadAdminAnalytics(){
+
+
+let users =
+JSON.parse(localStorage.getItem("user"));
+
+
+
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+
+let userBox =
+document.getElementById("adminTotalUsers");
+
+
+let merchantBox =
+document.getElementById("adminTotalMerchants");
+
+
+let productBox =
+document.getElementById("adminTotalProducts");
+
+
+let orderBox =
+document.getElementById("adminTotalOrders");
+
+
+
+if(userBox){
+
+userBox.innerText =
+users ? 1 : 0;
+
+}
+
+
+
+if(merchantBox){
+
+merchantBox.innerText =
+merchant ? 1 : 0;
+
+}
+
+
+
+if(productBox){
+
+productBox.innerText =
+products.length;
+
+}
+
+
+
+if(orderBox){
+
+orderBox.innerText =
+orders.length;
+
+}
+
+
+}
