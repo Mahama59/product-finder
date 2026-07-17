@@ -1471,7 +1471,26 @@ box.innerHTML += `
 
 <p>
 💳 Payment:
-${
+${order.paymentMethod || "Cash"}
+</p>
+
+<p>
+📅 Date:
+${order.date}
+</p>
+
+<p>
+🚚 Status:
+<strong>${order.status}</strong>
+</p>
+
+</div>
+
+`;
+
+});
+
+}
   // ================= PAYMENT SYSTEM PART 5 =================
 
 
