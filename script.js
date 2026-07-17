@@ -2046,3 +2046,54 @@ loadMerchantAnalytics();
 loadMerchantInventory();
 
 });
+// ================= LOAD MERCHANT PRODUCTS =================
+
+function loadMerchantProducts() {
+
+    let box = document.getElementById("merchantProductsList");
+
+    if (!box) return;
+
+    let products =
+        JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+    if (products.length === 0) {
+
+        box.innerHTML = "<p>No products added yet.</p>";
+        return;
+
+    }
+
+    box.innerHTML = "";
+
+    products.forEach(function(product, index) {
+
+        let image = product.image
+            ? product.image
+            : "https://via.placeholder.com/200";
+
+        box.innerHTML += `
+
+        <div class="product">
+
+            <img src="${image}" width="180">
+
+            <h3>${product.name}</h3>
+
+            <p><strong>Price:</strong> $${product.price}</p>
+
+            <p><strong>Category:</strong> ${product.category}</p>
+
+            <p><strong>Description:</strong> ${product.description}</p>
+
+            <p><strong>Stock:</strong> ${product.stock}</p>
+
+            <p><strong>Status:</strong> ${product.status}</p>
+
+        </div>
+
+        `;
+
+    });
+
+}
