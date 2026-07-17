@@ -3017,7 +3017,158 @@ localStorage.setItem(
 "orders",
 JSON.stringify(orders)
 );
+// ================= MERCHANT ORDER MANAGEMENT PART 20 =================
 
+
+function loadMerchantOrders(){
+
+let box = document.getElementById("merchantOrders");
+
+
+if(!box) return;
+
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+
+if(orders.length === 0){
+
+box.innerHTML =
+"<p>No orders available.</p>";
+
+return;
+
+}
+
+
+
+box.innerHTML = "";
+
+
+
+orders.forEach(function(order,index){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+
+<h3>
+📦 Order #${index+1}
+</h3>
+
+
+<p>
+👤 Customer:
+${order.customerName}
+</p>
+
+
+<p>
+📧 Email:
+${order.customerEmail}
+</p>
+
+
+<p>
+💰 Total:
+$${order.total}
+</p>
+
+
+
+<p>
+🛒 Items:
+</p>
+
+
+${order.items.map(item=>`
+
+<p>
+${item.name} 
+x ${item.quantity}
+</p>
+
+`).join("")}
+
+
+
+<p>
+Current Status:
+<strong>${order.status}</strong>
+</p>
+
+
+
+<button onclick="updateOrderStatus(${index},'Processing')">
+
+⚙️ Processing
+
+</button>
+
+
+
+<button onclick="updateOrderStatus(${index},'Shipped')">
+
+🚚 Shipped
+
+</button>
+
+
+
+<button onclick="updateOrderStatus(${index},'Completed')">
+
+✅ Completed
+
+</button>
+
+
+
+</div>
+
+
+`;
+
+
+
+});
+
+
+}
+
+
+
+
+function updateOrderStatus(index,status){
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+
+orders[index].status = status;
+
+
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+
+
+loadMerchantOrders();
+
+
+alert("Order updated to " + status);
+
+
+}
 
 
 alert("Order cancelled");
