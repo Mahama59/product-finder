@@ -2237,8 +2237,11 @@ function loadMarketplaceProducts(){
         <div class="product">
 
 
-        <img src="${product.image || 'https://via.placeholder.com/200'}"
-        width="200">
+        <img 
+src="${product.image || 'https://via.placeholder.com/200'}"
+width="200"
+height="200"
+style="object-fit:cover;">
 
 
         <h3>
