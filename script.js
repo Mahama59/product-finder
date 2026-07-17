@@ -2667,11 +2667,11 @@ function filterProducts(){
 
 
         let priceText =
-        product.innerText.match(/\d+/);
+product.innerText.match(/\$([0-9]+)/);
 
 
-        let price =
-        priceText ? Number(priceText[0]) : 0;
+let price =
+priceText ? Number(priceText[1]) : 0;
 
 
 
