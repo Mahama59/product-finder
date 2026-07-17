@@ -2157,3 +2157,82 @@ alert("Marketplace loading");
     });
 
 }
+// ================= CHECKOUT DISPLAY =================
+
+function loadCheckout(){
+
+    let box = document.getElementById("checkoutItems");
+    let totalBox = document.getElementById("checkoutTotal");
+
+
+    if(!box) return;
+
+
+    let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+
+    if(cart.length === 0){
+
+        box.innerHTML =
+        "<p>Your cart is empty.</p>";
+
+        if(totalBox){
+            totalBox.innerText = "0";
+        }
+
+        return;
+
+    }
+
+
+    box.innerHTML = "";
+
+
+    let total = 0;
+
+
+    cart.forEach(function(item){
+
+
+        let subtotal =
+        Number(item.price) * Number(item.quantity || 1);
+
+
+        total += subtotal;
+
+
+        box.innerHTML += `
+
+        <div class="product">
+
+        <h3>${item.name}</h3>
+
+        <p>
+        Price: $${item.price}
+        </p>
+
+        <p>
+        Quantity: ${item.quantity || 1}
+        </p>
+
+        <p>
+        Subtotal: $${subtotal}
+        </p>
+
+        </div>
+
+        `;
+
+
+    });
+
+
+    if(totalBox){
+
+        totalBox.innerText = total;
+
+    }
+
+
+}
