@@ -2882,6 +2882,144 @@ wishlistBox.innerHTML += `
 
 }
 
+// ================= CUSTOMER ORDER DETAILS PART 19 =================
+
+
+function viewOrderDetails(index){
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+let order = orders[index];
+
+
+if(!order){
+
+alert("Order not found");
+
+return;
+
+}
+
+
+
+let box =
+document.getElementById("orderDetails");
+
+
+if(!box) return;
+
+
+
+box.innerHTML = `
+
+<div class="product">
+
+<h2>
+📦 Order Details
+</h2>
+
+
+<p>
+Order ID: ${order.id}
+</p>
+
+
+<p>
+Status:
+${order.status}
+</p>
+
+
+<p>
+Date:
+${order.date}
+</p>
+
+
+<h3>
+Products:
+</h3>
+
+
+${order.items.map(function(item){
+
+
+return `
+
+<p>
+🛒 ${item.name}
+<br>
+Quantity: ${item.quantity}
+<br>
+Price: $${item.price}
+
+</p>
+
+`;
+
+
+}).join("")}
+
+
+
+<h3>
+Total: $${order.total}
+</h3>
+
+
+
+<button onclick="cancelOrder(${index})">
+
+❌ Cancel Order
+
+</button>
+
+
+</div>
+
+`;
+
+
+
+}
+
+}
+function cancelOrder(index){
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+
+if(orders[index].status !== "Pending"){
+
+alert("This order cannot be cancelled");
+
+return;
+
+}
+
+
+
+orders.splice(index,1);
+
+
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+
+
+alert("Order cancelled");
+
+
+loadCustomerDashboard();
 
 
 }
