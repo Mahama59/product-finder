@@ -2208,7 +2208,7 @@ function loadMarketplaceProducts(){
 // ================= CHECKOUT DISPLAY =================
 
 function loadCheckout(){
-
+alert("Checkout loading");
     let box = document.getElementById("checkoutItems");
     let totalBox = document.getElementById("checkoutTotal");
 
