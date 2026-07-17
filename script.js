@@ -6,10 +6,11 @@ alert("script.js loaded");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+// ================= ADVANCED PRODUCT SEARCH =================
 
 function searchProducts(){
 
-    let input =
+    let search =
     document.getElementById("searchInput").value.toLowerCase();
 
 
@@ -19,24 +20,27 @@ function searchProducts(){
 
     products.forEach(function(product){
 
-        let text =
+
+        let name =
         product.innerText.toLowerCase();
 
 
-        if(text.includes(input)){
 
-            product.style.display = "block";
+        if(name.includes(search)){
+
+            product.style.display="block";
 
         }else{
 
-            product.style.display = "none";
+            product.style.display="none";
 
         }
 
+
     });
 
-}
 
+}
 
 
 function addToCart(name, price, stock){
