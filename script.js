@@ -2285,3 +2285,54 @@ alert(JSON.stringify(cart));
 
 
 }
+function loadMerchantOrders() {
+
+    let box = document.getElementById("merchantOrders");
+
+    if (!box) return;
+
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    if (orders.length === 0) {
+        box.innerHTML = "<p>No orders yet.</p>";
+        return;
+    }
+
+    box.innerHTML = "";
+
+    orders.forEach(function(order) {
+
+        let items = "";
+
+        order.items.forEach(function(item) {
+            items += `
+                <li>
+                    ${item.name} × ${item.quantity}
+                </li>
+            `;
+        });
+
+        box.innerHTML += `
+            <div class="product">
+
+                <h3>Order #${order.id}</h3>
+
+                <p><strong>Customer:</strong> ${order.customerName}</p>
+
+                <p><strong>Email:</strong> ${order.customerEmail}</p>
+
+                <p><strong>Address:</strong> ${order.customerAddress}</p>
+
+                <p><strong>Payment:</strong> ${order.paymentMethod}</p>
+
+                <ul>${items}</ul>
+
+                <p><strong>Total:</strong> $${order.total}</p>
+
+                <p><strong>Status:</strong> ${order.status}</p>
+
+            </div>
+        `;
+    });
+
+}
