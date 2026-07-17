@@ -2105,7 +2105,13 @@ function loadMerchantProducts() {
             <p><strong>Stock:</strong> ${product.stock}</p>
 
             <p><strong>Status:</strong> ${product.status}</p>
+           <button onclick="editProduct(${index})">
+✏️ Edit
+</button>
 
+<button onclick="deleteProduct(${index})">
+🗑 Delete
+</button>
         </div>
 
         `;
