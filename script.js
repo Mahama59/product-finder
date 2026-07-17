@@ -2059,6 +2059,9 @@ ${review.date}
 
 // MERCHANT ANALYTICS
 
+// ================= MERCHANT ANALYTICS PART 26 =================
+
+
 function loadMerchantAnalytics(){
 
 
@@ -2066,16 +2069,17 @@ let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
 
+
 let orders =
 JSON.parse(localStorage.getItem("orders")) || [];
 
 
 
-let productCount =
+let productBox =
 document.getElementById("merchantTotalProducts");
 
 
-let orderCount =
+let orderBox =
 document.getElementById("merchantTotalOrders");
 
 
@@ -2084,18 +2088,18 @@ document.getElementById("merchantTotalRevenue");
 
 
 
-if(productCount){
+if(productBox){
 
-productCount.innerText =
+productBox.innerText =
 products.length;
 
 }
 
 
 
-if(orderCount){
+if(orderBox){
 
-orderCount.innerText =
+orderBox.innerText =
 orders.length;
 
 }
@@ -2103,10 +2107,11 @@ orders.length;
 
 
 let revenue =
-orders.reduce(
-(sum,order)=>sum + Number(order.total),
-0
-);
+orders.reduce(function(total,order){
+
+return total + Number(order.total);
+
+},0);
 
 
 
@@ -2118,8 +2123,8 @@ revenue;
 }
 
 
-}
 
+}
 
 
 
