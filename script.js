@@ -2626,3 +2626,57 @@ function adminDeleteOrder(index){
     alert("Order removed");
 
 }
+// ================= CATEGORY FILTER =================
+
+
+function filterProducts(){
+
+    let category =
+    document.getElementById("categoryFilter").value;
+
+
+    let maxPrice =
+    Number(document.getElementById("maxPrice").value) || Infinity;
+
+
+
+    let products =
+    document.querySelectorAll(".product");
+
+
+
+    products.forEach(function(product){
+
+
+        let productCategory =
+        product.getAttribute("data-category");
+
+
+        let priceText =
+        product.innerText.match(/\d+/);
+
+
+        let price =
+        priceText ? Number(priceText[0]) : 0;
+
+
+
+        if(
+            (category==="all" || productCategory===category)
+            &&
+            price <= maxPrice
+        ){
+
+            product.style.display="block";
+
+        }else{
+
+            product.style.display="none";
+
+        }
+
+
+    });
+
+
+}
