@@ -602,80 +602,58 @@ alert("Incorrect merchant details");
 
 function saveProduct(){
 
-
 let name =
 document.getElementById("productName").value;
-
 
 let price =
 document.getElementById("productPrice").value;
 
-
 let category =
 document.getElementById("productCategory").value;
 
-
 let description =
 document.getElementById("productDescription").value;
-
 
 let stock =
 Number(document.getElementById("productStock").value);
 
 
+let imageInput =
+document.getElementById("productImage");
+
 
 if(!name || !price || !category || !stock){
 
-alert("Complete product information");
+alert("Please complete all product information");
 
 return;
 
 }
 
 
-
 let product = {
 
+name:name,
 
-<input id="productName">
+price:Number(price),
 
-<input id="productPrice">
+category:category,
 
-<input id="productCategory">
+description:description,
 
-<textarea id="productDescription"></textarea>
+stock:stock,
 
-<input type="number" id="productStock">
+image:"",
 
-<input type="file" id="productImage">
+status:"Pending"
 
-<button onclick="saveProduct()">
-Save Product
-</button>
 };
 
 
 
-let image =
-document.getElementById("productImage");
-
-
-
-if(image && image.files[0]){
-
-
-let reader = new FileReader();
-
-
-
-reader.onload=function(e){
-
-
-product.image=e.target.result;
-
+function save(){
 
 merchantProducts.push(product);
-
 
 
 localStorage.setItem(
@@ -684,20 +662,46 @@ JSON.stringify(merchantProducts)
 );
 
 
+alert("Product saved successfully!");
 
-alert("Product saved successfully");
+
+window.location.href =
+"merchant-products.html";
+
+}
 
 
-window.location.href="merchant-products.html";
 
+if(imageInput && imageInput.files[0]){
+
+
+let reader = new FileReader();
+
+
+reader.onload=function(e){
+
+product.image=e.target.result;
+
+save();
 
 };
 
 
-
 reader.readAsDataURL(
-image.files[0]
+imageInput.files[0]
 );
+
+
+}else{
+
+
+save();
+
+
+}
+
+
+}
     // ================= ADMIN SYSTEM PART 3 =================
 
 
