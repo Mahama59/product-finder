@@ -219,3 +219,24 @@ header h1{
 
 
 }
+.hero{
+
+background:#ffffff;
+padding:60px 20px;
+text-align:center;
+
+}
+
+
+.hero h1{
+
+font-size:45px;
+
+}
+
+
+.hero p{
+
+font-size:20px;
+
+}
