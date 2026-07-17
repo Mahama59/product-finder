@@ -2364,3 +2364,98 @@ function updateOrderStatus(index, status){
     loadMerchantOrders();
 
 }
+// ================= EDIT PRODUCT =================
+
+function editProduct(index){
+
+    let products =
+    JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+    let product = products[index];
+
+
+    let newName =
+    prompt("Product name:", product.name);
+
+
+    let newPrice =
+    prompt("Product price:", product.price);
+
+
+    let newStock =
+    prompt("Product stock:", product.stock);
+
+
+
+    if(newName){
+
+        product.name = newName;
+
+    }
+
+
+    if(newPrice){
+
+        product.price = Number(newPrice);
+
+    }
+
+
+    if(newStock){
+
+        product.stock = Number(newStock);
+
+    }
+
+
+
+    products[index] = product;
+
+
+    localStorage.setItem(
+        "merchantProducts",
+        JSON.stringify(products)
+    );
+
+
+    alert("Product updated");
+
+
+    loadMerchantProducts();
+
+}
+
+
+
+// ================= DELETE PRODUCT =================
+
+function deleteProduct(index){
+
+    let products =
+    JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+    let confirmDelete =
+    confirm("Delete this product?");
+
+
+    if(confirmDelete){
+
+        products.splice(index,1);
+
+
+        localStorage.setItem(
+            "merchantProducts",
+            JSON.stringify(products)
+        );
+
+
+        alert("Product deleted");
+
+
+        loadMerchantProducts();
+
+    }
+
+}
