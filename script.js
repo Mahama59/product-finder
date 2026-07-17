@@ -637,20 +637,21 @@ return;
 let product = {
 
 
-name:name,
+<input id="productName">
 
-price:Number(price),
+<input id="productPrice">
 
-category:category,
+<input id="productCategory">
 
-description:description,
+<textarea id="productDescription"></textarea>
 
-stock:stock,
+<input type="number" id="productStock">
 
-image:"",
+<input type="file" id="productImage">
 
-status:"Pending"
-
+<button onclick="saveProduct()">
+Save Product
+</button>
 };
 
 
