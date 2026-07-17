@@ -2726,10 +2726,16 @@ function loadAccount(){
 
 
 }
+// ================= CUSTOMER DASHBOARD PART 18 =================
+
+
 function loadCustomerDashboard(){
+
 
 let user =
 JSON.parse(localStorage.getItem("user"));
+
+
 
 let profile =
 document.getElementById("customerProfile");
@@ -2737,16 +2743,17 @@ document.getElementById("customerProfile");
 
 if(profile){
 
+
 if(user){
 
 profile.innerHTML = `
 
 <h3>
-${user.name}
+👤 ${user.name}
 </h3>
 
 <p>
-${user.email}
+📧 ${user.email}
 </p>
 
 `;
@@ -2754,14 +2761,127 @@ ${user.email}
 }else{
 
 profile.innerHTML =
-"<p>No user logged in</p>";
+"<p>Please login first</p>";
 
 }
 
 }
 
 
-loadCustomerOrders();
+
+
+let ordersBox =
+document.getElementById("customerOrders");
+
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+
+if(ordersBox){
+
+
+if(orders.length === 0){
+
+ordersBox.innerHTML =
+"<p>No orders yet</p>";
+
+}else{
+
+
+ordersBox.innerHTML="";
+
+
+orders.forEach(function(order,index){
+
+
+ordersBox.innerHTML += `
+
+<div class="product">
+
+<h3>
+📦 Order #${index+1}
+</h3>
+
+
+<p>
+💰 Total: $${order.total}
+</p>
+
+
+<p>
+🚚 Status:
+${order.status}
+</p>
+
+
+<p>
+📅 ${order.date}
+</p>
+
+
+</div>
+
+`;
+
+
+});
+
+
+}
+
+
+}
+
+
+
+
+
+let wishlistBox =
+document.getElementById("customerWishlist");
+
+
+let wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
+
+
+
+if(wishlistBox){
+
+
+if(wishlist.length===0){
+
+wishlistBox.innerHTML =
+"<p>No wishlist items</p>";
+
+}else{
+
+
+wishlistBox.innerHTML="";
+
+
+wishlist.forEach(function(item){
+
+
+wishlistBox.innerHTML += `
+
+<p>
+❤️ ${item}
+</p>
+
+`;
+
+
+});
+
+
+}
+
+
+}
+
 
 
 }
