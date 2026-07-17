@@ -488,7 +488,7 @@ function(){
 updateCartCount();
 
 updateWishlistCount();
-
+loadRecentProducts();
 });
     // ================= MERCHANT SYSTEM PART 2 =================
 
