@@ -1332,6 +1332,11 @@ total: total,
 
 status:"Pending",
 
+shippingStatus:"Preparing",
+
+trackingNumber:
+"PF-" + Date.now(),
+
 date:new Date().toLocaleString()
 
 };
@@ -1483,7 +1488,16 @@ function loadCustomerOrders(){
         🚚 Status:
         <strong>${order.status}</strong>
         </p>
+<p>
+📍 Delivery:
+<strong>${order.shippingStatus || "Preparing"}</strong>
+</p>
 
+
+<p>
+🔎 Tracking:
+${order.trackingNumber || "Not available"}
+</p>
 
         <p>
         📅 Date:
@@ -3477,6 +3491,32 @@ orderBox.innerText =
 orders.length;
 
 }
+
+
+}
+// ================= SHIPPING SYSTEM PART 29 =================
+
+
+function updateShippingStatus(index,status){
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+
+orders[index].shippingStatus = status;
+
+
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+
+
+alert("Delivery updated");
 
 
 }
