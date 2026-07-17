@@ -2218,7 +2218,7 @@ alert("Checkout loading");
 
     let cart =
     JSON.parse(localStorage.getItem("cart")) || [];
-
+alert(JSON.stringify(cart));
 
     if(cart.length === 0){
 
