@@ -1693,6 +1693,9 @@ loadReviews(product.name);
 // ================= SAVE SELECTED PRODUCT =================
 
 
+ // ================= RECENTLY VIEWED PART 24 =================
+
+
 function openProduct(product){
 
 
@@ -1702,13 +1705,43 @@ JSON.stringify(product)
 );
 
 
-window.location.href=
-"product.html";
 
+let recent =
+JSON.parse(localStorage.getItem("recentProducts")) || [];
+
+
+
+recent =
+recent.filter(
+item => item.name !== product.name
+);
+
+
+
+recent.unshift(product);
+
+
+
+if(recent.length > 5){
+
+recent.pop();
 
 }
 
 
+
+localStorage.setItem(
+"recentProducts",
+JSON.stringify(recent)
+);
+
+
+
+window.location.href =
+"product-details.html";
+
+
+}
 
 
 // ================= REVIEWS =================
