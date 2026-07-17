@@ -2680,3 +2680,49 @@ function filterProducts(){
 
 
 }
+// ================= USER ACCOUNT =================
+
+
+function loadAccount(){
+
+    let box =
+    document.getElementById("accountInfo");
+
+
+    if(!box) return;
+
+
+
+    let user =
+    JSON.parse(localStorage.getItem("user"));
+
+
+
+    if(!user){
+
+        box.innerHTML =
+        "<p>Please login first.</p>";
+
+        return;
+
+    }
+
+
+
+    box.innerHTML = `
+
+    <h2>
+    👋 Welcome ${user.name}
+    </h2>
+
+
+    <p>
+    📧 Email:
+    ${user.email}
+    </p>
+
+
+    `;
+
+
+}
