@@ -1,3 +1,4 @@
+alert("script.js loaded");
 // ================= PRODUCT FINDER PART 1 =================
 
 
