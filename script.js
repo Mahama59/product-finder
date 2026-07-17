@@ -1692,7 +1692,7 @@ JSON.stringify(product)
 
 
 window.location.href=
-"product-details.html";
+"product.html";
 
 
 }
