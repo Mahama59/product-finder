@@ -2820,7 +2820,11 @@ ${order.status}
 <p>
 📅 ${order.date}
 </p>
+<button onclick="viewOrderDetails(${index})">
 
+👁 View Details
+
+</button>
 
 </div>
 
