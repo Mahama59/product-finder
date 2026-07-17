@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Product Details - Product Finder</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body onload="loadProductDetails()">
+
+
+
+<nav>
+
+<h2>🛍️ Product Finder</h2>
+
+<a href="index.html">
+🏠 Home
+</a>
+
+</nav>
+
+
+
+<header>
+
+<h1>
+📦 Product Details
+</h1>
+
+</header>
+
+
+
+<div class="product">
+
+
+<img id="detailImage" width="250">
+
+
+<h2 id="detailName">
+Product Name
+</h2>
+
+
+<p id="detailPrice"></p>
+
+
+<p id="detailCategory"></p>
+
+
+<p id="detailDescription"></p>
+
+
+<p>
+📦 Stock:
+<span id="detailStock"></span>
+</p>
+
+
+
+<button id="detailCartButton">
+
+🛒 Add To Cart
+
+</button>
+
+
+
+<hr>
+
+
+<h2>
+⭐ Reviews
+</h2>
+
+
+<h3 id="averageRating">
+⭐ Rating
+</h3>
+
+
+
+<div id="productReviews">
+
+<p>
+No reviews yet.
+</p>
+
+</div>
+
+
+
+<hr>
+
+
+<h3>
+Write a Review
+</h3>
+
+
+<textarea 
+id="reviewText"
+placeholder="Write your review">
+</textarea>
+
+
+<br><br>
+
+
+<select id="reviewRating">
+
+<option value="5">
+⭐⭐⭐⭐⭐
+</option>
+
+
+<option value="4">
+⭐⭐⭐⭐
+</option>
+
+
+<option value="3">
+⭐⭐⭐
+</option>
+
+
+<option value="2">
+⭐⭐
+</option>
+
+
+<option value="1">
+⭐
+</option>
+
+
+</select>
+
+
+<br><br>
+
+
+<button onclick="submitReview()">
+
+Submit Review
+
+</button>
+
+
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
