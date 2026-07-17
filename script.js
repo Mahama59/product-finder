@@ -41,6 +41,7 @@ function searchProducts(){
 
 function addToCart(name, price, stock){
 
+alert(name + " " + price + " " + stock);
     stock = Number(stock);
 
 
