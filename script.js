@@ -601,128 +601,80 @@ alert("Incorrect merchant details");
 // ================= SAVE PRODUCT =================
 
 
- function saveProduct(){
+function saveProduct() {
 
-let name =
-document.getElementById("productName").value;
+    let name = document.getElementById("productName").value;
+    let price = document.getElementById("productPrice").value;
+    let category = document.getElementById("productCategory").value;
+    let description = document.getElementById("productDescription").value;
+    let stock = Number(document.getElementById("productStock").value);
 
-let price =
-document.getElementById("productPrice").value;
+    let imageInput = document.getElementById("productImage");
 
-let category =
-document.getElementById("productCategory").value;
+    if (!name || !price || !category || !stock) {
 
-let description =
-document.getElementById("productDescription").value;
+        alert("Please complete all product information");
+        return;
 
-let stock =
-document.getElementById("productStock").value;
+    }
 
+    let product = {
 
-if(name === "" || price === "" || category === "" || stock === ""){
+        name: name,
+        price: Number(price),
+        category: category,
+        description: description,
+        stock: stock,
+        image: "",
+        status: "Pending"
 
-alert("Please complete all product information");
+    };
 
-return;
+    let merchantProducts =
+        JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
-}
+    if (imageInput && imageInput.files.length > 0) {
 
+        let reader = new FileReader();
 
-let products =
-JSON.parse(localStorage.getItem("merchantProducts")) || [];
+        reader.onload = function (e) {
 
+            product.image = e.target.result;
 
-let product = {
+            merchantProducts.push(product);
 
-name:name,
+            localStorage.setItem(
+                "merchantProducts",
+                JSON.stringify(merchantProducts)
+            );
 
-price:Number(price),
+            alert("Product saved successfully");
 
-category:category,
+            window.location.href = "merchant-products.html";
 
-description:description,
+        };
 
-stock:Number(stock),
+        reader.readAsDataURL(imageInput.files[0]);
 
-image:"",
+    } else {
 
-status:"Pending"
+        merchantProducts.push(product);
 
-};
+        localStorage.setItem(
+            "merchantProducts",
+            JSON.stringify(merchantProducts)
+        );
 
+        alert("Product saved successfully");
 
+        window.location.href = "merchant-products.html";
 
-products.push(product);
-
-
-
-localStorage.setItem(
-"merchantProducts",
-JSON.stringify(products)
-);
-
-
-
-alert("Product saved successfully");
-
-
-window.location.href="merchant-products.html";
-
-
-}
-
-
-function save(){
-
-merchantProducts.push(product);
-
-
-localStorage.setItem(
-"merchantProducts",
-JSON.stringify(merchantProducts)
-);
-
-
-alert("Product saved successfully!");
-
-
-window.location.href =
-"merchant-products.html";
+    }
 
 }
 
 
 
-if(imageInput && imageInput.files[0]){
-
-
-let reader = new FileReader();
-
-
-reader.onload=function(e){
-
-product.image=e.target.result;
-
-save();
-
-};
-
-
-reader.readAsDataURL(
-imageInput.files[0]
-);
-
-
-}else{
-
-
-save();
-
-
-}
-
-
-}
     // ================= ADMIN SYSTEM PART 3 =================
 
 
