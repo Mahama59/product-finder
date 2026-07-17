@@ -260,6 +260,14 @@ localStorage.setItem(
 "user",
 JSON.stringify(user)
 );
+
+alert("Registration successful");
+
+window.location.href="login.html";
+
+}
+
+
 // ================= LOGIN SYSTEM =================
 
 function loginUser(){
