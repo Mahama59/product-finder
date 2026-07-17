@@ -2726,3 +2726,42 @@ function loadAccount(){
 
 
 }
+function loadCustomerDashboard(){
+
+let user =
+JSON.parse(localStorage.getItem("user"));
+
+let profile =
+document.getElementById("customerProfile");
+
+
+if(profile){
+
+if(user){
+
+profile.innerHTML = `
+
+<h3>
+${user.name}
+</h3>
+
+<p>
+${user.email}
+</p>
+
+`;
+
+}else{
+
+profile.innerHTML =
+"<p>No user logged in</p>";
+
+}
+
+}
+
+
+loadCustomerOrders();
+
+
+}
