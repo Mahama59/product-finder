@@ -1,178 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="product-details">
 
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Product Details - Product Finder</title>
-
-<link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-<nav>
-
-<h2>🛍️ Product Finder</h2>
-
-<a href="index.html">← Back to Home</a>
-
-</nav>
+<img id="detailImage"
+src="https://via.placeholder.com/400">
 
 
-<header>
-
-<h1>📱 Product Details</h1>
-
-</header>
+<h1 id="detailName">
+Product Name
+</h1>
 
 
-<div class="product">
+<h2 id="detailPrice">
+💰 Price
+</h2>
 
 
-<img src="https://via.placeholder.com/300" alt="Smartphone">
-
-
-<h1>📱 Smartphone</h1>
-
-
-<h2>$499</h2>
-
-
-<p>
-A powerful Android smartphone with a high-quality camera,
-long battery life, fast processor, and beautiful display.
+<p id="detailCategory">
+📂 Category
 </p>
 
 
-<h3>⭐ Product Rating</h3>
-
-<div id="productRating">
-Loading rating...
-</div>
+<p id="detailStock">
+📦 Stock
+</p>
 
 
-<h3>Rate this Product</h3>
+<p id="detailDescription">
+Description
+</p>
 
-<select id="ratingValue">
 
-<option value="5">⭐⭐⭐⭐⭐ (5)</option>
 
-<option value="4">⭐⭐⭐⭐ (4)</option>
+<button id="detailCartButton">
 
-<option value="3">⭐⭐⭐ (3)</option>
+🛒 Add To Cart
 
-<option value="2">⭐⭐ (2)</option>
+</button>
 
-<option value="1">⭐ (1)</option>
+
+<button onclick="addToWishlist(
+document.getElementById('detailName').innerText
+)">
+
+❤️ Wishlist
+
+</button>
+
+
+
+<hr>
+
+
+<h2>
+⭐ Customer Reviews
+</h2>
+
+
+<textarea 
+id="reviewText"
+placeholder="Write your review">
+</textarea>
+
+
+<select id="reviewRating">
+
+<option value="5">
+⭐⭐⭐⭐⭐
+</option>
+
+<option value="4">
+⭐⭐⭐⭐
+</option>
+
+<option value="3">
+⭐⭐⭐
+</option>
 
 </select>
 
 
-<button onclick="submitRating('Smartphone')">
+<button onclick="submitReview()">
 
-⭐ Submit Rating
-
-</button>
-
-
-<h3>Features</h3>
-
-<ul>
-
-<li>📸 50 MP Camera</li>
-
-<li>🔋 5000 mAh Battery</li>
-
-<li>💾 256 GB Storage</li>
-
-<li>📱 6.7-inch Display</li>
-
-</ul>
-
-
-<button onclick="addToCart('Smartphone',499)">
-🛒 Add to Cart
-</button>
-
-
-<button onclick="addToWishlist('Smartphone')">
-❤️ Favorite
-</button>
-
-
-<button onclick="addToCompare('Smartphone',499,'Electronics')">
-⚖️ Compare
-</button>
-
-
-<a href="checkout.html">
-
-<button>
-Buy Now
-</button>
-
-</a>
-
-
-
-<h3>💬 Customer Reviews</h3>
-
-
-<div>
-
-<p>⭐⭐⭐⭐⭐ Great phone. Excellent camera!</p>
-
-<p>⭐⭐⭐⭐ Good battery and performance.</p>
-
-</div>
-
-
-<h3>Add Your Review</h3>
-
-
-<input id="reviewInput" type="text" placeholder="Write your review">
-
-
-<button onclick="addReview()">
 Submit Review
+
 </button>
 
 
-<div id="reviewList"></div>
-
+<div id="productReviews">
 
 </div>
 
 
-<footer>
-
-<p>© 2026 Product Finder. All rights reserved.</p>
-
-</footer>
-
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
-<h3>Rate this Product</h3>
-
-<select id="ratingValue">
-    <option value="5">⭐⭐⭐⭐⭐ (5)</option>
-    <option value="4">⭐⭐⭐⭐ (4)</option>
-    <option value="3">⭐⭐⭐ (3)</option>
-    <option value="2">⭐⭐ (2)</option>
-    <option value="1">⭐ (1)</option>
-</select>
-
-<br><br>
-
-<button onclick="submitRating('Smartphone')">
-    ⭐ Submit Rating
-</button>
-⭐ Submit Rating
-</button>
+</div>
