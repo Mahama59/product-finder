@@ -600,7 +600,7 @@ alert("Incorrect merchant details");
 // ================= SAVE PRODUCT =================
 
 
-function saveProduct(){
+ function saveProduct(){
 
 let name =
 document.getElementById("productName").value;
@@ -615,20 +615,20 @@ let description =
 document.getElementById("productDescription").value;
 
 let stock =
-Number(document.getElementById("productStock").value);
+document.getElementById("productStock").value;
 
 
-let imageInput =
-document.getElementById("productImage");
-
-
-if(!name || !price || !category || !stock){
+if(name === "" || price === "" || category === "" || stock === ""){
 
 alert("Please complete all product information");
 
 return;
 
 }
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
 
 let product = {
@@ -641,7 +641,7 @@ category:category,
 
 description:description,
 
-stock:stock,
+stock:Number(stock),
 
 image:"",
 
@@ -649,6 +649,26 @@ status:"Pending"
 
 };
 
+
+
+products.push(product);
+
+
+
+localStorage.setItem(
+"merchantProducts",
+JSON.stringify(products)
+);
+
+
+
+alert("Product saved successfully");
+
+
+window.location.href="merchant-products.html";
+
+
+}
 
 
 function save(){
