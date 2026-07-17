@@ -3520,3 +3520,80 @@ alert("Delivery updated");
 
 
 }
+// ================= SECURITY SYSTEM PART 30 =================
+
+
+// CUSTOMER PROTECTION
+
+function protectCustomer(){
+
+
+let loggedIn =
+localStorage.getItem("loggedIn");
+
+
+if(loggedIn !== "true"){
+
+
+alert("Please login first");
+
+
+window.location.href="login.html";
+
+
+}
+
+
+}
+
+
+
+
+// MERCHANT PROTECTION
+
+function protectMerchant(){
+
+
+let merchantLoggedIn =
+localStorage.getItem("merchantLoggedIn");
+
+
+if(merchantLoggedIn !== "true"){
+
+
+alert("Merchant login required");
+
+
+window.location.href="merchant-login.html";
+
+
+}
+
+
+}
+
+
+
+
+// ADMIN PROTECTION
+
+function protectAdmin(){
+
+
+let adminLoggedIn =
+localStorage.getItem("adminLoggedIn");
+
+
+if(adminLoggedIn !== "true"){
+
+
+alert("Admin access required");
+
+
+window.location.href="admin-login.html";
+
+
+}
+
+
+}
