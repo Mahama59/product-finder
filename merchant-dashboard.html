@@ -95,13 +95,64 @@ if(merchant){
     loadDashboard();
 loadNewOrders();
 </script>
+<h2>
+📊 Sales Analytics
+</h2>
 
-</body>
 
-</html>
+<div class="product-grid">
+
+
+<div class="product">
+
+<h3>
+📦 Products
+</h3>
+
+<p id="merchantTotalProducts">
+0
+</p>
+
+</div>
+
+
+
+<div class="product">
+
+<h3>
+🛒 Orders
+</h3>
+
+<p id="merchantTotalOrders">
+0
+</p>
+
+</div>
+
+
+
+<div class="product">
+
+<h3>
+💰 Revenue
+</h3>
+
+<p>
+$<span id="merchantTotalRevenue">
+0
+</span>
+</p>
+
+</div>
+
+
+</div>
 <button onclick="merchantLogout()">
 🚪 Logout
 </button>
 <a href="merchant-add-product.html">
 ➕ Add Product
 </a>
+</body>
+
+</html>
