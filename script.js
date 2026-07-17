@@ -2311,19 +2311,7 @@ alert(JSON.stringify(cart));
 
 }
 
-function updateOrderStatus(index, status){
 
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-    orders[index].status = status;
-
-    localStorage.setItem("orders", JSON.stringify(orders));
-
-    alert("Order status updated.");
-
-    loadMerchantOrders();
-
-}
 // ================= EDIT PRODUCT =================
 
 function editProduct(index){
