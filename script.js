@@ -2099,62 +2099,110 @@ function loadMerchantProducts() {
 }
 // ================= MARKETPLACE PRODUCTS =================
 
-function loadMarketplaceProducts() {
-alert("Marketplace loading");
+function loadMarketplaceProducts(){
+
     let box = document.getElementById("merchantMarketplace");
 
-    if (!box) return;
+    if(!box) return;
+
 
     let products =
-        JSON.parse(localStorage.getItem("merchantProducts")) || [];
+    JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
 
     let approvedProducts =
-        products.filter(product => product.status === "Approved");
+    products.filter(product => product.status === "Approved");
 
-    if (approvedProducts.length === 0) {
 
-        box.innerHTML = "<p>No approved products available.</p>";
+    if(approvedProducts.length === 0){
+
+        box.innerHTML =
+        "<p>No approved products available.</p>";
+
         return;
 
     }
 
+
     box.innerHTML = "";
 
-    approvedProducts.forEach(function(product) {
 
-        let image = product.image
-            ? product.image
-            : "https://via.placeholder.com/200";
+    approvedProducts.forEach(function(product){
+
 
         box.innerHTML += `
 
         <div class="product">
 
-            <img src="${image}" width="180">
 
-            <h3>${product.name}</h3>
+        <img src="${product.image || 'https://via.placeholder.com/200'}"
+        width="200">
 
-            <p><strong>Price:</strong> $${product.price}</p>
 
-            <p><strong>Category:</strong> ${product.category}</p>
+        <h3>
+        ${product.name}
+        </h3>
 
-            <p>${product.description}</p>
 
-            <p>Stock: ${product.stock}</p>
+        <p>
+        💰 Price: $${product.price}
+        </p>
 
-            <button onclick="addToCart('${product.name}', ${product.price}, ${product.stock})">
-                🛒 Add to Cart
-            </button>
 
-            <button onclick="addToWishlist('${product.name}')">
-                ❤️ Wishlist
-            </button>
+        <p>
+        📂 Category: ${product.category}
+        </p>
+
+
+        <p>
+        ${product.description}
+        </p>
+
+
+        <p>
+        📦 Stock: ${product.stock}
+        </p>
+
+
+
+        <button onclick='openProduct(${JSON.stringify(product)})'>
+
+        👁 View Details
+
+        </button>
+
+
+
+        <button onclick="addToCart('${product.name}',${product.price},${product.stock})">
+
+        🛒 Add To Cart
+
+        </button>
+
+
+
+        <button onclick="addToWishlist('${product.name}')">
+
+        ❤️ Wishlist
+
+        </button>
+
+
+
+        <button onclick="addToCompare('${product.name}',${product.price},'${product.category}')">
+
+        ⚖️ Compare
+
+        </button>
+
 
         </div>
 
         `;
 
+
     });
+
 
 }
 // ================= CHECKOUT DISPLAY =================
