@@ -1688,7 +1688,104 @@ loadReviews(product.name);
 
 }
 
+// ================= RECOMMENDATION ENGINE PART 25 =================
 
+
+function loadRecommendations(){
+
+
+let box =
+document.getElementById("recommendedProducts");
+
+
+if(!box) return;
+
+
+
+let current =
+JSON.parse(localStorage.getItem("selectedProduct"));
+
+
+
+if(!current) return;
+
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+
+let recommendations =
+products.filter(function(product){
+
+
+return product.category === current.category
+&&
+product.name !== current.name
+&&
+product.status === "Approved";
+
+
+});
+
+
+
+if(recommendations.length === 0){
+
+box.innerHTML =
+"<p>No similar products available.</p>";
+
+return;
+
+}
+
+
+
+box.innerHTML="";
+
+
+
+recommendations.slice(0,4)
+.forEach(function(product){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+
+<img 
+src="${product.image || 'https://via.placeholder.com/200'}"
+width="150">
+
+
+<h3>
+${product.name}
+</h3>
+
+
+<p>
+💰 Price: $${product.price}
+</p>
+
+
+<button onclick='openProduct(${JSON.stringify(product)})'>
+
+👁 View
+
+</button>
+
+
+</div>
+
+`;
+
+
+});
+
+
+}
 
 // ================= SAVE SELECTED PRODUCT =================
 
