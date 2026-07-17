@@ -694,7 +694,9 @@ window.location.href="merchant-products.html";
 
 
 
-reader.readAsData
+reader.readAsDataURL(
+image.files[0]
+);
     // ================= ADMIN SYSTEM PART 3 =================
 
 
