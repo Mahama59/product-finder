@@ -2465,3 +2465,160 @@ function deleteProduct(index){
     }
 
 }
+// ================= ADMIN ORDERS =================
+
+
+function loadAdminOrders(){
+
+    let box =
+    document.getElementById("adminOrders");
+
+
+    if(!box) return;
+
+
+    let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
+
+
+    if(orders.length === 0){
+
+        box.innerHTML =
+        "<p>No orders found.</p>";
+
+        return;
+
+    }
+
+
+    box.innerHTML="";
+
+
+    orders.forEach(function(order,index){
+
+
+        box.innerHTML += `
+
+
+        <div class="product">
+
+
+        <h3>
+        📦 Order #${index+1}
+        </h3>
+
+
+        <p>
+        👤 Customer:
+        ${order.customerName}
+        </p>
+
+
+        <p>
+        💰 Total:
+        $${order.total}
+        </p>
+
+
+        <p>
+        💳 Payment:
+        ${order.paymentMethod}
+        </p>
+
+
+        <p>
+        🚚 Status:
+        ${order.status}
+        </p>
+
+
+
+        <button onclick="adminUpdateOrder(${index})">
+
+        Change Status
+
+        </button>
+
+
+
+        <button onclick="adminDeleteOrder(${index})">
+
+        🗑 Delete Order
+
+        </button>
+
+
+        </div>
+
+
+        `;
+
+
+    });
+
+
+}
+
+
+
+// UPDATE ORDER STATUS
+
+function adminUpdateOrder(index){
+
+
+    let status =
+    prompt(
+    "Enter new status:\nPending\nProcessing\nShipped\nDelivered"
+    );
+
+
+    if(!status) return;
+
+
+    let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
+
+
+    orders[index].status=status;
+
+
+    localStorage.setItem(
+    "orders",
+    JSON.stringify(orders)
+    );
+
+
+    loadAdminOrders();
+
+
+    alert("Order updated");
+
+
+}
+
+
+
+// DELETE ORDER
+
+function adminDeleteOrder(index){
+
+
+    let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
+
+
+    orders.splice(index,1);
+
+
+    localStorage.setItem(
+    "orders",
+    JSON.stringify(orders)
+    );
+
+
+    loadAdminOrders();
+
+
+    alert("Order removed");
+
+}
