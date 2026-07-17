@@ -2100,7 +2100,7 @@ function loadMerchantProducts() {
 // ================= MARKETPLACE PRODUCTS =================
 
 function loadMarketplaceProducts() {
-
+alert("Marketplace loading");
     let box = document.getElementById("merchantMarketplace");
 
     if (!box) return;
