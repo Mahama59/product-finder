@@ -43,10 +43,8 @@ products.forEach(function(product){
 
 
 
-if(product.status !== "Approved"){
-
+if(product.status.toLowerCase().trim() !== "approved"){
 return;
-
 }
 
 
