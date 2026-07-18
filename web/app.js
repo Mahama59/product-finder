@@ -21,98 +21,20 @@ function loadMarketplaceProducts(){
 
 let box = document.getElementById("merchantMarketplace");
 
-
-if(!box) return;
-
-
+if(!box){
+alert("merchantMarketplace not found");
+return;
+}
 
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
+alert("Products found: " + products.length);
 
-
-console.log("Merchant Products:", products);
-
-
-
-box.innerHTML="";
-
-
+box.innerHTML = "";
 
 products.forEach(function(product){
 
+alert(product.name + " | " + product.status);
 
-
-if(product.status.toLowerCase().trim() !== "approved"){
-return;
-}
-
-
-
-box.innerHTML += `
-
-<div class="product">
-
-
-<img src="${product.image || 'https://via.placeholder.com/200'}" width="200">
-
-
-
-<h3>
-${product.name}
-</h3>
-
-
-
-<p>
-Price: $${product.price}
-</p>
-
-
-
-<p>
-Category: ${product.category}
-</p>
-
-
-
-<p>
-${product.description}
-</p>
-
-
-
-<p>
-Stock: ${product.stock}
-</p>
-
-
-
-<button onclick="addToCart('${product.name}',${product.price},${product.stock})">
-
-🛒 Add To Cart
-
-</button>
-
-
-
-<a href="product.html">
-
-<button>
-
-View Details
-
-</button>
-
-</a>
-
-
-
-</div>
-
-`;
-
-});
-
-
-}
+// Rest of your code...
