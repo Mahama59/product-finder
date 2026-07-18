@@ -151,32 +151,11 @@ Search
 
 <h2>🔍 Filter Products</h2>
 
-
 <select id="categoryFilter" onchange="filterProducts()">
-<h3>
-Sort Products
-</h3>
 
-
-<select id="sortProducts" onchange="sortProducts()">
-
-<option value="default">
-Default
+<option value="all">
+All Categories
 </option>
-
-
-<option value="low">
-💰 Price Low to High
-</option>
-
-
-<option value="high">
-💰 Price High to Low
-</option>
-
-
-</select>
-<option value="all">All Categories</option>
 
 <option value="electronics">
 Electronics
@@ -188,6 +167,27 @@ Computers
 
 <option value="audio">
 Audio
+</option>
+
+</select>
+
+
+<h3>
+Sort Products
+</h3>
+
+<select id="sortProducts" onchange="sortProducts()">
+
+<option value="default">
+Default
+</option>
+
+<option value="low">
+💰 Price Low to High
+</option>
+
+<option value="high">
+💰 Price High to Low
 </option>
 
 </select>
@@ -531,7 +531,17 @@ Become a Seller
 
 <script>
 
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
 loadMarketplaceProducts();
+
+updateCartCount();
+
+updateWishlistCount();
+
+});
 
 </script>
 
