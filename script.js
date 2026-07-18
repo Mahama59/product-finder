@@ -3263,6 +3263,7 @@ loadCustomerDashboard();
 
 function loadMerchantOrders(){
 alert(window.location.href);
+alert("loadMerchantOrders is running");
 
 let box = document.getElementById("merchantOrders");
 
