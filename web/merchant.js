@@ -157,7 +157,7 @@ stock:stock,
 
 status:"Approved",
 
-image:""
+image:"https://via.placeholder.com/200"
 
 };
 
