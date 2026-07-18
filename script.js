@@ -3221,8 +3221,6 @@ Total: $${order.total}
 
 
 }
-
-}
 function cancelOrder(index){
 
 
