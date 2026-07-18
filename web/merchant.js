@@ -155,7 +155,7 @@ description:description,
 
 stock:stock,
 
-status:"Pending",
+status:"Approved",
 
 image:""
 
