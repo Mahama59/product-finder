@@ -489,7 +489,11 @@ function(){
 updateCartCount();
 
 updateWishlistCount();
+
 loadRecentProducts();
+
+loadMarketplaceProducts();
+
 });
     // ================= MERCHANT SYSTEM PART 2 =================
 
