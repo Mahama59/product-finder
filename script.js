@@ -3747,3 +3747,109 @@ loadWishlist();
 
 
 }
+// ================= PRODUCT COMPARISON PART 38 =================
+
+
+function loadComparison(){
+
+
+let box =
+document.getElementById("comparisonList");
+
+
+if(!box) return;
+
+
+
+let products =
+JSON.parse(localStorage.getItem("compare")) || [];
+
+
+
+if(products.length === 0){
+
+
+box.innerHTML =
+"<p>No products selected for comparison.</p>";
+
+
+return;
+
+
+}
+
+
+
+box.innerHTML="";
+
+
+
+products.forEach(function(product,index){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+
+<h3>
+${product.name}
+</h3>
+
+
+<p>
+💰 Price: $${product.price}
+</p>
+
+
+<p>
+📂 Category:
+${product.category}
+</p>
+
+
+
+<button onclick="removeCompare(${index})">
+
+❌ Remove
+
+</button>
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+}
+
+
+
+
+function removeCompare(index){
+
+
+let products =
+JSON.parse(localStorage.getItem("compare")) || [];
+
+
+
+products.splice(index,1);
+
+
+
+localStorage.setItem(
+"compare",
+JSON.stringify(products)
+);
+
+
+
+loadComparison();
+
+
+}
