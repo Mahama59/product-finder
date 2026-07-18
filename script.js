@@ -2848,6 +2848,70 @@ priceText ? Number(priceText[1]) : 0;
 
 
 }
+
+// ================= PRODUCT SORTING PART 35 =================
+
+function sortProducts(){
+
+    let sort =
+    document.getElementById("sortProducts").value;
+
+
+    let container =
+    document.getElementById("merchantMarketplace");
+
+
+    if(!container) return;
+
+
+    let products =
+    Array.from(container.querySelectorAll(".product"));
+
+
+    products.sort(function(a,b){
+
+
+        let priceA =
+        Number(a.innerText.match(/\d+/));
+
+
+        let priceB =
+        Number(b.innerText.match(/\d+/));
+
+
+
+        if(sort === "low"){
+
+            return priceA - priceB;
+
+        }
+
+
+        if(sort === "high"){
+
+            return priceB - priceA;
+
+        }
+
+
+        return 0;
+
+
+    });
+
+
+
+    container.innerHTML="";
+
+
+    products.forEach(function(product){
+
+        container.appendChild(product);
+
+    });
+
+
+}
 // ================= USER ACCOUNT =================
 
 
