@@ -3265,15 +3265,10 @@ function loadMerchantOrders(){
 
 let box = document.getElementById("merchantOrders");
 
-
 if(!box) return;
-
-
 
 let orders =
 JSON.parse(localStorage.getItem("orders")) || [];
-
-
 
 if(orders.length === 0){
 
