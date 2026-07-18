@@ -1,48 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Merchant Orders - Product Finder</title>
+<title>Merchant Orders</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
 
-<nav>
-<h2>🛍️ Product Finder</h2>
-<a href="merchant-dashboard.html">← Dashboard</a>
-</nav>
+<body onload="startOrders()">
 
-<header>
+
 <h1>📋 Merchant Orders</h1>
-</header>
 
-<div class="product">
 
 <div id="merchantOrders">
-<p>No orders available.</p>
-</div>
+
+Loading...
 
 </div>
 
- <script src="script.js?v=99"></script>
+
+<script src="script.js?v=99"></script>
+
+
 <script>
 
-window.onload = function(){
+function startOrders(){
 
-    protectMerchant();
+protectMerchant();
 
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
 
-    alert("Number of orders: " + orders.length);
 
-    loadMerchantOrders();
+alert("Orders found: " + orders.length);
 
-};
+
+console.log(orders);
+
+
+loadMerchantOrders();
+
+}
 
 </script>
+
+
 </body>
 
 </html>
