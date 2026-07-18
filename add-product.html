@@ -129,9 +129,13 @@ Product Image
 <input
 type="file"
 id="productImage"
-accept="image/*">
+accept="image/*"
+onchange="previewImage(event)">
 
-
+  <img
+id="imagePreview"
+width="200"
+src="https://via.placeholder.com/200">
 <br><br>
 
 
