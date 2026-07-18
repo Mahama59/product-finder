@@ -3244,9 +3244,15 @@ orders.splice(index,1);
 
 
 localStorage.setItem(
-"orders",
-JSON.stringify(orders)
+    "orders",
+    JSON.stringify(orders)
 );
+
+alert("Order cancelled");
+
+loadCustomerDashboard();
+
+}
 // ================= MERCHANT ORDER MANAGEMENT PART 20 =================
 
 
