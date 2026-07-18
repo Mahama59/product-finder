@@ -85,15 +85,17 @@ Submit Review
 </button>
 
 
-<div id="productReviews">
-<div id="merchantMarketplace"></div>
+
+  <div id="productReviews">
 </div>
 
-
 </div>
+
 <script src="app.js"></script>
 <script src="product.js"></script>
-<script src="merchant.js"></script>
+<script src="wishlist.js"></script>
+<script src="reviews.js"></script>
+
 <script>
-loadMarketplaceProducts();
+loadProductDetails();
 </script>
