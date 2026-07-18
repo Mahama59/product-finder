@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body onload="protectMerchant(); loadMerchantAnalytics(); loadDashboard(); loadNewOrders()">
 
 <nav>
 <h2>🛍️ Product Finder</h2>
@@ -19,32 +19,28 @@
 <h1>🏪 Merchant Dashboard</h1>
 <p id="merchantWelcome"></p>
 </header>
+
 <div class="product">
 
 <h2>📊 Dashboard Summary</h2>
 
 <p>📦 Total Products: <span id="totalProducts">0</span></p>
 
-<p>
-🛒 Total Orders:
-<span id="totalOrders">0</span>
-</p>
+<p>🛒 Total Orders: <span id="totalOrders">0</span></p>
 
-<p>
-🔔 New Orders:
-<span id="newOrders">0</span>
-</p>
+<p>🔔 New Orders: <span id="newOrders">0</span></p>
 
 <p>❤️ Wishlist Saves: <span id="totalWishlist">0</span></p>
 
 <p>⚖️ Compared Products: <span id="totalCompare">0</span></p>
 
 </div>
+
 <div class="product">
 
 <h2>Seller Menu</h2>
 
-<button onclick="window.location.href='add-product.html'">
+<button onclick="window.location.href='merchant-add-product.html'">
 ➕ Add Product
 </button>
 
@@ -60,29 +56,48 @@
 📋 Orders
 </button>
 
-<br><br>
+</div>
 
-<button onclick="logoutUser()">
-🚪 Logout
-</button>
+<h2>📊 Sales Analytics</h2>
+
+<div class="product-grid">
+
+<div class="product">
+
+<h3>📦 Products</h3>
+
+<p id="merchantTotalProducts">0</p>
 
 </div>
+
+<div class="product">
+
+<h3>🛒 Orders</h3>
+
+<p id="merchantTotalOrders">0</p>
+
+</div>
+
+<div class="product">
+
+<h3>💰 Revenue</h3>
+
+<p>$<span id="merchantTotalRevenue">0</span></p>
+
+</div>
+
+</div>
+
+<br>
+
+<button onclick="merchantLogout()">
+🚪 Logout
+</button>
 
 <footer>
 <p>© 2026 Product Finder</p>
 </footer>
-<script>
 
-let merchantLoggedIn = localStorage.getItem("merchantLoggedIn");
-
-
-if(merchantLoggedIn !== "true"){
-
-    window.location.href = "merchant-login.html";
-
-}
-
-</script>
 <script src="script.js"></script>
 
 <script>
@@ -92,67 +107,7 @@ if(merchant){
     document.getElementById("merchantWelcome").innerText =
     "Welcome, " + merchant.name;
 }
-    loadDashboard();
-loadNewOrders();
 </script>
-<h2>
-📊 Sales Analytics
-</h2>
 
-
-<div class="product-grid">
-
-
-<div class="product">
-
-<h3>
-📦 Products
-</h3>
-
-<p id="merchantTotalProducts">
-0
-</p>
-
-</div>
-
-
-
-<div class="product">
-
-<h3>
-🛒 Orders
-</h3>
-
-<p id="merchantTotalOrders">
-0
-</p>
-
-</div>
-
-
-
-<div class="product">
-
-<h3>
-💰 Revenue
-</h3>
-
-<p>
-$<span id="merchantTotalRevenue">
-0
-</span>
-</p>
-
-</div>
-
-
-</div>
-<button onclick="merchantLogout()">
-🚪 Logout
-</button>
-<a href="merchant-add-product.html">
-➕ Add Product
-</a>
 </body>
-
 </html>
