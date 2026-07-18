@@ -252,7 +252,7 @@ JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
 products.splice(index,1);
 
-
+console.log("Saving products:", products);
 
 localStorage.setItem(
 "merchantProducts",
