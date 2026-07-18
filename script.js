@@ -3661,3 +3661,89 @@ window.location.href="admin-login.html";
 
 
 }
+// ================= WISHLIST PAGE PART 37 =================
+
+function loadWishlist(){
+
+let box =
+document.getElementById("wishlistItems");
+
+
+if(!box) return;
+
+
+let wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
+
+
+if(wishlist.length === 0){
+
+box.innerHTML =
+"<p>No wishlist items yet.</p>";
+
+return;
+
+}
+
+
+box.innerHTML="";
+
+
+wishlist.forEach(function(item,index){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>
+❤️ ${item}
+</h3>
+
+
+<button onclick="removeWishlist(${index})">
+
+❌ Remove
+
+</button>
+
+
+<button onclick="addToCart('${item}',0,1)">
+
+🛒 Add To Cart
+
+</button>
+
+
+</div>
+
+`;
+
+
+});
+
+
+}
+
+
+
+function removeWishlist(index){
+
+
+let wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
+
+
+wishlist.splice(index,1);
+
+
+localStorage.setItem(
+"wishlist",
+JSON.stringify(wishlist)
+);
+
+
+loadWishlist();
+
+
+}
