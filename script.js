@@ -3853,3 +3853,23 @@ loadComparison();
 
 
 }
+function blockUser(index){
+
+
+let users =
+JSON.parse(localStorage.getItem("users")) || [];
+
+
+
+users[index].status="Blocked";
+
+
+
+localStorage.setItem(
+"users",
+JSON.stringify(users)
+);
+
+
+
+loadAdminUsers();
