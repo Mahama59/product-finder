@@ -3260,18 +3260,22 @@ loadCustomerDashboard();
 }
 // ================= MERCHANT ORDER MANAGEMENT PART 20 =================
 
-
 function loadMerchantOrders(){
-alert("Merchant orders function loaded");
- alert(window.location.href);
-alert("loadMerchantOrders is running");
 
 let box = document.getElementById("merchantOrders");
 
-if(!box) return;
+
+if(!box){
+    return;
+}
+
 
 let orders =
 JSON.parse(localStorage.getItem("orders")) || [];
+
+
+console.log("Merchant Orders:", orders);
+
 
 if(orders.length === 0){
 
@@ -3283,33 +3287,44 @@ return;
 }
 
 
-
 box.innerHTML = "";
 
 
-
 orders.forEach(function(order,index){
+
+
+let items = "";
+
+
+order.items.forEach(function(item){
+
+items += `
+<p>
+🛒 ${item.name} × ${item.quantity}
+</p>
+`;
+
+});
 
 
 box.innerHTML += `
 
 <div class="product">
 
-
 <h3>
-📦 Order #${index+1}
+📦 Order #${index + 1}
 </h3>
 
 
 <p>
 👤 Customer:
-${order.customerName}
+${order.customerName || "Guest"}
 </p>
 
 
 <p>
 📧 Email:
-${order.customerEmail}
+${order.customerEmail || "No email"}
 </p>
 
 
@@ -3319,65 +3334,45 @@ $${order.total}
 </p>
 
 
+<h4>
+Products
+</h4>
 
-<p>
-🛒 Items:
-</p>
-
-
-${order.items.map(item=>`
-
-<p>
-${item.name} 
-x ${item.quantity}
-</p>
-
-`).join("")}
-
+${items}
 
 
 <p>
-Current Status:
-<strong>${order.status}</strong>
+🚚 Status:
+<strong>
+${order.status}
+</strong>
 </p>
-
 
 
 <button onclick="updateOrderStatus(${index},'Processing')">
-
 ⚙️ Processing
-
 </button>
-
 
 
 <button onclick="updateOrderStatus(${index},'Shipped')">
-
 🚚 Shipped
-
 </button>
-
 
 
 <button onclick="updateOrderStatus(${index},'Completed')">
-
 ✅ Completed
-
 </button>
-
 
 
 </div>
 
-
 `;
-
-
 
 });
 
 
 }
+
 
 
 
