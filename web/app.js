@@ -1,5 +1,8 @@
 // ================= PRODUCT FINDER APP =================
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
+console.log(products);
 console.log("Product Finder App Started");
 
 
