@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="protectMerchant(); loadMerchantOrders();">
+<body>
 
 <nav>
 <h2>🛍️ Product Finder</h2>
@@ -27,16 +27,21 @@
 
 </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
+
 <script>
 
-alert("Orders data:");
+window.onload = function(){
 
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    protectMerchant();
 
-alert("Number of orders: " + orders.length);
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-console.log(orders);
+    alert("Number of orders: " + orders.length);
+
+    loadMerchantOrders();
+
+};
 
 </script>
 </body>
