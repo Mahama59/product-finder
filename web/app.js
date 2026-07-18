@@ -1,23 +1,6 @@
-// ================= PRODUCT FINDER APP =================
-
-console.log("Product Finder App Started");
-
-
-document.addEventListener(
-"DOMContentLoaded",
-function(){
-
-console.log("Page Loaded Successfully");
-
-loadMarketplaceProducts();
-
-});
-
-
-
-// ================= LOAD MERCHANT PRODUCTS =================
-
 function loadMarketplaceProducts(){
+
+alert("Marketplace function started");
 
 let box = document.getElementById("merchantMarketplace");
 
@@ -29,12 +12,4 @@ return;
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
-alert("Products found: " + products.length);
-
-box.innerHTML = "";
-
-products.forEach(function(product){
-
-alert(product.name + " | " + product.status);
-
-// Rest of your code...
+alert("Products: " + products.length);
