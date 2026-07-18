@@ -22,7 +22,9 @@
 
 <a href="index.html">Home</a>
 
-<a href="admin-login.html">Logout</a>
+ <button onclick="adminLogout()">
+Logout
+</button>
 
 </nav>
 
@@ -163,8 +165,9 @@ document.addEventListener(
 function(){
 
 loadAdminDashboard();
+
 loadAdminAnalytics();
-loadNewOrders();
+
 loadAdminUsers();
 
 loadAdminMerchants();
@@ -175,7 +178,6 @@ loadAdminOrders();
 
 });
 
-
 </script>
 
 
@@ -183,115 +185,3 @@ loadAdminOrders();
 </body>
 
 </html>
-<div class="product">
-
-<h2>📊 Marketplace Analytics</h2>
-
-<p>
-👤 Total Users:
-<span id="totalUsers">0</span>
-</p>
-
-<p>
-🏪 Total Merchants:
-<span id="totalMerchants">0</span>
-</p>
-
-<p>
-📦 Total Products:
-<span id="totalProducts">0</span>
-</p>
-
-<p>
-🛒 Total Orders:
-<span id="adminTotalOrders">0</span>
-</p>
-
-<p>
-💰 Total Revenue:
-$<span id="adminTotalRevenue">0</span>
-</p>
-
-<p>
-📈 Products Sold:
-<span id="adminProductsSold">0</span>
-</p>
-
-<p>
-🔔 New Orders:
-<span id="newOrders">0</span>
-</p>
-
-</div>
-<a href="admin-orders.html">
-
-📦 Manage Orders
-
-</a>
-<h2>
-📊 Marketplace Overview
-</h2>
-
-
-<div class="product-grid">
-
-
-<div class="product">
-
-<h3>
-👥 Users
-</h3>
-
-<p id="adminTotalUsers">
-0
-</p>
-
-</div>
-
-
-
-<div class="product">
-
-<h3>
-🏪 Merchants
-</h3>
-
-<p id="adminTotalMerchants">
-0
-</p>
-
-</div>
-
-
-
-<div class="product">
-
-<h3>
-📦 Products
-</h3>
-
-<p id="adminTotalProducts">
-0
-</p>
-
-</div>
-
-
-
-<div class="product">
-
-<h3>
-🛒 Orders
-</h3>
-
-<p id="adminTotalOrders">
-0
-</p>
-
-</div>
-
-
-</div>
-<a href="admin-users.html">
-👥 Manage Users
-</a>
