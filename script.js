@@ -2367,7 +2367,7 @@ function loadMarketplaceProducts(){
     let products =
     JSON.parse(localStorage.getItem("merchantProducts")) || [];
 console.log(products);
-
+alert(JSON.stringify(products));
     let approvedProducts =
     products.filter(product => product.status === "Approved");
 
