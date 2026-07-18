@@ -155,7 +155,7 @@ description:description,
 
 stock:stock,
 
-status:"Approved",
+status:"Pending",
 
 image:"https://via.placeholder.com/200"
 
