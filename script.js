@@ -3262,6 +3262,7 @@ loadCustomerDashboard();
 
 
 function loadMerchantOrders(){
+alert(window.location.href);
 
 let box = document.getElementById("merchantOrders");
 
