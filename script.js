@@ -3129,6 +3129,8 @@ wishlistBox.innerHTML += `
 
 
 }
+ }
+}
 // ================= CUSTOMER ORDER DETAILS PART 19 =================
 
 
