@@ -2416,7 +2416,9 @@ style="object-fit:cover;">
         <p>
         💰 Price: $${product.price}
         </p>
-
+<p>
+⭐ Rating: ${getProductRating(product.name)}
+</p>
 
         <p>
         📂 Category: ${product.category}
@@ -2433,7 +2435,7 @@ style="object-fit:cover;">
         <p>
         📦 Stock: ${product.stock}
         </p>
-
+<p id="rating-${product.name}">⭐ No ratings yet</p>
 
 
         <button onclick='openProduct(${JSON.stringify(product)})'>
@@ -3997,5 +3999,74 @@ JSON.stringify(compare)
 
 
 alert(name+" added to comparison");
+
+}
+// ================= PRODUCT RATING SYSTEM =================
+
+function getProductRating(productName){
+
+let reviews =
+JSON.parse(localStorage.getItem("reviews")) || {};
+
+let productReviews =
+reviews[productName] || [];
+
+
+if(productReviews.length === 0){
+
+return "No ratings yet";
+
+}
+
+
+let total = 0;
+
+
+productReviews.forEach(function(review){
+
+total += Number(review.rating);
+
+});
+
+
+let average =
+(total / productReviews.length).toFixed(1);
+
+
+return average + "/5 ⭐";
+
+}// ================= PRODUCT RATING SYSTEM =================
+
+function getProductRating(productName){
+
+let reviews =
+JSON.parse(localStorage.getItem("reviews")) || {};
+
+let productReviews =
+reviews[productName] || [];
+
+
+if(productReviews.length === 0){
+
+return "No ratings yet";
+
+}
+
+
+let total = 0;
+
+
+productReviews.forEach(function(review){
+
+total += Number(review.rating);
+
+});
+
+
+let average =
+(total / productReviews.length).toFixed(1);
+
+
+return average + "/5 ⭐";
 
 }
