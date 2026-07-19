@@ -3222,11 +3222,8 @@ Total: $${order.total}
 </h3>
 
 
-
-<button onclick="(${index})">
-
+<button onclick="cancelOrder(${index})">
 ❌ Cancel Order
-
 </button>
 <button onclick="openStore('${order.items[0].merchantEmail}')">
 
