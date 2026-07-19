@@ -662,9 +662,8 @@ let product = {
     merchantEmail: merchant ? merchant.email : ""
 };
 
-    let merchantProducts =
-        JSON.parse(localStorage.getItem("merchantProducts")) || [];
-
+    merchantProducts =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
     if (imageInput && imageInput.files.length > 0) {
 
         let reader = new FileReader();
