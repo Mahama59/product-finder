@@ -3367,13 +3367,7 @@ alert("Order updated to " + status);
 }
 
 
-alert("Order cancelled");
 
-
-loadCustomerDashboard();
-
-
-}
 function loadRecentProducts(){
 
 
