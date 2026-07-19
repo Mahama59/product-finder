@@ -3957,31 +3957,20 @@ box.innerHTML += `
 });
 
 }
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
 
-updateCartCount();
-
-updateWishlistCount();
-
-loadRecentProducts();
-
-loadMarketplaceProducts();
-
-loadMerchantProducts();
-
-loadCheckout();
-
-loadAdminDashboard();
-
-loadAdminProducts();
-
-loadAdminOrders();
-
-loadCustomerDashboard();
-
-loadNotifications();
-
-loadStore();
+    try { updateCartCount(); } catch(e) {}
+    try { updateWishlistCount(); } catch(e) {}
+    try { loadRecentProducts(); } catch(e) {}
+    try { loadMarketplaceProducts(); } catch(e) {}
+    try { loadMerchantProducts(); } catch(e) {}
+    try { loadCheckout(); } catch(e) {}
+    try { loadAdminDashboard(); } catch(e) {}
+    try { loadAdminProducts(); } catch(e) {}
+    try { loadAdminOrders(); } catch(e) {}
+    try { loadCustomerDashboard(); } catch(e) {}
+    try { loadNotifications(); } catch(e) {}
+    try { loadStore(); } catch(e) {}
 
 });
 function addToCompare(name,price,category){
