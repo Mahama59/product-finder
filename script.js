@@ -1,4 +1,4 @@
-alert("SCRIPT FILE WORKS");
+
 // ================= PRODUCT FINDER PART 1 =================
 
 
