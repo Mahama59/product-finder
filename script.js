@@ -3245,7 +3245,11 @@ Total: $${order.total}
 
 
 </div>
+<button onclick="openStore('${product.merchantEmail}')">
 
+🏪 Visit Store
+
+</button>
 `;
 
 
@@ -3917,5 +3921,68 @@ localStorage.removeItem("notifications");
 loadNotifications();
 
 alert("Notifications cleared");
+
+}
+function openStore(email){
+
+localStorage.setItem(
+"selectedStore",
+email
+);
+
+window.location.href =
+"store.html";
+
+}
+function loadStore(){
+
+let email =
+localStorage.getItem("selectedStore");
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+let storeProducts =
+products.filter(function(product){
+
+return product.merchantEmail === email;
+
+});
+
+document.getElementById("storeName").innerText =
+storeProducts.length > 0
+? "🏪 " + storeProducts[0].merchantName
+: "Merchant Store";
+
+let box =
+document.getElementById("storeProducts");
+
+box.innerHTML = "";
+
+storeProducts.forEach(function(product){
+
+box.innerHTML += `
+
+<div class="product">
+
+<img src="${product.image}" width="180">
+
+<h3>${product.name}</h3>
+
+<p>$${product.price}</p>
+
+<p>${product.description}</p>
+
+<button onclick='openProduct(${JSON.stringify(product)})'>
+
+👁 View Details
+
+</button>
+
+</div>
+
+`;
+
+});
 
 }
