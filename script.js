@@ -1009,7 +1009,7 @@ JSON.stringify(products)
 
 
 loadAdminProducts();
-
+addNotification("🎉 Your product has been approved by the admin.");
 
 alert("Product approved");
 
