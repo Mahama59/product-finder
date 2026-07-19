@@ -1,3 +1,4 @@
+alert("TOP OF SCRIPT WORKING");
 alert("NEW SCRIPT LOADED");
 alert("script.js loaded");
 // ================= PRODUCT FINDER PART 1 =================
