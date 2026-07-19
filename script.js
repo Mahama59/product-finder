@@ -3332,7 +3332,7 @@ JSON.parse(localStorage.getItem("orders")) || [];
 
 
 orders[index].status = status;
-
+addNotification("📦 Your order status is now: " + status);
 
 
 localStorage.setItem(
