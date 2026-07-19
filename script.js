@@ -640,7 +640,30 @@ function saveProduct() {
     }
 
     let product = {
+     let merchant =
+JSON.parse(localStorage.getItem("merchant"));
 
+let product = {
+
+name: name,
+
+price: Number(price),
+
+category: category,
+
+description: description,
+
+stock: stock,
+
+image: "",
+
+status: "Pending",
+
+merchantName: merchant.name,
+
+merchantEmail: merchant.email
+
+};
         name: name,
         price: Number(price),
         category: category,
