@@ -3242,14 +3242,13 @@ Total: $${order.total}
 ❌ Cancel Order
 
 </button>
-
-
-</div>
-<button onclick="openStore('${product.merchantEmail}')">
+<button onclick="openStore('${order.items[0].merchantEmail}')">
 
 🏪 Visit Store
 
 </button>
+
+</div>
 `;
 
 
