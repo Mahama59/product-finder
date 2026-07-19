@@ -2436,7 +2436,9 @@ style="object-fit:cover;">
         <p>
         📂 Category: ${product.category}
         </p>
-
+<p>
+🏪 Seller: ${product.merchantName}
+</p>
 
         <p>
         ${product.description}
