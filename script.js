@@ -3130,10 +3130,6 @@ wishlistBox.innerHTML += `
 
 
 }
-
-
-}
-
 // ================= CUSTOMER ORDER DETAILS PART 19 =================
 
 
@@ -3989,3 +3985,27 @@ loadNotifications();
 loadStore();
 
 });
+function addToCompare(name,price,category){
+
+let compare =
+JSON.parse(localStorage.getItem("compare")) || [];
+
+
+compare.push({
+
+name:name,
+price:price,
+category:category
+
+});
+
+
+localStorage.setItem(
+"compare",
+JSON.stringify(compare)
+);
+
+
+alert(name+" added to comparison");
+
+}
