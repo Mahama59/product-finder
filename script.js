@@ -2377,8 +2377,7 @@ function loadMarketplaceProducts(){
 
     let products =
     JSON.parse(localStorage.getItem("merchantProducts")) || [];
-console.log(products);
-alert(JSON.stringify(products));
+console.log("Marketplace products:", products);
     let approvedProducts =
     products.filter(product => product.status === "Approved");
 
@@ -3967,3 +3966,30 @@ box.innerHTML += `
 });
 
 }
+document.addEventListener("DOMContentLoaded", function(){
+
+updateCartCount();
+
+updateWishlistCount();
+
+loadRecentProducts();
+
+loadMarketplaceProducts();
+
+loadMerchantProducts();
+
+loadCheckout();
+
+loadAdminDashboard();
+
+loadAdminProducts();
+
+loadAdminOrders();
+
+loadCustomerDashboard();
+
+loadNotifications();
+
+loadStore();
+
+});
