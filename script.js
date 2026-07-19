@@ -1,6 +1,4 @@
-alert("TOP OF SCRIPT WORKING");
-alert("NEW SCRIPT LOADED");
-alert("script.js loaded");
+alert("SCRIPT FILE WORKS");
 // ================= PRODUCT FINDER PART 1 =================
 
 
