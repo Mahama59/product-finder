@@ -3822,3 +3822,75 @@ JSON.stringify(users)
 
 loadAdminUsers();
 }
+// ================= NOTIFICATION SYSTEM =================
+
+function addNotification(message){
+
+let notifications =
+JSON.parse(localStorage.getItem("notifications")) || [];
+
+notifications.unshift({
+
+message: message,
+
+date: new Date().toLocaleString(),
+
+read: false
+
+});
+
+localStorage.setItem(
+"notifications",
+JSON.stringify(notifications)
+);
+
+}
+
+function loadNotifications(){
+
+let box =
+document.getElementById("notificationList");
+
+if(!box) return;
+
+let notifications =
+JSON.parse(localStorage.getItem("notifications")) || [];
+
+if(notifications.length === 0){
+
+box.innerHTML =
+"<p>No notifications.</p>";
+
+return;
+
+}
+
+box.innerHTML = "";
+
+notifications.forEach(function(notification){
+
+box.innerHTML += `
+
+<div class="product">
+
+<p>🔔 ${notification.message}</p>
+
+<small>${notification.date}</small>
+
+</div>
+
+`;
+
+});
+
+}
+
+function clearNotifications(){
+
+localStorage.removeItem("notifications");
+
+loadNotifications();
+
+alert("Notifications cleared");
+
+}
