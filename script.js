@@ -1316,7 +1316,7 @@ let total = cart.reduce(
 
 let orders =
 JSON.parse(localStorage.getItem("orders")) || [];
-
+addNotification("✅ Your order has been placed successfully.");
 
 
 let order = {
