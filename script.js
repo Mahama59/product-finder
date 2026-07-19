@@ -639,40 +639,28 @@ function saveProduct() {
 
     }
 
-    let product = {
-     let merchant =
+   let merchant =
 JSON.parse(localStorage.getItem("merchant"));
 
+if(!merchant){
+
+    alert("Please register as a merchant first");
+
+    return;
+
+}
+
 let product = {
-
-name: name,
-
-price: Number(price),
-
-category: category,
-
-description: description,
-
-stock: stock,
-
-image: "",
-
-status: "Pending",
-
-merchantName: merchant.name,
-
-merchantEmail: merchant.email
-
+    name: name,
+    price: Number(price),
+    category: category,
+    description: description,
+    stock: stock,
+    image: "",
+    status: "Pending",
+    merchantName: merchant ? merchant.name : "",
+    merchantEmail: merchant ? merchant.email : ""
 };
-        name: name,
-        price: Number(price),
-        category: category,
-        description: description,
-        stock: stock,
-        image: "",
-        status: "Pending"
-
-    };
 
     let merchantProducts =
         JSON.parse(localStorage.getItem("merchantProducts")) || [];
@@ -3237,7 +3225,7 @@ Total: $${order.total}
 
 
 
-<button onclick="cancelOrder(${index})">
+<button onclick="(${index})">
 
 ❌ Cancel Order
 
