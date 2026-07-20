@@ -2154,6 +2154,11 @@ document.getElementById("totalOrders");
 let newOrders =
 document.getElementById("newOrders");
 
+let totalRevenue =
+document.getElementById("totalRevenue");
+
+let productsSold =
+document.getElementById("productsSold");
 if(productBox){
 
 productBox.innerText = products.length;
@@ -2198,6 +2203,30 @@ return total + Number(order.total);
 
 },0);
 
+ if(totalRevenue){
+
+totalRevenue.innerText = revenue;
+
+}
+
+
+let sold =
+orders.reduce(function(total,order){
+
+return total + order.items.reduce(function(sum,item){
+
+return sum + Number(item.quantity || 1);
+
+},0);
+
+},0);
+
+
+if(productsSold){
+
+productsSold.innerText = sold;
+
+}
 if(revenueBox){
 
 revenueBox.innerText = revenue;
