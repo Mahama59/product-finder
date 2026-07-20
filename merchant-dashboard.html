@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="protectMerchant(); loadMerchantAnalytics();">
+<body onload="loadMerchantDashboard()">
 
 <nav>
 <h2>🛍️ Product Finder</h2>
@@ -55,7 +55,17 @@ No ratings
 </span>
 </p>
 <div class="product">
+📦 Total Products:
+<span id="merchantProductCount">0</span>
 
+
+🛒 Total Orders:
+<span id="merchantOrderCount">0</span>
+
+
+💰 Revenue:
+<span id="merchantRevenue">$0</span>
+    
 <h2>Seller Menu</h2>
 
 <button onclick="window.location.href='merchant-add-product.html'">
