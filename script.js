@@ -4534,6 +4534,8 @@ ${product.stock}
 
 loadStoreCategories();
 
+updateFollowButton();
+
 
 }
 document.addEventListener("DOMContentLoaded", function () {
