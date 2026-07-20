@@ -6165,3 +6165,27 @@ return product.featured === true;
 }
 
 }
+// ================= SELLER CHAT =================
+
+function openChatWithSeller(){
+
+let product =
+JSON.parse(localStorage.getItem("selectedProduct"));
+
+if(!product){
+
+alert("Product not found");
+
+return;
+
+}
+
+localStorage.setItem(
+"chatMerchant",
+product.merchantEmail
+);
+
+window.location.href =
+"customer-chat.html";
+
+}
