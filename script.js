@@ -4852,3 +4852,172 @@ ratingBox.innerText =
 
 
 }
+// ================= MERCHANT MARKETING =================
+
+
+function saveAnnouncement(){
+
+
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+
+let text =
+document.getElementById("announcementText").value;
+
+
+
+if(!text){
+
+alert("Write announcement");
+
+return;
+
+}
+
+
+
+let announcements =
+JSON.parse(localStorage.getItem("announcements")) || [];
+
+
+
+announcements.push({
+
+merchantEmail:merchant.email,
+
+text:text,
+
+date:new Date().toLocaleString()
+
+});
+
+
+
+localStorage.setItem(
+"announcements",
+JSON.stringify(announcements)
+);
+
+
+
+alert("Announcement published");
+
+
+document.getElementById("announcementText").value="";
+
+
+loadMarketing();
+
+}
+
+
+
+function saveCoupon(){
+
+
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+
+let code =
+document.getElementById("couponCode").value;
+
+
+let discount =
+document.getElementById("couponDiscount").value;
+
+
+
+if(!code || !discount){
+
+alert("Complete coupon details");
+
+return;
+
+}
+
+
+
+let coupons =
+JSON.parse(localStorage.getItem("coupons")) || [];
+
+
+
+coupons.push({
+
+merchantEmail:merchant.email,
+
+code:code,
+
+discount:discount
+
+});
+
+
+
+localStorage.setItem(
+"coupons",
+JSON.stringify(coupons)
+);
+
+
+
+alert("Coupon created");
+
+
+}
+
+
+
+function loadMarketing(){
+
+
+let box =
+document.getElementById("marketingList");
+
+
+if(!box) return;
+
+
+
+let announcements =
+JSON.parse(localStorage.getItem("announcements")) || [];
+
+
+
+box.innerHTML="";
+
+
+
+announcements.forEach(function(item){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>
+📢 Announcement
+</h3>
+
+
+<p>
+${item.text}
+</p>
+
+
+<small>
+${item.date}
+</small>
+
+
+</div>
+
+`;
+
+
+});
+
+
+}
