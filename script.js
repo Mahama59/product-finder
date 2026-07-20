@@ -5565,3 +5565,57 @@ alert("❤️ Store followed successfully!");
 loadStore();
 
 }
+// ================= PRODUCT SELLER STORE =================
+
+
+function openSellerStore(){
+
+let product =
+JSON.parse(localStorage.getItem("selectedProduct"));
+
+
+if(!product){
+
+alert("Product not found");
+
+return;
+
+}
+
+
+localStorage.setItem(
+"selectedStore",
+product.merchantEmail
+);
+
+
+window.location.href =
+"store.html";
+
+}
+
+
+
+
+function followProductSeller(){
+
+let product =
+JSON.parse(localStorage.getItem("selectedProduct"));
+
+
+if(!product){
+
+return;
+
+}
+
+
+localStorage.setItem(
+"selectedStore",
+product.merchantEmail
+);
+
+
+followStore();
+
+}
