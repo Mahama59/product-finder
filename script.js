@@ -2113,12 +2113,28 @@ function loadMerchantAnalytics(){
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
-
-
-let orders =
+let allOrders =
 JSON.parse(localStorage.getItem("orders")) || [];
 
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
 
+if(!merchant){
+
+return;
+
+}
+
+let orders =
+allOrders.filter(function(order){
+
+return order.items.some(function(item){
+
+return item.merchantEmail === merchant.email;
+
+});
+
+});
 
 let productBox =
 document.getElementById("merchantTotalProducts");
