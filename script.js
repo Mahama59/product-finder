@@ -5575,9 +5575,11 @@ ${review.date}
 
 
 }
-// ================= STORE FOLLOW SYSTEM =================
+
+// ================= ADVANCED STORE FOLLOW SYSTEM =================
 
 function followStore(){
+
 
 let email =
 localStorage.getItem("selectedStore");
@@ -5592,45 +5594,64 @@ return;
 }
 
 
-let followers =
-JSON.parse(localStorage.getItem("storeFollowers")) || [];
+
+let user =
+JSON.parse(localStorage.getItem("user"));
 
 
-// prevent duplicate follow
 
-let exists =
-followers.find(function(follower){
+if(!user){
 
-return follower.storeEmail === email 
-&& 
-follower.userEmail === 
-(JSON.parse(localStorage.getItem("user")) || {}).email;
-
-});
-
-
-if(exists){
-
-alert("You already follow this store");
+alert("Please login to follow this store");
 
 return;
 
 }
 
 
-let user =
-JSON.parse(localStorage.getItem("user"));
+
+let followers =
+JSON.parse(localStorage.getItem("storeFollowers")) || [];
+
+
+
+let exists =
+followers.find(function(follower){
+
+
+return follower.storeEmail === email
+&&
+follower.userEmail === user.email;
+
+
+});
+
+
+
+if(exists){
+
+
+alert("You already follow this store");
+
+return;
+
+
+}
+
 
 
 followers.push({
 
+
 storeEmail: email,
 
-userEmail: user ? user.email : "guest",
+userEmail: user.email,
 
 date: new Date().toLocaleString()
 
+
 });
+
 
 
 localStorage.setItem(
@@ -5639,11 +5660,71 @@ JSON.stringify(followers)
 );
 
 
-alert("❤️ Store followed successfully!");
 
+alert("💚 You are now following this store");
 
 
 loadStore();
+
+
+}
+
+// ================= FOLLOW BUTTON STATUS =================
+
+function updateFollowButton(){
+
+
+let button =
+document.getElementById("followButton");
+
+
+if(!button) return;
+
+
+
+let email =
+localStorage.getItem("selectedStore");
+
+
+
+let user =
+JSON.parse(localStorage.getItem("user"));
+
+
+
+let followers =
+JSON.parse(localStorage.getItem("storeFollowers")) || [];
+
+
+
+let following =
+followers.some(function(follower){
+
+
+return follower.storeEmail === email
+&&
+follower.userEmail === (user ? user.email : "");
+
+});
+
+
+
+if(following){
+
+
+button.innerText =
+"💚 Following Store";
+
+
+}else{
+
+
+button.innerText =
+"❤️ Follow Store";
+
+
+}
+
 
 }
 // ================= PRODUCT SELLER STORE =================
