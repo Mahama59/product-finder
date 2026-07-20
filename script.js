@@ -1677,7 +1677,28 @@ document.getElementById("detailDescription");
 
 let stock =
 document.getElementById("detailStock");
+let seller =
+document.getElementById("detailSeller");
 
+
+if(seller){
+
+seller.innerText =
+product.merchantName || "Unknown Seller";
+
+}
+
+
+let sellerRating =
+document.getElementById("detailSellerRating");
+
+
+if(sellerRating){
+
+sellerRating.innerText =
+"⭐ 5/5";
+
+}
 
 
 if(name)
