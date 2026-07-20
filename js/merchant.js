@@ -126,7 +126,7 @@ let box = document.getElementById("merchantProductsList");
 if(!box) return;
 
 
-let products = JSON.parse(localStorage.getItem("merchantProducts")) || [];
+let products = JSON.parse(localStorage.getItem("products")) || [];
 
 
 console.log(products);
