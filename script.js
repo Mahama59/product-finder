@@ -2125,6 +2125,7 @@ return;
 
 }
 
+
 let orders =
 allOrders.filter(function(order){
 
@@ -2135,6 +2136,9 @@ return item.merchantEmail === merchant.email;
 });
 
 });
+
+
+// ELEMENTS
 
 let productBox =
 document.getElementById("merchantTotalProducts");
@@ -2159,16 +2163,22 @@ document.getElementById("totalWishlist");
 
 let totalCompare =
 document.getElementById("totalCompare");
+
 let totalRevenue =
 document.getElementById("totalRevenue");
 
 let productsSold =
 document.getElementById("productsSold");
+
+
+// PRODUCTS
+
 if(productBox){
 
 productBox.innerText = products.length;
 
 }
+
 
 if(totalProducts){
 
@@ -2176,17 +2186,24 @@ totalProducts.innerText = products.length;
 
 }
 
+
+// ORDERS
+
 if(orderBox){
 
 orderBox.innerText = orders.length;
 
 }
 
+
 if(totalOrders){
 
 totalOrders.innerText = orders.length;
 
 }
+
+
+// NEW ORDERS
 
 if(newOrders){
 
@@ -2201,6 +2218,9 @@ newOrders.innerText = pending.length;
 
 }
 
+
+// REVENUE
+
 let revenue =
 orders.reduce(function(total,order){
 
@@ -2208,12 +2228,22 @@ return total + Number(order.total);
 
 },0);
 
- if(totalRevenue){
+
+if(revenueBox){
+
+revenueBox.innerText = revenue;
+
+}
+
+
+if(totalRevenue){
 
 totalRevenue.innerText = revenue;
 
 }
 
+
+// PRODUCTS SOLD
 
 let sold =
 orders.reduce(function(total,order){
@@ -2232,9 +2262,10 @@ if(productsSold){
 productsSold.innerText = sold;
 
 }
-if(revenueBox){
 
-revenueBox.innerText = revenue;
+
+// WISHLIST
+
 let wishlist =
 JSON.parse(localStorage.getItem("wishlist")) || [];
 
@@ -2246,6 +2277,7 @@ totalWishlist.innerText = wishlist.length;
 }
 
 
+// COMPARE
 
 let compare =
 JSON.parse(localStorage.getItem("compare")) || [];
@@ -2256,7 +2288,52 @@ if(totalCompare){
 totalCompare.innerText = compare.length;
 
 }
+
+
+// STORE STATISTICS
+
+let storeProfile =
+JSON.parse(localStorage.getItem("storeProfile")) || {};
+
+
+let followers =
+document.getElementById("storeFollowersCount");
+
+
+let views =
+document.getElementById("storeViews");
+
+
+let rating =
+document.getElementById("storeRatingDisplay");
+
+
+
+if(followers){
+
+followers.innerText =
+storeProfile.followers || 0;
+
 }
+
+
+if(views){
+
+views.innerText =
+storeProfile.views || 0;
+
+}
+
+
+if(rating){
+
+rating.innerText =
+storeProfile.rating
+? storeProfile.rating + "/5"
+: "No ratings";
+
+}
+
 
 }
 
