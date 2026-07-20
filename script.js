@@ -92,19 +92,21 @@ alert(name + " " + price + " " + stock);
     }else{
 
 
-        cart.push({
+      cart.push({
 
-            name:name,
+    name:name,
 
-            price:Number(price),
+    price:Number(price),
 
-            stock:stock,
+    stock:stock,
 
-            quantity:1
+    quantity:1,
 
-        });
+    merchantEmail:merchantEmail,
 
+    merchantName:merchantName
 
+});
     }
 
 
