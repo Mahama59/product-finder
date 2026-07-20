@@ -3536,24 +3536,16 @@ View Again
 }
 // ================= ADMIN CONTROL PART 27 =================
 
-
 function loadAdminAnalytics(){
-
 
 let users =
 JSON.parse(localStorage.getItem("user"));
 
-
-
 let merchant =
 JSON.parse(localStorage.getItem("merchant"));
 
-
-
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
-
-
 
 let orders =
 JSON.parse(localStorage.getItem("orders")) || [];
@@ -3563,17 +3555,20 @@ JSON.parse(localStorage.getItem("orders")) || [];
 let userBox =
 document.getElementById("adminTotalUsers");
 
-
 let merchantBox =
 document.getElementById("adminTotalMerchants");
-
 
 let productBox =
 document.getElementById("adminTotalProducts");
 
-
 let orderBox =
 document.getElementById("adminTotalOrders");
+
+let revenueBox =
+document.getElementById("adminTotalRevenue");
+
+let soldBox =
+document.getElementById("adminProductsSold");
 
 
 
@@ -3608,6 +3603,49 @@ if(orderBox){
 
 orderBox.innerText =
 orders.length;
+
+}
+
+
+// TOTAL REVENUE
+
+let revenue =
+orders.reduce(function(total,order){
+
+return total + Number(order.total);
+
+},0);
+
+
+
+if(revenueBox){
+
+revenueBox.innerText =
+revenue;
+
+}
+
+
+
+// PRODUCTS SOLD
+
+let sold =
+orders.reduce(function(total,order){
+
+return total + order.items.reduce(function(sum,item){
+
+return sum + Number(item.quantity || 1);
+
+},0);
+
+},0);
+
+
+
+if(soldBox){
+
+soldBox.innerText =
+sold;
 
 }
 
