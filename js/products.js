@@ -70,13 +70,13 @@ function saveProduct(){
 
 
 
-    merchantProducts.push(product);
+    allMerchantProducts.push(product);
 
 
 
     localStorage.setItem(
         "merchantProducts",
-        JSON.stringify(merchantProducts)
+        JSON.stringify(allMerchantProducts)
     );
 
 
