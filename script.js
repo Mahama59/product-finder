@@ -2108,9 +2108,7 @@ ${review.date}
 
 // ================= MERCHANT ANALYTICS PART 26 =================
 
-
 function loadMerchantAnalytics(){
-
 
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
@@ -2141,33 +2139,57 @@ return item.merchantEmail === merchant.email;
 let productBox =
 document.getElementById("merchantTotalProducts");
 
-
 let orderBox =
 document.getElementById("merchantTotalOrders");
-
 
 let revenueBox =
 document.getElementById("merchantTotalRevenue");
 
+let totalProducts =
+document.getElementById("totalProducts");
 
+let totalOrders =
+document.getElementById("totalOrders");
+
+let newOrders =
+document.getElementById("newOrders");
 
 if(productBox){
 
-productBox.innerText =
-products.length;
+productBox.innerText = products.length;
 
 }
 
+if(totalProducts){
 
+totalProducts.innerText = products.length;
+
+}
 
 if(orderBox){
 
-orderBox.innerText =
-orders.length;
+orderBox.innerText = orders.length;
 
 }
 
+if(totalOrders){
 
+totalOrders.innerText = orders.length;
+
+}
+
+if(newOrders){
+
+let pending =
+orders.filter(function(order){
+
+return order.status === "Pending";
+
+});
+
+newOrders.innerText = pending.length;
+
+}
 
 let revenue =
 orders.reduce(function(total,order){
@@ -2176,19 +2198,13 @@ return total + Number(order.total);
 
 },0);
 
-
-
 if(revenueBox){
 
-revenueBox.innerText =
-revenue;
+revenueBox.innerText = revenue;
 
 }
 
-
-
 }
-
 
 
 // INVENTORY DISPLAY
