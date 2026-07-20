@@ -425,3 +425,67 @@ ${review.date}
 
 
 }
+// ================= MERCHANT DASHBOARD =================
+
+function loadMerchantDashboard(){
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+// Product count
+
+let productCount =
+document.getElementById("merchantProductCount");
+
+if(productCount){
+
+productCount.innerText =
+products.length;
+
+}
+
+
+// Order count
+
+let orderCount =
+document.getElementById("merchantOrderCount");
+
+if(orderCount){
+
+orderCount.innerText =
+orders.length;
+
+}
+
+
+// Revenue
+
+let revenue = 0;
+
+
+orders.forEach(function(order){
+
+revenue += Number(order.total || 0);
+
+});
+
+
+let revenueBox =
+document.getElementById("merchantRevenue");
+
+
+if(revenueBox){
+
+revenueBox.innerText =
+"$" + revenue;
+
+}
+
+
+}
