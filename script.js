@@ -531,13 +531,19 @@ return;
 
 
 
-let merchant = {
+ let merchant = {
 
 name:name,
 
 email:email,
 
-phone:phone
+phone:phone,
+
+storeName:name + "'s Store",
+
+joined:new Date().toLocaleDateString(),
+
+rating:5
 
 };
 
