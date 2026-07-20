@@ -118,3 +118,85 @@ function merchantLogin(){
     }
 
 }
+function loadMerchantProducts(){
+
+let box = document.getElementById("merchantProductsList");
+
+if(!box) return;
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+box.innerHTML="";
+
+
+if(products.length === 0){
+
+box.innerHTML =
+"<p>No products added yet.</p>";
+
+return;
+
+}
+
+
+
+products.forEach(function(product,index){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>${product.name}</h3>
+
+<p>💰 Price: $${product.price}</p>
+
+<p>📂 Category: ${product.category}</p>
+
+<p>📦 Stock: ${product.stock}</p>
+
+<p>${product.description}</p>
+
+
+<button onclick="deleteMerchantProduct(${index})">
+🗑 Delete
+</button>
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+updateMerchantStats();
+
+}
+
+
+
+
+function deleteMerchantProduct(index){
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+products.splice(index,1);
+
+
+localStorage.setItem(
+"merchantProducts",
+JSON.stringify(products)
+);
+
+
+loadMerchantProducts();
+
+}
