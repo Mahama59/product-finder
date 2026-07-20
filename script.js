@@ -4213,7 +4213,31 @@ products.filter(function(product){
 return product.merchantEmail === email;
 
 });
+// STORE FOLLOWERS COUNT
 
+let followers =
+JSON.parse(localStorage.getItem("storeFollowers")) || [];
+
+
+let storeFollowerCount =
+followers.filter(function(follower){
+
+return follower.storeEmail === email;
+
+}).length;
+
+
+
+let followerBox =
+document.getElementById("storeFollowers");
+
+
+if(followerBox){
+
+followerBox.innerText =
+storeFollowerCount;
+
+}
 let profile =
 JSON.parse(localStorage.getItem("storeProfile")) || {};
 
