@@ -5628,3 +5628,115 @@ product.merchantEmail
 followStore();
 
 }
+// ================= PRODUCT QUESTIONS =================
+
+function submitQuestion(){
+
+let product =
+JSON.parse(localStorage.getItem("selectedProduct"));
+
+if(!product){
+
+return;
+
+}
+
+let questions =
+JSON.parse(localStorage.getItem("productQuestions")) || [];
+
+let text =
+document.getElementById("questionText").value.trim();
+
+if(text === ""){
+
+alert("Enter your question.");
+
+return;
+
+}
+
+questions.push({
+
+productName: product.name,
+
+question: text,
+
+answer: "",
+
+date: new Date().toLocaleString()
+
+});
+
+localStorage.setItem(
+"productQuestions",
+JSON.stringify(questions)
+);
+
+document.getElementById("questionText").value = "";
+
+loadProductQuestions();
+
+alert("Question submitted.");
+
+}
+
+
+
+function loadProductQuestions(){
+
+let box =
+document.getElementById("productQuestions");
+
+if(!box) return;
+
+let product =
+JSON.parse(localStorage.getItem("selectedProduct"));
+
+if(!product) return;
+
+let questions =
+JSON.parse(localStorage.getItem("productQuestions")) || [];
+
+let list =
+questions.filter(function(q){
+
+return q.productName === product.name;
+
+});
+
+if(list.length === 0){
+
+box.innerHTML =
+"<p>No questions yet.</p>";
+
+return;
+
+}
+
+box.innerHTML = "";
+
+list.forEach(function(q){
+
+box.innerHTML += `
+
+<div class="product">
+
+<p>
+❓ ${q.question}
+</p>
+
+<p>
+💬 ${q.answer || "Waiting for seller response..."}
+</p>
+
+<small>
+${q.date}
+</small>
+
+</div>
+
+`;
+
+});
+
+}
