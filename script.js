@@ -4257,6 +4257,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try { loadCustomerDashboard(); } catch(e) {}
     try { loadNotifications(); } catch(e) {}
     try { loadStore(); } catch(e) {}
+ try { loadStoreReviews(); } catch(e) {}
     try { loadStoreAnalytics(); } catch(e) {}
  try { loadFeaturedProducts(); } catch(e) {}
 });
