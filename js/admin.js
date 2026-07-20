@@ -164,3 +164,176 @@ function loadAdminDashboard(){
     }
 
 }
+// ================= ADMIN USERS =================
+
+function loadAdminUsers(){
+
+let box =
+document.getElementById("adminUsers");
+
+
+if(!box) return;
+
+
+let user =
+JSON.parse(localStorage.getItem("user"));
+
+
+
+box.innerHTML="";
+
+
+if(!user){
+
+box.innerHTML =
+"<p>No users found</p>";
+
+return;
+
+}
+
+
+box.innerHTML = `
+
+<div class="product">
+
+<h3>
+👤 ${user.name}
+</h3>
+
+<p>
+📧 ${user.email}
+</p>
+
+</div>
+
+`;
+
+}
+
+
+
+// ================= ADMIN MERCHANTS =================
+
+function loadAdminMerchants(){
+
+let box =
+document.getElementById("adminMerchants");
+
+
+if(!box) return;
+
+
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+
+
+box.innerHTML="";
+
+
+if(!merchant){
+
+box.innerHTML =
+"<p>No merchants found</p>";
+
+return;
+
+}
+
+
+
+box.innerHTML = `
+
+<div class="product">
+
+<h3>
+🏪 ${merchant.storeName}
+</h3>
+
+<p>
+📧 ${merchant.email}
+</p>
+
+<p>
+⭐ Rating: ${merchant.rating}
+</p>
+
+
+</div>
+
+`;
+
+}
+
+
+
+
+// ================= ADMIN PRODUCTS =================
+
+function loadAdminProducts(){
+
+let box =
+document.getElementById("adminProducts");
+
+
+if(!box) return;
+
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+
+box.innerHTML="";
+
+
+
+if(products.length===0){
+
+box.innerHTML =
+"<p>No products submitted</p>";
+
+return;
+
+}
+
+
+
+products.forEach(function(product,index){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>${product.name}</h3>
+
+<p>
+💰 $${product.price}
+</p>
+
+<p>
+Status: ${product.status}
+</p>
+
+
+<button onclick="approveProduct(${index})">
+✅ Approve
+</button>
+
+
+<button onclick="rejectProduct(${index})">
+❌ Reject
+</button>
+
+
+</div>
+
+`;
+
+});
+
+
+}
