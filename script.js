@@ -4118,8 +4118,11 @@ JSON.parse(localStorage.getItem("merchantStore"));
 
 
 let storeTitle =
-document.getElementById("storeName");
+document.getElementById("storeTitle");
 
+
+let storeNameBox =
+document.getElementById("storeName");
 
 let description =
 document.getElementById("storeDescription");
@@ -4132,9 +4135,17 @@ document.getElementById("storeLogo");
 
 if(store){
 
-if(storeTitle){
+ if(storeTitle){
 
 storeTitle.innerHTML =
+"🏪 " + store.storeName;
+
+}
+
+
+if(storeNameBox){
+
+storeNameBox.innerHTML =
 "🏪 " + store.storeName;
 
 }
