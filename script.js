@@ -1660,7 +1660,16 @@ document.getElementById("detailPrice");
 
 let category =
 document.getElementById("detailCategory");
+let seller =
+document.getElementById("detailSeller");
 
+
+if(seller){
+
+seller.innerText =
+product.merchantName || "Seller";
+
+}
 
 let description =
 document.getElementById("detailDescription");
