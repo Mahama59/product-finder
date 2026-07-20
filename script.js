@@ -4228,3 +4228,11 @@ let average =
 return average + "/5 ⭐";
 
 }
+function checkOrders(){
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+alert(JSON.stringify(orders));
+
+}
