@@ -3375,6 +3375,8 @@ loadCustomerDashboard();
 
 function loadMerchantOrders(){
 
+alert("Merchant orders loaded");
+
 let box =
 document.getElementById("merchantOrders");
 
