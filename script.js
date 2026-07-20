@@ -54,8 +54,8 @@ product.style.display="none";
 
 }
 
-function addToCart(name, price, stock){
-
+function addToCart(name, price, stock, merchantEmail, merchantName){
+ 
 alert(name + " " + price + " " + stock);
     stock = Number(stock);
 
