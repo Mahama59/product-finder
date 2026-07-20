@@ -4718,3 +4718,119 @@ average + "/5";
 
 
 }
+// ================= MERCHANT STORE ANALYTICS =================
+
+
+function loadStoreAnalytics(){
+
+
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+
+if(!merchant){
+
+return;
+
+}
+
+
+let followers =
+JSON.parse(localStorage.getItem("storeFollowers")) || [];
+
+
+let views =
+JSON.parse(localStorage.getItem("storeViews")) || {};
+
+
+let reviews =
+JSON.parse(localStorage.getItem("storeReviews")) || {};
+
+
+
+let followerBox =
+document.getElementById("storeFollowersCount");
+
+
+let viewBox =
+document.getElementById("storeViews");
+
+
+let ratingBox =
+document.getElementById("merchantRating");
+
+
+
+if(followerBox){
+
+let count =
+followers.filter(function(email){
+
+return email === merchant.email;
+
+}).length;
+
+
+followerBox.innerText = count;
+
+}
+
+
+
+
+if(viewBox){
+
+viewBox.innerText =
+views[merchant.email] || 0;
+
+}
+
+
+
+
+
+let storeReviews =
+reviews[merchant.email] || [];
+
+
+if(storeReviews.length > 0){
+
+
+let total =
+storeReviews.reduce(function(sum,item){
+
+return sum + Number(item.rating);
+
+},0);
+
+
+
+let average =
+(total / storeReviews.length).toFixed(1);
+
+
+
+if(ratingBox){
+
+ratingBox.innerText =
+average + "/5";
+
+}
+
+
+}else{
+
+
+if(ratingBox){
+
+ratingBox.innerText =
+"No ratings";
+
+}
+
+
+}
+
+
+
+}
