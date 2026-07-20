@@ -4235,31 +4235,26 @@ window.location.href =
 
 function loadStore(){
 
-
 let email =
 localStorage.getItem("selectedStore");
 
-
 if(!email){
-
 return;
-
 }
 
 
-
-let merchants =
-JSON.parse(localStorage.getItem("merchants")) || [];
-
+let views =
+JSON.parse(localStorage.getItem("storeViews")) || {};
 
 
-let merchant =
-merchants.find(function(m){
+views[email] =
+Number(views[email] || 0) + 1;
 
-return m.email === email;
 
-});
-
+localStorage.setItem(
+"storeViews",
+JSON.stringify(views)
+);
 
 
 let products =
@@ -5052,12 +5047,11 @@ document.getElementById("merchantRating");
 if(followerBox){
 
 let count =
-followers.filter(function(email){
+followers.filter(function(follower){
 
-return email === merchant.email;
+return follower.storeEmail === merchant.email;
 
 }).length;
-
 
 followerBox.innerText = count;
 
