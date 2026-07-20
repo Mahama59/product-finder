@@ -1,7 +1,8 @@
 alert("script.js loaded");
-// ================= PRODUCT FINDER PART 1 =================
 
-
+function testConnection(){
+    alert("Button connected!");
+}
 // ================= CART =================
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
