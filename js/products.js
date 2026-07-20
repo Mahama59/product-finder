@@ -1,7 +1,7 @@
 // ================= PRODUCT SYSTEM =================
 
 
-let merchantProducts =
+let allMerchantProducts =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
 
