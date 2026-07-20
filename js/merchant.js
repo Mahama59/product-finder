@@ -119,31 +119,46 @@ function merchantLogin(){
 
 }
 
+
 function loadMerchantProducts(){
-alert(localStorage.getItem("merchantProducts"));
+
 let box = document.getElementById("merchantProductsList");
 
 if(!box) return;
 
 
-let products = JSON.parse(localStorage.getItem("products")) || [];
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
 
 
-console.log(products);
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
 
 box.innerHTML = "";
 
 
-if(products.length === 0){
+let myProducts = products.filter(function(product){
 
-box.innerHTML = "<p>No products added yet.</p>";
+return product.merchantEmail === merchant.email;
+
+});
+
+
+
+if(myProducts.length === 0){
+
+box.innerHTML =
+"<p>No products added yet.</p>";
+
 return;
 
 }
 
 
-products.forEach(function(product,index){
+
+myProducts.forEach(function(product,index){
+
 
 box.innerHTML += `
 
@@ -157,7 +172,7 @@ box.innerHTML += `
 
 <p>📦 Stock: ${product.stock}</p>
 
-<p>${product.description || ""}</p>
+<p>${product.description}</p>
 
 
 </div>
@@ -168,7 +183,6 @@ box.innerHTML += `
 
 
 }
-
 
 function deleteMerchantProduct(index){
 
