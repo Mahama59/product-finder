@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Product Details - Product Finder</title>
@@ -12,10 +13,7 @@
 
 </head>
 
-
-<body>
-
-
+<body onload="loadProductDetails()">
 
 <nav>
 
@@ -27,8 +25,6 @@
 
 </nav>
 
-
-
 <header>
 
 <h1>
@@ -37,60 +33,62 @@
 
 </header>
 
-
-
 <div class="product">
 
-
 <img id="detailImage" width="250">
-
 
 <h2 id="detailName">
 Product Name
 </h2>
 
-
 <p id="detailPrice"></p>
-
 
 <p id="detailCategory"></p>
 
+<h3>
+📝 Description
+</h3>
 
 <p id="detailDescription"></p>
 
-
 <p>
 📦 Stock:
-<span id="detailStock"></span>
+<span id="detailStock">0</span>
 </p>
+
 <p>
 🏪 Seller:
-<span id="detailSeller">
-</span>
+<span id="detailSeller">Unknown Seller</span>
+</p>
+
+<p>
+⭐ Seller Rating:
+<span id="detailSellerRating">No ratings</span>
 </p>
 
 <button onclick="openSellerStore()">
-
 🏪 Visit Store
-
 </button>
 
 <button onclick="followProductSeller()">
-
 ❤️ Follow Store
-
 </button>
-<span id="detailSeller"></span>
+
+<br><br>
 
 <button id="detailCartButton">
-
 🛒 Add To Cart
-
 </button>
 
+<button id="detailWishlistButton">
+❤️ Wishlist
+</button>
 
+<button id="detailCompareButton">
+⚖️ Compare
+</button>
 
-<hr>
+</div>
 
 <hr>
 
@@ -98,20 +96,19 @@ Product Name
 🤖 You May Also Like
 </h2>
 
-
 <div id="recommendedProducts" class="product-grid">
 
 </div>
+
+<hr>
+
 <h2>
-⭐ Reviews
+⭐ Customer Reviews
 </h2>
 
-
 <h3 id="averageRating">
-⭐ Rating
+⭐ No ratings yet
 </h3>
-
-
 
 <div id="productReviews">
 
@@ -121,71 +118,40 @@ No reviews yet.
 
 </div>
 
-
-
 <hr>
-
 
 <h3>
 Write a Review
 </h3>
 
-
-<textarea 
+<textarea
 id="reviewText"
 placeholder="Write your review">
 </textarea>
 
-
 <br><br>
-
 
 <select id="reviewRating">
 
-<option value="5">
-⭐⭐⭐⭐⭐
-</option>
+<option value="5">⭐⭐⭐⭐⭐</option>
 
+<option value="4">⭐⭐⭐⭐</option>
 
-<option value="4">
-⭐⭐⭐⭐
-</option>
+<option value="3">⭐⭐⭐</option>
 
+<option value="2">⭐⭐</option>
 
-<option value="3">
-⭐⭐⭐
-</option>
-
-
-<option value="2">
-⭐⭐
-</option>
-
-
-<option value="1">
-⭐
-</option>
-
+<option value="1">⭐</option>
 
 </select>
 
-
 <br><br>
 
-
 <button onclick="submitReview()">
-
 Submit Review
-
 </button>
 
-
-
-</div>
-
-
 <script src="script.js"></script>
-
 
 </body>
 
