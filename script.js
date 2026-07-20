@@ -2125,7 +2125,31 @@ return;
 
 }
 
+// MERCHANT FOLLOWERS
 
+let followerList =
+JSON.parse(localStorage.getItem("storeFollowers")) || [];
+
+
+let merchantFollowers =
+followerList.filter(function(follower){
+
+return follower.storeEmail === merchant.email;
+
+}).length;
+
+
+
+let followerBox =
+document.getElementById("storeFollowersCount");
+
+
+if(followerBox){
+
+followerBox.innerText =
+merchantFollowers;
+
+}
 let orders =
 allOrders.filter(function(order){
 
