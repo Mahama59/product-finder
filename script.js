@@ -3940,14 +3940,31 @@ products.filter(function(product){
 return product.merchantEmail === email;
 
 });
+ let storeTitle =
+document.getElementById("storeName");
 
-document.getElementById("storeName").innerText =
-storeProducts.length > 0
-? "🏪 " + storeProducts[0].merchantName
-: "Merchant Store";
 
+if(storeTitle){
+
+storeTitle.innerHTML =
+`
+🏪 ${storeProducts[0]?.merchantName || "Merchant Store"}
+
+<br>
+
+⭐ Store Rating: 5/5
+
+<br>
+
+📦 Products: ${storeProducts.length}
+
+`;
+
+}
 let box =
 document.getElementById("storeProducts");
+
+if(!box) return;
 
 box.innerHTML = "";
 
