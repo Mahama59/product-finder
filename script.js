@@ -4231,7 +4231,10 @@ window.location.href =
 
 }
 
+// ================= UPGRADED MERCHANT STORE =================
+
 function loadStore(){
+
 
 let email =
 localStorage.getItem("selectedStore");
@@ -4244,28 +4247,24 @@ return;
 }
 
 
-let views =
-JSON.parse(localStorage.getItem("storeViews")) || {};
+
+let merchants =
+JSON.parse(localStorage.getItem("merchants")) || [];
 
 
-if(views[email]){
 
-views[email]++;
+let merchant =
+merchants.find(function(m){
 
-}else{
+return m.email === email;
 
-views[email]=1;
-
-}
+});
 
 
-localStorage.setItem(
-"storeViews",
-JSON.stringify(views)
-);
 
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
 
 
 let storeProducts =
@@ -4274,16 +4273,109 @@ products.filter(function(product){
 return product.merchantEmail === email;
 
 });
-// STORE FOLLOWERS COUNT
+
+
+
+
+// STORE PROFILE
+
+let store =
+JSON.parse(localStorage.getItem("merchantStore")) || {};
+
+
+
+let logo =
+document.getElementById("storeLogo");
+
+
+if(logo){
+
+logo.src =
+store.logo ||
+"https://via.placeholder.com/150";
+
+}
+
+
+
+let banner =
+document.getElementById("storeBanner");
+
+
+if(banner){
+
+banner.src =
+store.banner ||
+"https://via.placeholder.com/900x250";
+
+}
+
+
+
+
+let name =
+document.getElementById("storeName");
+
+
+if(name){
+
+name.innerText =
+store.storeName ||
+(merchant ? merchant.name : "Store");
+
+}
+
+
+
+
+let description =
+document.getElementById("storeDescription");
+
+
+if(description){
+
+description.innerText =
+store.description ||
+"No store description";
+
+}
+
+
+
+
+
+// VERIFIED
+
+let badge =
+document.getElementById("verifiedBadge");
+
+
+if(badge){
+
+badge.innerText =
+merchant && merchant.verified
+?
+"✅ Verified Seller"
+:
+"";
+
+}
+
+
+
+
+
+// FOLLOWERS
 
 let followers =
 JSON.parse(localStorage.getItem("storeFollowers")) || [];
 
 
-let storeFollowerCount =
-followers.filter(function(follower){
 
-return follower.storeEmail === email;
+let followerCount =
+followers.filter(function(f){
+
+return f.storeEmail === email;
 
 }).length;
 
@@ -4296,93 +4388,100 @@ document.getElementById("storeFollowers");
 if(followerBox){
 
 followerBox.innerText =
-storeFollowerCount;
-
-}
-let profile =
-JSON.parse(localStorage.getItem("storeProfile")) || {};
-
-
-profile.views =
-Number(profile.views || 0) + 1;
-
-
-localStorage.setItem(
-"storeProfile",
-JSON.stringify(profile)
-);
-let store =
-JSON.parse(localStorage.getItem("merchantStore"));
-
-
-
-let storeTitle =
-document.getElementById("storeTitle");
-
-
-let storeNameBox =
-document.getElementById("storeName");
-
-let description =
-document.getElementById("storeDescription");
-
-
-let logo =
-document.getElementById("storeLogo");
-
-
-
-if(store){
-
- if(storeTitle){
-
-storeTitle.innerHTML =
-"🏪 " + store.storeName;
+followerCount;
 
 }
 
 
-if(storeNameBox){
-
-storeNameBox.innerHTML =
-"🏪 " + store.storeName;
-
-}
 
 
-if(description){
 
-description.innerHTML =
-store.description;
+// VIEWS
 
-}
+let views =
+JSON.parse(localStorage.getItem("storeViews")) || {};
 
 
-if(logo){
 
-logo.src =
-store.logo || "https://via.placeholder.com/150";
+let viewBox =
+document.getElementById("storeViews");
 
-}
+
+if(viewBox){
+
+viewBox.innerText =
+views[email] || 0;
 
 }
 
 
+
+
+
+// PRODUCT COUNT
+
+let productCount =
+document.getElementById("storeProductCount");
+
+
+if(productCount){
+
+productCount.innerText =
+storeProducts.length;
+
+}
+
+
+
+
+
+// JOIN DATE
+
+let joined =
+document.getElementById("storeJoined");
+
+
+if(joined){
+
+joined.innerText =
+merchant?.joined || "Unknown";
+
+}
+
+
+
+
+
+// PRODUCTS DISPLAY
 
 let box =
 document.getElementById("storeProducts");
 
 
-if(!box) return;
+if(box){
 
 
 box.innerHTML="";
 
 
+
+if(storeProducts.length===0){
+
+box.innerHTML =
+"<p>No products available</p>";
+
+return;
+
+}
+
+
+
 storeProducts.forEach(function(product){
 
 
+
 box.innerHTML += `
+
 
 <div class="product">
 
@@ -4391,7 +4490,9 @@ box.innerHTML += `
 width="180">
 
 
-<h3>${product.name}</h3>
+<h3>
+${product.name}
+</h3>
 
 
 <p>
@@ -4400,22 +4501,38 @@ width="180">
 
 
 <p>
-${product.description}
+📂 ${product.category}
+</p>
+
+
+<p>
+📦 Stock:
+${product.stock}
 </p>
 
 
 <button onclick='openProduct(${JSON.stringify(product)})'>
 
-👁 View Details
+👁 View Product
 
 </button>
 
 
 </div>
 
+
 `;
 
+
+
 });
+
+
+}
+
+
+
+loadStoreCategories();
 
 
 }
@@ -5693,5 +5810,62 @@ ${q.date}
 `;
 
 });
+
+}
+// ================= STORE CATEGORIES =================
+
+function loadStoreCategories(){
+
+let box =
+document.getElementById("storeCategories");
+
+
+if(!box) return;
+
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+let email =
+localStorage.getItem("selectedStore");
+
+
+
+let storeProducts =
+products.filter(function(product){
+
+return product.merchantEmail === email;
+
+});
+
+
+
+let categories = [];
+
+
+storeProducts.forEach(function(product){
+
+if(!categories.includes(product.category)){
+
+categories.push(product.category);
+
+}
+
+});
+
+
+
+box.innerHTML =
+categories.length
+?
+categories.map(c=>`
+<span>
+📂 ${c}
+</span>
+`).join(" ")
+:
+"No categories";
 
 }
