@@ -4095,7 +4095,25 @@ window.location.href =
 }
 
 function loadStore(){
+let views =
+JSON.parse(localStorage.getItem("storeViews")) || {};
 
+
+if(views[email]){
+
+views[email]++;
+
+}else{
+
+views[email]=1;
+
+}
+
+
+localStorage.setItem(
+"storeViews",
+JSON.stringify(views)
+);
 let email =
 localStorage.getItem("selectedStore");
 
@@ -4234,7 +4252,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try { loadCustomerDashboard(); } catch(e) {}
     try { loadNotifications(); } catch(e) {}
     try { loadStore(); } catch(e) {}
-
+    try { loadStoreAnalytics(); } catch(e) {}
 });
 function addToCompare(name,price,category){
 
