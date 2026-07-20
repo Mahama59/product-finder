@@ -5869,3 +5869,184 @@ categories.map(c=>`
 "No categories";
 
 }
+// ================= STORE PRODUCT SEARCH =================
+
+function searchStoreProducts(){
+
+let input =
+document.getElementById("storeSearch")
+.value
+.toLowerCase();
+
+
+
+let products =
+document.querySelectorAll("#storeProducts .product");
+
+
+
+products.forEach(function(product){
+
+
+let text =
+product.innerText.toLowerCase();
+
+
+
+if(text.includes(input)){
+
+
+product.style.display="block";
+
+
+}else{
+
+
+product.style.display="none";
+
+
+}
+
+
+});
+
+
+}
+
+
+
+// ================= STORE PRODUCT SORTING =================
+
+function sortStoreProducts(){
+
+
+let sort =
+document.getElementById("storeSort").value;
+
+
+
+let email =
+localStorage.getItem("selectedStore");
+
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+
+let storeProducts =
+products.filter(function(product){
+
+return product.merchantEmail === email;
+
+});
+
+
+
+if(sort==="low"){
+
+
+storeProducts.sort(function(a,b){
+
+return Number(a.price)-Number(b.price);
+
+});
+
+
+}
+
+
+
+if(sort==="high"){
+
+
+storeProducts.sort(function(a,b){
+
+return Number(b.price)-Number(a.price);
+
+});
+
+
+}
+
+
+
+if(sort==="new"){
+
+
+storeProducts.reverse();
+
+
+}
+
+
+
+
+let box =
+document.getElementById("storeProducts");
+
+
+
+if(!box) return;
+
+
+
+box.innerHTML="";
+
+
+
+storeProducts.forEach(function(product){
+
+
+box.innerHTML += `
+
+
+<div class="product">
+
+
+<img src="${product.image || 'https://via.placeholder.com/200'}"
+width="180">
+
+
+<h3>
+${product.name}
+</h3>
+
+
+<p>
+💰 $${product.price}
+</p>
+
+
+<p>
+📂 ${product.category}
+</p>
+
+
+<p>
+📦 Stock:
+${product.stock}
+</p>
+
+
+
+<button onclick='openProduct(${JSON.stringify(product)})'>
+
+👁 View Product
+
+</button>
+
+
+
+</div>
+
+
+`;
+
+
+
+});
+
+
+}
