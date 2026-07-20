@@ -5163,3 +5163,194 @@ ${product.description}
 
 
 }
+// ================= FOLLOW STORE SYSTEM =================
+
+
+function followStore(){
+
+
+let profile =
+JSON.parse(localStorage.getItem("storeProfile")) || {};
+
+
+
+profile.followers =
+Number(profile.followers || 0) + 1;
+
+
+
+localStorage.setItem(
+"storeProfile",
+JSON.stringify(profile)
+);
+
+
+
+let followers =
+document.getElementById("storeFollowers");
+
+
+if(followers){
+
+followers.innerText =
+profile.followers;
+
+}
+
+
+alert("You are now following this store ❤️");
+
+
+}
+
+
+
+// ================= STORE REVIEWS =================
+
+
+function submitStoreReview(){
+
+
+let profile =
+JSON.parse(localStorage.getItem("storeProfile"));
+
+
+
+if(!profile){
+
+alert("Store not found");
+
+return;
+
+}
+
+
+
+let reviews =
+JSON.parse(localStorage.getItem("storeReviews")) || [];
+
+
+
+let rating =
+document.getElementById("storeRatingInput").value;
+
+
+let text =
+document.getElementById("storeReviewText").value;
+
+
+
+if(text.trim()===""){
+
+alert("Write a review first");
+
+return;
+
+}
+
+
+
+reviews.push({
+
+store: profile.storeName,
+
+rating: rating,
+
+message:text,
+
+date:new Date().toLocaleString()
+
+});
+
+
+
+localStorage.setItem(
+"storeReviews",
+JSON.stringify(reviews)
+);
+
+
+
+alert("Review submitted ⭐");
+
+
+
+document.getElementById("storeReviewText").value="";
+
+
+loadStoreReviews();
+
+
+}
+
+
+
+// ================= LOAD STORE REVIEWS =================
+
+
+function loadStoreReviews(){
+
+
+let box =
+document.getElementById("storeReviews");
+
+
+if(!box) return;
+
+
+
+let reviews =
+JSON.parse(localStorage.getItem("storeReviews")) || [];
+
+
+
+if(reviews.length===0){
+
+box.innerHTML =
+"<p>No reviews yet.</p>";
+
+return;
+
+}
+
+
+
+box.innerHTML="";
+
+
+
+reviews.forEach(function(review){
+
+
+box.innerHTML += `
+
+
+<div class="product">
+
+
+<h3>
+⭐ ${review.rating}/5
+</h3>
+
+
+<p>
+${review.message}
+</p>
+
+
+<small>
+${review.date}
+</small>
+
+
+</div>
+
+
+`;
+
+
+
+});
+
+
+}
