@@ -1744,17 +1744,28 @@ if(!current) return;
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
-
-
 let recommendations =
 products.filter(function(product){
 
+let sameCategory =
+product.category === current.category;
 
-return product.category === current.category
-&&
+
+let similarPrice =
+Math.abs(product.price - current.price) <= 50;
+
+
+let approved =
+product.status === "Approved";
+
+
+return (
 product.name !== current.name
 &&
-product.status === "Approved";
+approved
+&&
+(sameCategory || similarPrice)
+);
 
 
 });
