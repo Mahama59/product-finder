@@ -4522,3 +4522,188 @@ store.description;
 
 
 }
+// ================= STORE REVIEW SYSTEM =================
+
+
+function submitStoreReview(){
+
+
+let store =
+localStorage.getItem("selectedStore");
+
+
+let text =
+document.getElementById("storeReviewText").value;
+
+
+let rating =
+Number(document.getElementById("storeRatingInput").value);
+
+
+
+if(!text){
+
+alert("Write a review first");
+
+return;
+
+}
+
+
+
+let reviews =
+JSON.parse(localStorage.getItem("storeReviews")) || {};
+
+
+
+if(!reviews[store]){
+
+reviews[store]=[];
+
+}
+
+
+
+let user =
+JSON.parse(localStorage.getItem("user"));
+
+
+
+reviews[store].push({
+
+user:user ? user.name : "Guest",
+
+rating:rating,
+
+text:text,
+
+date:new Date().toLocaleDateString()
+
+});
+
+
+
+localStorage.setItem(
+"storeReviews",
+JSON.stringify(reviews)
+);
+
+
+
+alert("Review submitted ⭐");
+
+
+document.getElementById("storeReviewText").value="";
+
+
+loadStoreReviews();
+
+
+}
+
+
+
+
+function loadStoreReviews(){
+
+
+let box =
+document.getElementById("storeReviews");
+
+
+if(!box) return;
+
+
+
+let store =
+localStorage.getItem("selectedStore");
+
+
+let reviews =
+JSON.parse(localStorage.getItem("storeReviews")) || {};
+
+
+
+let list =
+reviews[store] || [];
+
+
+
+if(list.length===0){
+
+box.innerHTML =
+"<p>No reviews yet.</p>";
+
+return;
+
+}
+
+
+
+let total = 0;
+
+
+box.innerHTML="";
+
+
+
+list.forEach(function(review){
+
+
+total += Number(review.rating);
+
+
+
+box.innerHTML += `
+
+<div class="product">
+
+
+<h3>
+👤 ${review.user}
+</h3>
+
+
+<p>
+${"⭐".repeat(review.rating)}
+</p>
+
+
+<p>
+${review.text}
+</p>
+
+
+<small>
+${review.date}
+</small>
+
+
+</div>
+
+`;
+
+
+
+});
+
+
+
+let average =
+(total / list.length).toFixed(1);
+
+
+
+let ratingBox =
+document.getElementById("storeRating");
+
+
+if(ratingBox){
+
+ratingBox.innerText =
+average + "/5";
+
+}
+
+
+}
