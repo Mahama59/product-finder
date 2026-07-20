@@ -5333,46 +5333,6 @@ ${product.description}
 
 
 }
-// ================= FOLLOW STORE SYSTEM =================
-
-
-function followStore(){
-
-
-let profile =
-JSON.parse(localStorage.getItem("storeProfile")) || {};
-
-
-
-profile.followers =
-Number(profile.followers || 0) + 1;
-
-
-
-localStorage.setItem(
-"storeProfile",
-JSON.stringify(profile)
-);
-
-
-
-let followers =
-document.getElementById("storeFollowers");
-
-
-if(followers){
-
-followers.innerText =
-profile.followers;
-
-}
-
-
-alert("You are now following this store ❤️");
-
-
-}
-
 
 
 // ================= STORE REVIEWS =================
