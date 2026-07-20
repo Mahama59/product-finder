@@ -319,3 +319,109 @@ alert("You followed this store ❤️");
 loadStoreProfile();
 
 }
+// ================= STORE REVIEWS =================
+
+
+let storeReviews =
+JSON.parse(localStorage.getItem("storeReviews")) || [];
+
+
+
+function submitStoreReview(stars){
+
+
+let review = {
+
+name:
+JSON.parse(localStorage.getItem("user"))?.name || "Customer",
+
+rating:stars,
+
+date:new Date().toLocaleDateString()
+
+};
+
+
+
+storeReviews.push(review);
+
+
+
+localStorage.setItem(
+"storeReviews",
+JSON.stringify(storeReviews)
+);
+
+
+
+alert("Thank you for reviewing the store ⭐");
+
+
+loadStoreReviews();
+
+}
+
+
+
+
+function loadStoreReviews(){
+
+
+let box =
+document.getElementById("storeReviews");
+
+
+if(!box) return;
+
+
+
+let reviews =
+JSON.parse(localStorage.getItem("storeReviews")) || [];
+
+
+
+box.innerHTML="";
+
+
+
+if(reviews.length===0){
+
+box.innerHTML=
+"<p>No reviews yet.</p>";
+
+return;
+
+}
+
+
+
+reviews.forEach(function(review){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>
+👤 ${review.name}
+</h3>
+
+
+<p>
+⭐ ${review.rating}/5
+</p>
+
+
+<p>
+${review.date}
+</p>
+
+
+</div>
+
+`;
+
+});
+
+
+}
