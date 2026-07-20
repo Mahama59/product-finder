@@ -2461,6 +2461,11 @@ function loadMerchantProducts() {
 <button onclick="deleteProduct(${index})">
 🗑 Delete
 </button>
+<button onclick="featureProduct(${index})">
+
+⭐ Feature Product
+
+</button>
         </div>
 
         `;
@@ -5010,6 +5015,142 @@ ${item.text}
 <small>
 ${item.date}
 </small>
+
+
+</div>
+
+`;
+
+
+});
+
+
+}
+// ================= FEATURED PRODUCTS =================
+
+
+function featureProduct(index){
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+let product =
+products[index];
+
+
+if(!product){
+
+alert("Product not found");
+
+return;
+
+}
+
+
+
+product.featured = true;
+
+
+
+localStorage.setItem(
+"merchantProducts",
+JSON.stringify(products)
+);
+
+
+
+alert(
+product.name + " is now featured ⭐"
+);
+
+
+
+loadMerchantProducts();
+
+
+}
+
+
+
+
+function loadFeaturedProducts(){
+
+
+let box =
+document.getElementById("featuredProducts");
+
+
+if(!box) return;
+
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+
+let featured =
+products.filter(function(product){
+
+
+return product.featured === true
+&&
+product.status === "Approved";
+
+
+});
+
+
+
+if(featured.length === 0){
+
+box.innerHTML =
+"<p>No featured products yet.</p>";
+
+return;
+
+}
+
+
+
+box.innerHTML="";
+
+
+
+featured.forEach(function(product){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+
+<img src="${product.image || 'https://via.placeholder.com/200'}"
+width="180">
+
+
+<h3>
+⭐ ${product.name}
+</h3>
+
+
+<p>
+💰 $${product.price}
+</p>
+
+
+<p>
+${product.description}
+</p>
+
+
+<button onclick='openProduct(${JSON.stringify(product)})'>
+
+👁 View
+
+</button>
 
 
 </div>
