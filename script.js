@@ -3375,56 +3375,99 @@ loadCustomerDashboard();
 
 function loadMerchantOrders(){
 
-let box = document.getElementById("merchantOrders");
+let box =
+document.getElementById("merchantOrders");
 
 if(!box){
-    return;
+return;
 }
 
 
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+if(!merchant){
+return;
+}
 
 
-console.log("Orders:", orders);
+let allOrders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+let orders =
+allOrders.filter(function(order){
+
+return order.items.some(function(item){
+
+return item.merchantEmail === merchant.email;
+
+});
+
+});
 
 
 if(orders.length === 0){
 
-box.innerHTML = "<p>No orders available.</p>";
+box.innerHTML =
+"<p>No orders available.</p>";
 
 return;
 
 }
 
 
-box.innerHTML = "";
+box.innerHTML="";
 
 
 orders.forEach(function(order,index){
+
 
 box.innerHTML += `
 
 <div class="product">
 
 <h3>
-📦 Order #${index + 1}
+📦 Order #${index+1}
 </h3>
 
-<p>
-Customer: ${order.customerName}
-</p>
 
 <p>
-Email: ${order.customerEmail}
+👤 Customer:
+${order.customerName}
 </p>
 
-<p>
-Total: $${order.total}
-</p>
 
 <p>
-Status: ${order.status}
+📧 Email:
+${order.customerEmail}
 </p>
+
+
+<p>
+💰 Total:
+$${order.total}
+</p>
+
+
+<p>
+🚚 Order Status:
+<strong>${order.status}</strong>
+</p>
+
+
+<p>
+📍 Delivery:
+<strong>${order.shippingStatus}</strong>
+</p>
+
+
+<button onclick="merchantUpdateOrder(${index})">
+
+Update Status
+
+</button>
+
 
 </div>
 
@@ -3434,7 +3477,6 @@ Status: ${order.status}
 
 
 }
-
 
 function updateOrderStatus(index,status){
 
@@ -4234,5 +4276,38 @@ let orders =
 JSON.parse(localStorage.getItem("orders")) || [];
 
 alert(JSON.stringify(orders));
+
+}
+function merchantUpdateOrder(index){
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+let status =
+prompt(
+"Enter status:\nPending\nProcessing\nShipped\nDelivered"
+);
+
+
+if(!status){
+return;
+}
+
+
+orders[index].status = status;
+
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+
+alert("Order updated");
+
+
+loadMerchantOrders();
+
 
 }
