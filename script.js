@@ -4211,7 +4211,18 @@ return product.merchantEmail === email;
 
 });
 
+let profile =
+JSON.parse(localStorage.getItem("storeProfile")) || {};
 
+
+profile.views =
+Number(profile.views || 0) + 1;
+
+
+localStorage.setItem(
+"storeProfile",
+JSON.stringify(profile)
+);
 let store =
 JSON.parse(localStorage.getItem("merchantStore"));
 
