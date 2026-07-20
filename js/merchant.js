@@ -120,7 +120,7 @@ function merchantLogin(){
 }
 
 function loadMerchantProducts(){
-
+alert(localStorage.getItem("merchantProducts"));
 let box = document.getElementById("merchantProductsList");
 
 if(!box) return;
