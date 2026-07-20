@@ -4312,3 +4312,166 @@ loadMerchantOrders();
 
 
 }
+// ================= MERCHANT STORE PROFILE =================
+
+
+function saveMerchantStoreProfile(){
+
+
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+
+if(!merchant){
+
+alert("Merchant login required");
+
+return;
+
+}
+
+
+let storeName =
+document.getElementById("storeNameInput").value;
+
+
+let description =
+document.getElementById("storeDescriptionInput").value;
+
+
+let logoInput =
+document.getElementById("storeLogo");
+
+
+let bannerInput =
+document.getElementById("storeBanner");
+
+
+
+let store = {
+
+merchantEmail: merchant.email,
+
+storeName: storeName,
+
+description: description,
+
+logo:"",
+
+banner:""
+
+};
+
+
+
+function saveStore(){
+
+localStorage.setItem(
+"merchantStore",
+JSON.stringify(store)
+);
+
+
+alert("Store profile saved");
+
+
+}
+
+
+
+if(logoInput.files.length > 0){
+
+let reader =
+new FileReader();
+
+
+reader.onload=function(e){
+
+store.logo=e.target.result;
+
+
+if(bannerInput.files.length > 0){
+
+let bannerReader =
+new FileReader();
+
+
+bannerReader.onload=function(event){
+
+store.banner=event.target.result;
+
+saveStore();
+
+};
+
+
+bannerReader.readAsDataURL(
+bannerInput.files[0]
+);
+
+
+}else{
+
+saveStore();
+
+}
+
+
+};
+
+
+reader.readAsDataURL(
+logoInput.files[0]
+);
+
+
+}else{
+
+saveStore();
+
+}
+
+
+}
+
+
+
+function loadMerchantStoreProfile(){
+
+
+let store =
+JSON.parse(localStorage.getItem("merchantStore"));
+
+
+if(!store){
+
+return;
+
+}
+
+
+let name =
+document.getElementById("storeNameInput");
+
+
+let desc =
+document.getElementById("storeDescriptionInput");
+
+
+if(name){
+
+name.value =
+store.storeName;
+
+}
+
+
+if(desc){
+
+desc.value =
+store.description;
+
+}
+
+
+}
