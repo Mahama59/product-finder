@@ -4555,6 +4555,7 @@ document.addEventListener("DOMContentLoaded", function () {
  try { loadStoreReviews(); } catch(e) {}
     try { loadStoreAnalytics(); } catch(e) {}
  try { loadFeaturedProducts(); } catch(e) {}
+ try { loadProductStatistics(); } catch(e) {}
 });
 function addToCompare(name,price,category){
 
@@ -6131,5 +6132,42 @@ ${product.stock}
 
 });
 
+
+}
+
+// ================= MERCHANT PRODUCT STATISTICS =================
+
+function loadProductStatistics(){
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+let productCount =
+document.getElementById("merchantProductCount");
+
+
+let featuredCount =
+document.getElementById("featuredCount");
+
+
+if(productCount){
+
+productCount.innerText =
+products.length;
+
+}
+
+
+if(featuredCount){
+
+featuredCount.innerText =
+products.filter(function(product){
+
+return product.featured === true;
+
+}).length;
+
+}
 
 }
