@@ -4093,13 +4093,16 @@ window.location.href =
 "store.html";
 
 }
+
 function loadStore(){
 
 let email =
 localStorage.getItem("selectedStore");
 
+
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
 
 let storeProducts =
 products.filter(function(product){
@@ -4107,47 +4110,89 @@ products.filter(function(product){
 return product.merchantEmail === email;
 
 });
- let storeTitle =
+
+
+let store =
+JSON.parse(localStorage.getItem("merchantStore"));
+
+
+
+let storeTitle =
 document.getElementById("storeName");
 
+
+let description =
+document.getElementById("storeDescription");
+
+
+let logo =
+document.getElementById("storeLogo");
+
+
+
+if(store){
 
 if(storeTitle){
 
 storeTitle.innerHTML =
-`
-🏪 ${storeProducts[0]?.merchantName || "Merchant Store"}
-
-<br>
-
-⭐ Store Rating: 5/5
-
-<br>
-
-📦 Products: ${storeProducts.length}
-
-`;
+"🏪 " + store.storeName;
 
 }
+
+
+if(description){
+
+description.innerHTML =
+store.description;
+
+}
+
+
+if(logo){
+
+logo.src =
+store.logo || "https://via.placeholder.com/150";
+
+}
+
+}
+
+
+
 let box =
 document.getElementById("storeProducts");
 
+
 if(!box) return;
 
-box.innerHTML = "";
+
+box.innerHTML="";
+
 
 storeProducts.forEach(function(product){
+
 
 box.innerHTML += `
 
 <div class="product">
 
-<img src="${product.image}" width="180">
+
+<img src="${product.image || 'https://via.placeholder.com/200'}"
+width="180">
+
 
 <h3>${product.name}</h3>
 
-<p>$${product.price}</p>
 
-<p>${product.description}</p>
+<p>
+💰 $${product.price}
+</p>
+
+
+<p>
+${product.description}
+</p>
+
 
 <button onclick='openProduct(${JSON.stringify(product)})'>
 
@@ -4155,11 +4200,13 @@ box.innerHTML += `
 
 </button>
 
+
 </div>
 
 `;
 
 });
+
 
 }
 document.addEventListener("DOMContentLoaded", function () {
