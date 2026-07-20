@@ -4258,6 +4258,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try { loadNotifications(); } catch(e) {}
     try { loadStore(); } catch(e) {}
     try { loadStoreAnalytics(); } catch(e) {}
+ try { loadFeaturedProducts(); } catch(e) {}
 });
 function addToCompare(name,price,category){
 
