@@ -6,7 +6,7 @@
 let merchantProducts =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
-
+console.log(merchantProducts);
 
 
 // ================= MERCHANT REGISTER =================
