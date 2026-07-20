@@ -5446,3 +5446,74 @@ ${review.date}
 
 
 }
+// ================= STORE FOLLOW SYSTEM =================
+
+function followStore(){
+
+let email =
+localStorage.getItem("selectedStore");
+
+
+if(!email){
+
+alert("Store not found");
+
+return;
+
+}
+
+
+let followers =
+JSON.parse(localStorage.getItem("storeFollowers")) || [];
+
+
+// prevent duplicate follow
+
+let exists =
+followers.find(function(follower){
+
+return follower.storeEmail === email 
+&& 
+follower.userEmail === 
+(JSON.parse(localStorage.getItem("user")) || {}).email;
+
+});
+
+
+if(exists){
+
+alert("You already follow this store");
+
+return;
+
+}
+
+
+let user =
+JSON.parse(localStorage.getItem("user"));
+
+
+followers.push({
+
+storeEmail: email,
+
+userEmail: user ? user.email : "guest",
+
+date: new Date().toLocaleString()
+
+});
+
+
+localStorage.setItem(
+"storeFollowers",
+JSON.stringify(followers)
+);
+
+
+alert("❤️ Store followed successfully!");
+
+
+
+loadStore();
+
+}
