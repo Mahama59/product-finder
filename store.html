@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>Merchant Store</title>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Merchant Store - Product Finder</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -11,36 +15,55 @@
 
 <body onload="loadStore()">
 
+
 <nav>
 
 <h2>🛍️ Product Finder</h2>
 
-<a href="index.html">Home</a>
+<a href="index.html">
+🏠 Home
+</a>
 
 </nav>
 
-<header>
 
-<h1 id="storeName"></h1>
+<div class="store-banner">
 
-</header>
+<img id="storeBanner"
+src="https://via.placeholder.com/900x250">
+
+</div>
+
+
+
 <div class="product">
 
-<img id="storeLogo" width="150">
+
+<img id="storeLogo"
+width="150">
 
 
-<h2 id="storeName">
-Merchant Store
-</h2>
+
+<h1 id="storeName">
+Store Name
+</h1>
 
 
-<p id="storeDescription"></p>
+<h3>
+<span id="verifiedBadge"></span>
+</h3>
+
+
+
+<p id="storeDescription">
+Store description
+</p>
 
 
 <p>
 ⭐ Rating:
 <span id="storeRating">
-5/5
+No ratings
 </span>
 </p>
 
@@ -53,64 +76,52 @@ Merchant Store
 </p>
 
 
+
 <button onclick="followStore()">
 
 ❤️ Follow Store
 
 </button>
-<button onclick="followStore()">
-❤️ Follow Store
-</button>
+
+
 </div>
+
+
+
+<hr>
+
+
+<h2>
+📦 Seller Products
+</h2>
+
+
 <div id="storeProducts" class="product-grid">
 
 </div>
+
+
+
+<hr>
+
+
 <h2>
 ⭐ Store Reviews
 </h2>
 
 
-<div class="product">
-
-<select id="storeRatingInput">
-
-<option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
-
-<option value="4">⭐⭐⭐⭐ 4 Stars</option>
-
-<option value="3">⭐⭐⭐ 3 Stars</option>
-
-<option value="2">⭐⭐ 2 Stars</option>
-
-<option value="1">⭐ 1 Star</option>
-
-</select>
-
-
-<br><br>
-
-
-<textarea id="storeReviewText"
-placeholder="Write your review">
-</textarea>
-
-
-<br><br>
-
-
-<button onclick="submitStoreReview()">
-
-Submit Review
-
-</button>
-
-</div>
-
-
 <div id="storeReviews">
 
+<p>
+No reviews yet.
+</p>
+
 </div>
+
+
+
 <script src="script.js"></script>
+
 
 </body>
 
