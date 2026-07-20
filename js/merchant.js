@@ -200,3 +200,122 @@ JSON.stringify(products)
 loadMerchantProducts();
 
 }
+// ================= STORE PROFILE =================
+
+function loadStoreProfile(){
+
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+let name =
+document.getElementById("storeName");
+
+let description =
+document.getElementById("storeDescription");
+
+let rating =
+document.getElementById("storeRating");
+
+let followers =
+document.getElementById("storeFollowers");
+
+let productBox =
+document.getElementById("storeProducts");
+
+
+if(name && merchant){
+
+name.innerText =
+merchant.storeName;
+
+}
+
+
+if(description && merchant){
+
+description.innerText =
+"Trusted seller on Product Finder";
+
+}
+
+
+if(rating && merchant){
+
+rating.innerText =
+"⭐ " + merchant.rating;
+
+}
+
+
+if(followers){
+
+followers.innerText =
+localStorage.getItem("followers") || 0;
+
+}
+
+
+
+if(productBox){
+
+productBox.innerHTML="";
+
+
+products.forEach(function(product){
+
+
+productBox.innerHTML += `
+
+<div class="product">
+
+<h3>${product.name}</h3>
+
+<p>💰 Price: $${product.price}</p>
+
+<p>📂 Category: ${product.category}</p>
+
+<button onclick="addToCart('${product.name}',${product.price},${product.stock})">
+
+🛒 Add To Cart
+
+</button>
+
+</div>
+
+`;
+
+});
+
+
+}
+
+}
+
+
+
+
+function followStore(){
+
+let followers =
+Number(localStorage.getItem("followers") || 0);
+
+
+followers++;
+
+
+localStorage.setItem(
+"followers",
+followers
+);
+
+
+alert("You followed this store ❤️");
+
+
+loadStoreProfile();
+
+}
