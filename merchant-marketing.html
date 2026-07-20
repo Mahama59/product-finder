@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Merchant Marketing</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body onload="protectMerchant(); loadMarketing();">
+
+
+<nav>
+
+<h2>🛍️ Product Finder</h2>
+
+<a href="merchant-dashboard.html">
+Dashboard
+</a>
+
+</nav>
+
+
+<header>
+
+<h1>
+📢 Store Marketing
+</h1>
+
+</header>
+
+
+
+<div class="product">
+
+
+<h2>
+Create Store Announcement
+</h2>
+
+
+<textarea id="announcementText"
+placeholder="Example: New products available today!">
+</textarea>
+
+
+<br><br>
+
+
+<button onclick="saveAnnouncement()">
+
+📢 Publish Announcement
+
+</button>
+
+
+</div>
+
+
+
+<div class="product">
+
+
+<h2>
+🎟 Create Coupon
+</h2>
+
+
+<input id="couponCode"
+placeholder="Coupon Code">
+
+
+<br><br>
+
+
+<input id="couponDiscount"
+placeholder="Discount %"
+type="number">
+
+
+<br><br>
+
+
+<button onclick="saveCoupon()">
+
+🎟 Save Coupon
+
+</button>
+
+
+</div>
+
+
+
+<div id="marketingList">
+
+</div>
+
+
+
+<script src="script.js?v=500"></script>
+
+
+</body>
+
+</html>
