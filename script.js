@@ -2260,7 +2260,6 @@ totalCompare.innerText = compare.length;
 
 }
 
-
 // INVENTORY DISPLAY
 
 
