@@ -1677,8 +1677,6 @@ document.getElementById("detailDescription");
 
 let stock =
 document.getElementById("detailStock");
-let seller =
-document.getElementById("detailSeller");
 
 
 if(seller){
@@ -4234,6 +4232,18 @@ window.location.href =
 }
 
 function loadStore(){
+
+let email =
+localStorage.getItem("selectedStore");
+
+
+if(!email){
+
+return;
+
+}
+
+
 let views =
 JSON.parse(localStorage.getItem("storeViews")) || {};
 
@@ -4253,9 +4263,6 @@ localStorage.setItem(
 "storeViews",
 JSON.stringify(views)
 );
-let email =
-localStorage.getItem("selectedStore");
-
 
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
@@ -4456,39 +4463,6 @@ alert(name+" added to comparison");
 }
 // ================= PRODUCT RATING SYSTEM =================
 
-function getProductRating(productName){
-
-let reviews =
-JSON.parse(localStorage.getItem("reviews")) || {};
-
-let productReviews =
-reviews[productName] || [];
-
-
-if(productReviews.length === 0){
-
-return "No ratings yet";
-
-}
-
-
-let total = 0;
-
-
-productReviews.forEach(function(review){
-
-total += Number(review.rating);
-
-});
-
-
-let average =
-(total / productReviews.length).toFixed(1);
-
-
-return average + "/5 ⭐";
-
-}// ================= PRODUCT RATING SYSTEM =================
 
 function getProductRating(productName){
 
