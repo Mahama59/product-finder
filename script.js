@@ -2479,8 +2479,7 @@ style="object-fit:cover;">
 
 
 
-        <button onclick="addToCart('${product.name}',${product.price},${product.stock})">
-
+        <button onclick="addToCart('${product.name}',${product.price},${product.stock},'${product.merchantEmail}','${product.merchantName}')">
         🛒 Add To Cart
 
         </button>
