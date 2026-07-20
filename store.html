@@ -13,7 +13,9 @@
 
 </head>
 
+
 <body onload="loadStore()">
+
 
 
 <nav>
@@ -27,6 +29,7 @@
 </nav>
 
 
+
 <div class="store-banner">
 
 <img id="storeBanner"
@@ -36,7 +39,9 @@ src="https://via.placeholder.com/900x250">
 
 
 
+
 <div class="product">
+
 
 
 <img id="storeLogo"
@@ -49,8 +54,9 @@ Store Name
 </h1>
 
 
-<h3>
-<span id="verifiedBadge"></span>
+
+<h3 id="verifiedBadge">
+
 </h3>
 
 
@@ -60,12 +66,14 @@ Store description
 </p>
 
 
+
 <p>
-⭐ Rating:
+⭐ Store Rating:
 <span id="storeRating">
 No ratings
 </span>
 </p>
+
 
 
 <p>
@@ -77,23 +85,117 @@ No ratings
 
 
 
-<button onclick="followStore()">
+<p>
+👁 Store Views:
+<span id="storeViews">
+0
+</span>
+</p>
+
+
+
+<p>
+📦 Total Products:
+<span id="storeProductCount">
+0
+</span>
+</p>
+
+
+
+<p>
+📅 Joined:
+<span id="storeJoined">
+Unknown
+</span>
+</p>
+
+
+
+<button id="followButton"
+onclick="followStore()">
 
 ❤️ Follow Store
 
 </button>
 
 
+
 </div>
+
 
 
 
 <hr>
 
 
+
+
+<h2>
+🔍 Search This Store
+</h2>
+
+
+<input 
+id="storeSearch"
+placeholder="Search products in this store"
+onkeyup="searchStoreProducts()">
+
+
+
+
+
+<h2>
+📂 Store Categories
+</h2>
+
+
+<div id="storeCategories">
+
+</div>
+
+
+
+
+
+<hr>
+
+
+
 <h2>
 📦 Seller Products
 </h2>
+
+
+
+<select id="storeSort"
+onchange="sortStoreProducts()">
+
+
+<option value="default">
+Sort Products
+</option>
+
+
+<option value="low">
+Lowest Price
+</option>
+
+
+<option value="high">
+Highest Price
+</option>
+
+
+<option value="new">
+Newest
+</option>
+
+
+</select>
+
+
+
 
 
 <div id="storeProducts" class="product-grid">
@@ -102,12 +204,17 @@ No ratings
 
 
 
+
+
 <hr>
+
+
 
 
 <h2>
 ⭐ Store Reviews
 </h2>
+
 
 
 <div id="storeReviews">
@@ -116,7 +223,10 @@ No ratings
 No reviews yet.
 </p>
 
+
 </div>
+
+
 
 
 
