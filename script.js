@@ -3374,8 +3374,7 @@ loadCustomerDashboard();
 // ================= MERCHANT ORDER MANAGEMENT PART 20 =================
 
 function loadMerchantOrders(){
-
-alert("Merchant orders loaded");
+alert("loadMerchantOrders is running");
 
 let box =
 document.getElementById("merchantOrders");
