@@ -2154,6 +2154,11 @@ document.getElementById("totalOrders");
 let newOrders =
 document.getElementById("newOrders");
 
+let totalWishlist =
+document.getElementById("totalWishlist");
+
+let totalCompare =
+document.getElementById("totalCompare");
 let totalRevenue =
 document.getElementById("totalRevenue");
 
@@ -2230,7 +2235,27 @@ productsSold.innerText = sold;
 if(revenueBox){
 
 revenueBox.innerText = revenue;
+let wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
 
+
+if(totalWishlist){
+
+totalWishlist.innerText = wishlist.length;
+
+}
+
+
+
+let compare =
+JSON.parse(localStorage.getItem("compare")) || [];
+
+
+if(totalCompare){
+
+totalCompare.innerText = compare.length;
+
+}
 }
 
 }
