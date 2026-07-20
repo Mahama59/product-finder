@@ -118,6 +118,7 @@ function merchantLogin(){
     }
 
 }
+
 function loadMerchantProducts(){
 
 let box = document.getElementById("merchantProductsList");
@@ -125,26 +126,24 @@ let box = document.getElementById("merchantProductsList");
 if(!box) return;
 
 
-let products =
-JSON.parse(localStorage.getItem("merchantProducts")) || [];
+let products = JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
 
-box.innerHTML="";
+console.log(products);
+
+
+box.innerHTML = "";
 
 
 if(products.length === 0){
 
-box.innerHTML =
-"<p>No products added yet.</p>";
-
+box.innerHTML = "<p>No products added yet.</p>";
 return;
 
 }
 
 
-
 products.forEach(function(product,index){
-
 
 box.innerHTML += `
 
@@ -158,28 +157,17 @@ box.innerHTML += `
 
 <p>📦 Stock: ${product.stock}</p>
 
-<p>${product.description}</p>
-
-
-<button onclick="deleteMerchantProduct(${index})">
-🗑 Delete
-</button>
+<p>${product.description || ""}</p>
 
 
 </div>
 
-
 `;
-
 
 });
 
 
-updateMerchantStats();
-
 }
-
-
 
 
 function deleteMerchantProduct(index){
