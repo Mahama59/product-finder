@@ -2496,8 +2496,10 @@ function loadMerchantProducts() {
 
     if (!box) return;
 
+
     let products =
-        JSON.parse(localStorage.getItem("merchantProducts")) || [];
+    JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
 
     if (products.length === 0) {
 
@@ -2531,18 +2533,19 @@ function loadMerchantProducts() {
             <p><strong>Stock:</strong> ${product.stock}</p>
 
             <p><strong>Status:</strong> ${product.status}</p>
-           <button onclick="editProduct(${index})">
-✏️ Edit
-</button>
 
-<button onclick="deleteProduct(${index})">
-🗑 Delete
-</button>
-<button onclick="featureProduct(${index})">
+            <button onclick="editProduct(${index})">
+            ✏️ Edit
+            </button>
 
-⭐ Feature Product
+            <button onclick="deleteProduct(${index})">
+            🗑 Delete
+            </button>
 
-</button>
+            <button onclick="featureProduct(${index})">
+            ⭐ Feature Product
+            </button>
+
         </div>
 
         `;
