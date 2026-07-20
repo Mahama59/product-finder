@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Merchant Store Profile</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body onload="protectMerchant(); loadMerchantStoreProfile();">
+
+
+<nav>
+
+<h2>🛍️ Product Finder</h2>
+
+<a href="merchant-dashboard.html">
+Dashboard
+</a>
+
+</nav>
+
+
+<header>
+
+<h1>
+🏪 Store Profile
+</h1>
+
+</header>
+
+
+
+<div class="product">
+
+
+<label>
+Store Name
+</label>
+
+<br>
+
+<input id="storeNameInput"
+placeholder="Your store name">
+
+
+<br><br>
+
+
+<label>
+Store Description
+</label>
+
+<br>
+
+<textarea id="storeDescriptionInput"
+placeholder="Describe your store"></textarea>
+
+
+<br><br>
+
+
+<label>
+Store Logo
+</label>
+
+<br>
+
+<input type="file" id="storeLogo">
+
+
+<br><br>
+
+
+<label>
+Store Banner
+</label>
+
+<br>
+
+<input type="file" id="storeBanner">
+
+
+<br><br>
+
+
+<button onclick="saveMerchantStoreProfile()">
+
+💾 Save Store Profile
+
+</button>
+
+
+</div>
+
+
+<footer>
+
+<p>
+© 2026 Product Finder
+</p>
+
+</footer>
+
+
+<script src="script.js?v=300"></script>
+
+
+</body>
+
+</html>
