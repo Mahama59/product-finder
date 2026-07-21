@@ -173,7 +173,13 @@ box.innerHTML += `
 <p>📦 Stock: ${product.stock}</p>
 
 <p>${product.description}</p>
+<button onclick="editMerchantProduct(${index})">
+✏️ Edit
+</button>
 
+<button onclick="deleteMerchantProduct(${index})">
+🗑 Delete
+</button>
 
 </div>
 
@@ -989,5 +995,66 @@ alert("Order updated: " + status);
 
 loadMerchantOrders();
 
+
+}
+
+// ================= EDIT PRODUCT =================
+
+function editMerchantProduct(index){
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+let product = products[index];
+
+
+let newPrice =
+prompt(
+"Enter new price",
+product.price
+);
+
+
+let newStock =
+prompt(
+"Enter new stock",
+product.stock
+);
+
+
+
+if(newPrice){
+
+product.price =
+Number(newPrice);
+
+}
+
+
+if(newStock){
+
+product.stock =
+Number(newStock);
+
+}
+
+
+
+products[index] = product;
+
+
+
+localStorage.setItem(
+"merchantProducts",
+JSON.stringify(products)
+);
+
+
+
+alert("Product updated");
+
+
+loadMerchantProducts();
 
 }
