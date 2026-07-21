@@ -547,7 +547,93 @@ JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
 let orders =
 JSON.parse(localStorage.getItem("orders")) || [];
+// ================= FINANCE ANALYTICS =================
 
+
+let completedOrders =
+orders.filter(function(order){
+
+return order.status === "Completed";
+
+});
+
+
+
+let totalSales = 0;
+
+let totalItemsSold = 0;
+
+
+
+completedOrders.forEach(function(order){
+
+
+totalSales += Number(order.total || 0);
+
+
+
+order.items.forEach(function(item){
+
+totalItemsSold += Number(item.quantity || 0);
+
+});
+
+
+});
+
+
+
+let averageOrderValue = 0;
+
+
+if(completedOrders.length > 0){
+
+averageOrderValue =
+(totalSales / completedOrders.length).toFixed(2);
+
+}
+
+
+
+// Display Finance
+
+
+let salesBox =
+document.getElementById("merchantSalesCount");
+
+
+if(salesBox){
+
+salesBox.innerText =
+completedOrders.length;
+
+}
+
+
+
+let completedBox =
+document.getElementById("completedOrdersCount");
+
+
+if(completedBox){
+
+completedBox.innerText =
+completedOrders.length;
+
+}
+
+
+
+let averageBox =
+document.getElementById("averageOrderValue");
+
+
+if(averageBox){
+
+averageBox.innerText =
+averageOrderValue;
+
+}
 
 // Merchant products
 
