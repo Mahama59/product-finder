@@ -211,7 +211,15 @@ JSON.parse(localStorage.getItem("merchant"));
 
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
+let views =
+Number(localStorage.getItem("storeViews") || 0);
 
+views++;
+
+localStorage.setItem(
+"storeViews",
+views
+);
 
 let name =
 document.getElementById("storeName");
