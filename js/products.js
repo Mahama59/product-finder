@@ -248,25 +248,26 @@ function completeOrder(){
     }
 
 
-    let order = {
+  let order = {
 
-        id: Date.now(),
+    id: Date.now(),
 
-        customer:user.name,
+    customer:
+    JSON.parse(localStorage.getItem("user"))?.name || "Guest",
 
-        items:cart,
+    items: cart,
 
-        total:cart.reduce(
-            (sum,item)=>sum + (item.price * item.quantity),
-            0
-        ),
+    total:
+    cart.reduce(
+        (sum,item)=>sum + (item.price * item.quantity),
+        0
+    ),
 
-        status:"New",
+    status:"New",
 
-        date:new Date().toLocaleString()
+    date:new Date().toLocaleString()
 
-    };
-
+};
 
     orders.push(order);
 
