@@ -276,11 +276,6 @@ localStorage.getItem("followers") || 0;
 
 
 
-if(productBox){
-
-productBox.innerHTML = "";
-
-
 products.forEach(function(product){
 
 
@@ -299,13 +294,9 @@ productBox.innerHTML += `
 <p>${product.description || ""}</p>
 
 
-<a href="product.html">
-
-<button>
+<button onclick="viewProduct('${product.name}')">
 👀 View Details
 </button>
-
-</a>
 
 
 <button onclick="addToCart('${product.name}',${product.price},${product.stock},'${product.merchantEmail}','${merchant.storeName}')">
@@ -315,11 +306,13 @@ productBox.innerHTML += `
 </button>
 
 
+
 <button onclick="addToCompare('${product.name}',${product.price},'${product.category}')">
 
 ⚖️ Compare
 
 </button>
+
 
 
 <button onclick="addToWishlist('${product.name}')">
@@ -332,7 +325,6 @@ productBox.innerHTML += `
 </div>
 
 `;
-
 
 });
 
