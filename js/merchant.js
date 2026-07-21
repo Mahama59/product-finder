@@ -168,31 +168,69 @@ box.innerHTML += `
 
 <div class="product">
 
-<h3>${product.name}</h3>
 
-<p>💰 Price: $${product.price}</p>
+<img 
+src="${product.image || 'https://via.placeholder.com/200'}"
+width="200"
+>
 
-<p>📂 Category: ${product.category}</p>
 
-<p>📦 Stock: ${product.stock}</p>
+<h3>
+${product.name}
+</h3>
 
-<p>${product.description}</p>
+
+<p>
+💰 Price: $${product.price}
+</p>
+
+
+<p>
+📂 Category: ${product.category}
+</p>
+
+
+<p>
+📦 Stock: ${product.stock}
+</p>
+
+
+<p>
+📌 Status:
+${product.status}
+</p>
+
+
+<p>
+${product.description || ""}
+</p>
+
+
+
 <button onclick="editMerchantProduct(${index})">
+
 ✏️ Edit
+
 </button>
+
+
 
 <button onclick="deleteMerchantProduct(${index})">
+
 🗑 Delete
+
 </button>
+
 
 </div>
 
 `;
 
 });
+    
+  }
 
-
-}
+}  
 
 function deleteMerchantProduct(index){
 
