@@ -682,7 +682,77 @@ if(viewsBox){
 
         totalRevenue.innerText =
         revenue;
+// ================= FINANCE ANALYTICS =================
 
+
+let salesCount = 0;
+
+let completedOrders = 0;
+
+let totalRevenue = 0;
+
+
+
+myOrders.forEach(function(order){
+
+
+if(order.status === "Completed"){
+
+completedOrders++;
+
+totalRevenue += Number(order.total || 0);
+
+}
+
+
+
+order.items.forEach(function(item){
+
+salesCount += item.quantity;
+
+});
+
+
+});
+
+
+
+let salesBox =
+document.getElementById("merchantSalesCount");
+
+
+if(salesBox){
+
+salesBox.innerText =
+salesCount;
+
+}
+
+
+
+let completedBox =
+document.getElementById("completedOrdersCount");
+
+
+if(completedBox){
+
+completedBox.innerText =
+completedOrders;
+
+}
+
+
+
+let averageBox =
+document.getElementById("averageOrderValue");
+
+
+if(averageBox && completedOrders > 0){
+
+averageBox.innerText =
+(totalRevenue / completedOrders).toFixed(2);
+
+        }
     }
 
 }
