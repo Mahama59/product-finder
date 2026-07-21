@@ -130,6 +130,14 @@ if(!box) return;
 let merchant =
 JSON.parse(localStorage.getItem("merchant"));
 
+if(!merchant){
+
+box.innerHTML =
+"<p>Please login as merchant first.</p>";
+
+return;
+
+}  
 
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
@@ -230,7 +238,7 @@ ${product.description || ""}
     
   }
 
-}  
+
 
 function deleteMerchantProduct(index){
 
@@ -752,61 +760,93 @@ function loadMerchantOrders(){
 
 
 
-    orders.forEach(function(order,index){
+orders.forEach(function(order,index){
 
 
-        box.innerHTML += `
+box.innerHTML += `
 
-        <div class="product">
-
-        <h3>
-        🛒 Order #${order.id}
-        </h3>
+<div class="product">
 
 
-        <p>
-        👤 Customer: ${order.customer}
-        </p>
+<h3>
+🛒 Order #${order.id}
+</h3>
 
 
-        <p>
-        💰 Total: $${order.total}
-        </p>
+<p>
+👤 Customer:
+${order.customer}
+</p>
 
 
-        <p>
-        📦 Status: ${order.status}
-        </p>
+<p>
+💰 Total:
+$${order.total}
+</p>
 
 
-        <p>
-        📅 ${order.date}
-        </p>
+<p>
+📦 Status:
+<strong>${order.status}</strong>
+</p>
 
 
-        <button onclick="acceptOrder(${index})">
-        ✅ Accept
-        </button>
+<p>
+📅 ${order.date}
+</p>
 
 
-        <button onclick="shipOrder(${index})">
-        🚚 Ship
-        </button>
+<hr>
 
 
-        <button onclick="completeOrderStatus(${index})">
-        ✔ Complete
-        </button>
+<h4>
+Products:
+</h4>
 
 
-        </div>
+${order.items.map(function(item){
 
-        `;
+return `
+
+<p>
+${item.name} 
+x ${item.quantity}
+</p>
+
+`;
+
+}).join("")}
 
 
-    });
+
+<button onclick="updateOrderStatus(${index},'Accepted')">
+
+✅ Accept
+
+</button>
 
 
+
+<button onclick="updateOrderStatus(${index},'Shipped')">
+
+🚚 Ship
+
+</button>
+
+
+
+<button onclick="updateOrderStatus(${index},'Completed')">
+
+✔ Complete
+
+</button>
+
+
+</div>
+
+`;
+
+});
 }
 
 
