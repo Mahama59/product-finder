@@ -614,61 +614,89 @@ loadMerchantOrders();
 
 function loadMerchantOrders(){
 
-let box =
-document.getElementById("merchantOrders");
+    let box =
+    document.getElementById("merchantOrders");
 
-if(!box) return;
 
-let orders =
-JSON.parse(localStorage.getItem("orders")) || [];
+    if(!box) return;
 
-box.innerHTML = "";
 
-if(orders.length === 0){
+    let merchant =
+    JSON.parse(localStorage.getItem("merchant"));
 
-box.innerHTML =
-"<p>No customer orders yet.</p>";
 
-return;
+    let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
+
+
+
+    let myOrders =
+    orders.filter(function(order){
+
+
+        return order.items.some(function(item){
+
+            return item.merchantEmail === merchant.email;
+
+        });
+
+
+    });
+
+
+
+    box.innerHTML="";
+
+
+
+    if(myOrders.length === 0){
+
+        box.innerHTML =
+        "<p>No orders available.</p>";
+
+        return;
+
+    }
+
+
+
+    myOrders.forEach(function(order,index){
+
+
+        box.innerHTML += `
+
+        <div class="product">
+
+        <h3>
+        🛒 Order #${order.id}
+        </h3>
+
+        <p>
+        👤 Customer: ${order.customer}
+        </p>
+
+        <p>
+        💰 Total: $${order.total}
+        </p>
+
+        <p>
+        📦 Status: ${order.status}
+        </p>
+
+        <p>
+        📅 ${order.date}
+        </p>
+
+
+        </div>
+
+        `;
+
+
+    });
+
 
 }
-
-orders.forEach(function(order,index){
-
-box.innerHTML += `
-
-<div class="product">
-
-<h3>Order #${order.id}</h3>
-
-<p>Customer: ${order.customer}</p>
-
-<p>Total: $${order.total}</p>
-
-<p>Status: ${order.status}</p>
-
-<p>Date: ${order.date}</p>
-
-<button onclick="acceptOrder(${index})">
-✅ Accept
-</button>
-
-<button onclick="shipOrder(${index})">
-🚚 Ship
-</button>
-
-<button onclick="completeOrder(${index})">
-✔ Complete
-</button>
-
-</div>
-
-`;
-
-});
-
-}
-
 // ================= MERCHANT ORDERS =================
 
 
