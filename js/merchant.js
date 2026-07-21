@@ -972,17 +972,17 @@ return "";
 
 
 
-<button onclick="acceptOrder(${index})">
+<button onclick="acceptOrder(${realIndex})">
 ✅ Accept
 </button>
 
 
-<button onclick="shipOrder(${index})">
+<button onclick="shipOrder(${realIndex})">
 🚚 Ship
 </button>
 
 
-<button onclick="completeOrderStatus(${index})">
+<button onclick="completeOrderStatus(${realIndex})">
 ✔ Complete
 </button>
 
