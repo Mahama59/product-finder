@@ -143,7 +143,11 @@ let myProducts = products.filter(function(product){
 return product.merchantEmail === merchant.email;
 
 });
+console.log("Merchant:", merchant);
 
+console.log("All Products:", products);
+
+console.log("My Products:", myProducts);
 
 
 if(myProducts.length === 0){
