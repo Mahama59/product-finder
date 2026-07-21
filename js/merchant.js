@@ -658,7 +658,25 @@ return item.merchantEmail === merchant.email;
 
 });
 
+let newOrders =
+myOrders.filter(function(order){
 
+return order.status === "New";
+
+});
+
+
+let newOrderBox =
+document.getElementById("newOrders");
+
+
+if(newOrderBox){
+
+newOrderBox.innerText =
+newOrders.length;
+
+}
+    
 // Revenue
 
 let revenue = 0;
@@ -695,7 +713,7 @@ myProducts.length;
 
 
 let orderBox =
-document.getElementById("merchantOrderCount");
+document.getElementById("totalOrders");
 
 if(orderBox){
 
