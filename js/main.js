@@ -115,3 +115,72 @@ box.innerHTML += `
 document.getElementById("checkoutTotal").innerText = total;
 
 }
+
+// ================= PAYSTACK PAYMENT =================
+
+function payWithPaystack(){
+
+let email =
+document.getElementById("customerEmail").value;
+
+
+let total =
+Number(document.getElementById("checkoutTotal").innerText);
+
+
+
+if(!email){
+
+alert("Please enter your email");
+
+return;
+
+}
+
+
+if(total <= 0){
+
+alert("Your cart is empty");
+
+return;
+
+}
+
+
+
+let handler = PaystackPop.setup({
+
+key: "YOUR_PUBLIC_KEY",
+
+email: email,
+
+amount: total * 100,
+
+currency: "GHS",
+
+
+callback: function(response){
+
+
+alert("Payment successful. Reference: " + response.reference);
+
+
+completeOrder();
+
+
+},
+
+
+onClose: function(){
+
+alert("Payment cancelled");
+
+}
+
+
+});
+
+
+handler.openIframe();
+
+}
