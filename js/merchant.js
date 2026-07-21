@@ -446,7 +446,97 @@ function loadMerchantDashboard(){
     let orders =
     JSON.parse(localStorage.getItem("orders")) || [];
 
+// ================= ADVANCED MERCHANT ANALYTICS =================
 
+
+let soldProducts = 0;
+
+
+let myRevenue = 0;
+
+
+myOrders.forEach(function(order){
+
+
+    myRevenue += Number(order.total || 0);
+
+
+    order.items.forEach(function(item){
+
+        soldProducts += item.quantity;
+
+    });
+
+
+});
+
+
+
+// Products Sold
+
+let soldBox =
+document.getElementById("productsSold");
+
+
+if(soldBox){
+
+    soldBox.innerText =
+    soldProducts;
+
+}
+
+
+
+// Revenue
+
+let revenueBox =
+document.getElementById("totalRevenue");
+
+
+if(revenueBox){
+
+    revenueBox.innerText =
+    myRevenue;
+
+}
+
+
+
+// Followers
+
+let followers =
+localStorage.getItem("followers") || 0;
+
+
+let followerBox =
+document.getElementById("storeFollowersCount");
+
+
+if(followerBox){
+
+    followerBox.innerText =
+    followers;
+
+}
+
+
+
+// Store Views
+
+let views =
+localStorage.getItem("storeViews") || 0;
+
+
+let viewsBox =
+document.getElementById("storeViews");
+
+
+if(viewsBox){
+
+    viewsBox.innerText =
+    views;
+
+}
 
     // only this merchant products
 
