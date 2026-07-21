@@ -477,33 +477,8 @@ function loadMerchantDashboard(){
     JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
 
-    let orders =
-    JSON.parse(localStorage.getItem("orders")) || [];
-
-// ================= ADVANCED MERCHANT ANALYTICS =================
-
-
-let soldProducts = 0;
-
-
-let myRevenue = 0;
-
-
-myOrders.forEach(function(order){
-
-
-    myRevenue += Number(order.total || 0);
-
-
-    order.items.forEach(function(item){
-
-        soldProducts += item.quantity;
-
-    });
-
-
-});
-
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
 
 
 // Products Sold
@@ -595,7 +570,25 @@ if(viewsBox){
         });
 
     });
+// ================= ADVANCED MERCHANT ANALYTICS =================
 
+
+let soldProducts = 0;
+
+let myRevenue = 0;
+
+
+myOrders.forEach(function(order){
+
+    myRevenue += Number(order.total || 0);
+
+    order.items.forEach(function(item){
+
+        soldProducts += item.quantity;
+
+    });
+
+});
 
 
     let revenue = 0;
@@ -675,13 +668,14 @@ if(viewsBox){
 
 
     let totalRevenue =
-    document.getElementById("merchantTotalRevenue");
+    document.getElementById("
 
+  if(totalRevenue){
 
-    if(totalRevenue){
+    totalRevenue.innerText =
+    revenue;
 
-        totalRevenue.innerText =
-        revenue;
+}
 // ================= FINANCE ANALYTICS =================
 
 
@@ -689,7 +683,6 @@ let salesCount = 0;
 
 let completedOrders = 0;
 
-let totalRevenue = 0;
 
 
 
@@ -806,91 +799,7 @@ loadMerchantOrders();
 
 }
 
-function loadMerchantOrders(){
 
-    let box =
-    document.getElementById("merchantOrders");
-
-
-    if(!box) return;
-
-
-    let merchant =
-    JSON.parse(localStorage.getItem("merchant"));
-
-
-    let orders =
-    JSON.parse(localStorage.getItem("orders")) || [];
-
-
-
-    let myOrders =
-    orders.filter(function(order){
-
-
-        return order.items.some(function(item){
-
-            return item.merchantEmail === merchant.email;
-
-        });
-
-
-    });
-
-
-
-    box.innerHTML="";
-
-
-
-    if(myOrders.length === 0){
-
-        box.innerHTML =
-        "<p>No orders available.</p>";
-
-        return;
-
-    }
-
-
-
-    myOrders.forEach(function(order,index){
-
-
-        box.innerHTML += `
-
-        <div class="product">
-
-        <h3>
-        🛒 Order #${order.id}
-        </h3>
-
-        <p>
-        👤 Customer: ${order.customer}
-        </p>
-
-        <p>
-        💰 Total: $${order.total}
-        </p>
-
-        <p>
-        📦 Status: ${order.status}
-        </p>
-
-        <p>
-        📅 ${order.date}
-        </p>
-
-
-        </div>
-
-        `;
-
-
-    });
-
-
-}
 // ================= MERCHANT ORDERS =================
 
 
