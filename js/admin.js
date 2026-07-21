@@ -115,88 +115,106 @@ function adminLogin(){
 
 function loadAdminDashboard(){
 
-    let user =
-    JSON.parse(localStorage.getItem("user"));
+let user =
+JSON.parse(localStorage.getItem("user"));
+
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
 
-    let merchant =
-    JSON.parse(localStorage.getItem("merchant"));
+let usersBox =
+document.getElementById("totalUsers");
+
+let merchantsBox =
+document.getElementById("totalMerchants");
+
+let productsBox =
+document.getElementById("totalProducts");
 
 
-    let products =
-    JSON.parse(localStorage.getItem("merchantProducts")) || [];
+if(usersBox){
+usersBox.innerText = user ? 1 : 0;
+}
 
 
-
-    let usersBox =
-    document.getElementById("totalUsers");
-
-
-    let merchantsBox =
-    document.getElementById("totalMerchants");
+if(merchantsBox){
+merchantsBox.innerText = merchant ? 1 : 0;
+}
 
 
-    let productsBox =
-    document.getElementById("totalProducts");
+if(productsBox){
+productsBox.innerText = products.length;
+}
 
 
+// ORDER STATISTICS
 
-    if(usersBox){
-
-        usersBox.innerText = user ? 1 : 0;
-
-    }
-
-
-
-    if(merchantsBox){
-
-        merchantsBox.innerText = merchant ? 1 : 0;
-
-    }
-
-
-
-    if(productsBox){
-
-        productsBox.innerText = products.length;
-
-    }
 let orders =
 JSON.parse(localStorage.getItem("orders")) || [];
 
 
-let totalOrders =
+let orderBox =
 document.getElementById("adminTotalOrders");
 
 
-if(totalOrders){
+if(orderBox){
 
-totalOrders.innerText =
-orders.length;
+orderBox.innerText = orders.length;
 
 }
 
 
-let newOrders =
-orders.filter(function(order){
 
-return order.status === "New";
+let revenue = 0;
+
+let productsSold = 0;
+
+
+orders.forEach(function(order){
+
+revenue += Number(order.total || 0);
+
+
+if(order.items){
+
+order.items.forEach(function(item){
+
+productsSold += Number(item.quantity || 0);
+
+});
+
+}
 
 });
 
 
-let newOrderBox =
-document.getElementById("adminNewOrders");
+
+let revenueBox =
+document.getElementById("adminTotalRevenue");
 
 
-if(newOrderBox){
+if(revenueBox){
 
-newOrderBox.innerText =
-newOrders.length;
+revenueBox.innerText = revenue;
 
 }
-    
+
+
+
+let soldBox =
+document.getElementById("adminProductsSold");
+
+
+if(soldBox){
+
+soldBox.innerText = productsSold;
+
+}
+
+
 }
 // ================= ADMIN USERS =================
 
