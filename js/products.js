@@ -92,6 +92,7 @@ function saveProduct(){
 
 // ================= LOAD MARKETPLACE PRODUCTS =================
 
+// ================= LOAD MARKETPLACE PRODUCTS =================
 
 function loadMarketplaceProducts(){
 
@@ -102,34 +103,78 @@ function loadMarketplaceProducts(){
     if(!box) return;
 
 
-
     let products =
     JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
 
-
-    box.innerHTML="";
-
+    box.innerHTML = "";
 
 
-   products .filter(function(product){     return product.status === "Approved"; }) .forEach(function(product){
+    let approvedProducts =
+    products.filter(function(product){
+
+        return product.status === "Approved";
+
+    });
+
+
+
+    if(approvedProducts.length === 0){
+
+        box.innerHTML =
+        "<p>No approved products available.</p>";
+
+        return;
+
+    }
+
+
+
+    approvedProducts.forEach(function(product){
 
 
         box.innerHTML += `
 
         <div class="product">
 
-        <h3>${product.name}</h3>
+        <h3>
+        ${product.name}
+        </h3>
 
-        <p>💰 Price: $${product.price}</p>
 
-        <p>📂 Category: ${product.category}</p>
+        <p>
+        💰 Price: $${product.price}
+        </p>
 
-        <p>🏪 Seller: ${product.merchantName}</p>
 
-        <button onclick="addToCart('${product.name}',${product.price},${product.stock},'${product.merchantEmail}','${product.merchantName}')">
+        <p>
+        📂 Category: ${product.category}
+        </p>
+
+
+        <p>
+        🏪 Seller: ${product.merchantName}
+        </p>
+
+
+        <p>
+        📦 Stock: ${product.stock}
+        </p>
+
+
+
+        <button onclick="addToCart(
+        '${product.name}',
+        ${product.price},
+        ${product.stock},
+        '${product.merchantEmail}',
+        '${product.merchantName}'
+        )">
+
         🛒 Add To Cart
+
         </button>
+
 
         </div>
 
