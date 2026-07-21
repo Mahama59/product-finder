@@ -289,3 +289,16 @@ function completeOrder(){
     window.location.href="success.html";
 
 }
+
+// ================= PRODUCT VIEW =================
+
+function viewProduct(name){
+
+localStorage.setItem(
+"selectedProduct",
+name
+);
+
+window.location.href="product.html";
+
+}
