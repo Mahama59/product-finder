@@ -1078,23 +1078,32 @@ loadMerchantOrders();
 
 function completeOrderStatus(index){
 
-    let orders =
-    JSON.parse(localStorage.getItem("orders")) || [];
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
 
 
-    orders[index].status = "Completed";
+orders[index].status =
+"Completed";
 
 
-    localStorage.setItem(
-        "orders",
-        JSON.stringify(orders)
-    );
+orders[index].shippingStatus =
+"Delivered";
 
 
-    loadMerchantOrders();
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+
+
+alert("Order completed");
+
+
+loadMerchantOrders();
 
 }
-
 function updateOrderStatus(index,status){
 
 
