@@ -334,6 +334,39 @@ Status: ${product.status}
 `;
 
 });
+function approveProduct(index){
 
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+products[index].status = "Approved";
+
+localStorage.setItem(
+"merchantProducts",
+JSON.stringify(products)
+);
+
+alert("Product Approved ✅");
+
+loadAdminProducts();
+
+}
+
+}
+function rejectProduct(index){
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+products[index].status = "Rejected";
+
+localStorage.setItem(
+"merchantProducts",
+JSON.stringify(products)
+);
+
+alert("Product Rejected ❌");
+
+loadAdminProducts();
 
 }
