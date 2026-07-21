@@ -63,3 +63,55 @@ box.innerHTML += `
 });
 
 }
+
+function loadCheckout(){
+
+let box = document.getElementById("checkoutItems");
+
+if(!box) return;
+
+
+box.innerHTML="";
+
+
+if(cart.length === 0){
+
+box.innerHTML="<p>Cart is empty</p>";
+
+return;
+
+}
+
+
+let total = 0;
+
+
+cart.forEach(function(item){
+
+let subtotal = item.price * item.quantity;
+
+total += subtotal;
+
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>${item.name}</h3>
+
+<p>Price: $${item.price}</p>
+
+<p>Quantity: ${item.quantity}</p>
+
+<p>Total: $${subtotal}</p>
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("checkoutTotal").innerText = total;
+
+}
