@@ -416,20 +416,34 @@ function loadMerchantOrders() {
 
 }
 
+// ================= SHIP ORDER =================
+
 function shipOrder(index){
 
     let orders =
     JSON.parse(localStorage.getItem("orders")) || [];
 
 
+    if(!orders[index]){
+
+        alert("Order not found");
+
+        return;
+
+    }
+
+
     let trackingNumber =
     "PF" + Date.now();
 
 
-    orders[index].status = "Shipped";
+    orders[index].status =
+    "Shipped";
+
 
     orders[index].shippingStatus =
     "On the way";
+
 
     orders[index].trackingNumber =
     trackingNumber;
@@ -442,19 +456,32 @@ function shipOrder(index){
 
 
     alert(
-    "Order shipped.\nTracking Number: " 
+    "Order shipped.\nTracking: " 
     + trackingNumber
     );
 
 
     loadMerchantOrders();
 
+    loadMerchantDashboard();
+
 }
+
+// ================= COMPLETE ORDER =================
 
 function completeOrderStatus(index){
 
     let orders =
     JSON.parse(localStorage.getItem("orders")) || [];
+
+
+    if(!orders[index]){
+
+        alert("Order not found");
+
+        return;
+
+    }
 
 
     orders[index].status =
@@ -471,9 +498,51 @@ function completeOrderStatus(index){
     );
 
 
-    alert("Order delivered successfully");
+    alert("Order completed successfully");
 
 
     loadMerchantOrders();
+
+    loadMerchantDashboard();
+
+}
+
+// ================= ACCEPT ORDER =================
+
+function acceptOrder(index){
+
+    let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
+
+
+    if(!orders[index]){
+
+        alert("Order not found");
+
+        return;
+
+    }
+
+
+    orders[index].status =
+    "Accepted";
+
+
+    orders[index].shippingStatus =
+    "Processing";
+
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
+
+
+    alert("Order accepted");
+
+
+    loadMerchantOrders();
+
+    loadMerchantDashboard();
 
 }
