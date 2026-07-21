@@ -839,9 +839,10 @@ loadMerchantOrders();
 
 function loadMerchantOrders(){
 
+console.log("Merchant Orders Loaded");
+
 let box =
 document.getElementById("merchantOrders");
-
 
 if(!box) return;
 
