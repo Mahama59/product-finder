@@ -246,3 +246,80 @@ box.innerHTML += `
 
 
 }
+
+// ================= PRODUCT DETAILS =================
+
+
+function loadProductDetails(){
+
+let selectedProduct =
+localStorage.getItem("selectedProduct");
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+let product =
+products.find(function(item){
+
+return item.name === selectedProduct;
+
+});
+
+
+if(!product){
+
+alert("Product not found");
+return;
+
+}
+
+
+// Display product information
+
+document.getElementById("detailName").innerText =
+product.name;
+
+
+document.getElementById("detailPrice").innerText =
+"💰 Price: $" + product.price;
+
+
+document.getElementById("detailCategory").innerText =
+"📂 Category: " + product.category;
+
+
+document.getElementById("detailStock").innerText =
+"📦 Stock: " + product.stock;
+
+
+document.getElementById("detailDescription").innerText =
+product.description || "No description available";
+
+
+
+// Cart button
+
+let cartButton =
+document.getElementById("detailCartButton");
+
+
+if(cartButton){
+
+cartButton.onclick = function(){
+
+addToCart(
+product.name,
+product.price,
+product.stock,
+product.merchantEmail,
+product.merchantName
+);
+
+};
+
+}
+
+
+}
