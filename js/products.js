@@ -140,3 +140,32 @@ function loadMarketplaceProducts(){
 
 
 }
+function checkout(){
+
+    let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
+
+    let order = {
+        id: Date.now(),
+        customer: JSON.parse(localStorage.getItem("user"))?.name || "Guest",
+        items: cart,
+        total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+        status: "New",
+        date: new Date().toLocaleString()
+    };
+
+    orders.push(order);
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
+
+    // Clear the cart
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("Order placed successfully!");
+
+    window.location.href = "success.html";
+}
