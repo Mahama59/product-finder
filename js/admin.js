@@ -370,3 +370,54 @@ alert("Product Rejected ❌");
 loadAdminProducts();
 
 }
+
+// ================= APPROVE PRODUCT =================
+
+function approveProduct(index){
+
+    let products =
+    JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+    products[index].status = "Approved";
+
+
+    localStorage.setItem(
+        "merchantProducts",
+        JSON.stringify(products)
+    );
+
+
+    alert("Product approved successfully");
+
+
+    loadAdminProducts();
+
+}
+
+
+
+
+// ================= REJECT PRODUCT =================
+
+function rejectProduct(index){
+
+    let products =
+    JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+    products[index].status = "Rejected";
+
+
+    localStorage.setItem(
+        "merchantProducts",
+        JSON.stringify(products)
+    );
+
+
+    alert("Product rejected");
+
+
+    loadAdminProducts();
+
+}
