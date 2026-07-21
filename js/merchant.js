@@ -538,3 +538,60 @@ JSON.stringify(orders)
 loadMerchantOrders();
 
 }
+
+function loadMerchantOrders(){
+
+let box =
+document.getElementById("merchantOrders");
+
+if(!box) return;
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+box.innerHTML = "";
+
+if(orders.length === 0){
+
+box.innerHTML =
+"<p>No customer orders yet.</p>";
+
+return;
+
+}
+
+orders.forEach(function(order,index){
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>Order #${order.id}</h3>
+
+<p>Customer: ${order.customer}</p>
+
+<p>Total: $${order.total}</p>
+
+<p>Status: ${order.status}</p>
+
+<p>Date: ${order.date}</p>
+
+<button onclick="acceptOrder(${index})">
+✅ Accept
+</button>
+
+<button onclick="shipOrder(${index})">
+🚚 Ship
+</button>
+
+<button onclick="completeOrder(${index})">
+✔ Complete
+</button>
+
+</div>
+
+`;
+
+});
+
+}
