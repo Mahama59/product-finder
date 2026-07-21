@@ -466,290 +466,151 @@ ratingBox.innerText =
 
 function loadMerchantDashboard(){
 
-    let merchant =
-    JSON.parse(localStorage.getItem("merchant"));
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+if(!merchant) return;
 
 
-    if(!merchant) return;
-
-
-    let products =
-    JSON.parse(localStorage.getItem("merchantProducts")) || [];
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
 
 let orders =
 JSON.parse(localStorage.getItem("orders")) || [];
 
 
-// Products Sold
+// Merchant products
 
-let soldBox =
-document.getElementById("productsSold");
+let myProducts =
+products.filter(function(product){
+
+return product.merchantEmail === merchant.email;
+
+});
 
 
-if(soldBox){
+// Merchant orders
 
-    soldBox.innerText =
-    soldProducts;
+let myOrders =
+orders.filter(function(order){
 
-}
+return order.items.some(function(item){
 
+return item.merchantEmail === merchant.email;
+
+});
+
+});
 
 
 // Revenue
 
-let revenueBox =
-document.getElementById("totalRevenue");
+let revenue = 0;
 
+let soldProducts = 0;
+
+
+myOrders.forEach(function(order){
+
+revenue += Number(order.total || 0);
+
+
+order.items.forEach(function(item){
+
+soldProducts += Number(item.quantity || 0);
+
+});
+
+});
+
+
+// Display
+
+let productBox =
+document.getElementById("merchantProductCount");
+
+if(productBox){
+
+productBox.innerText =
+myProducts.length;
+
+}
+
+
+
+let orderBox =
+document.getElementById("merchantOrderCount");
+
+if(orderBox){
+
+orderBox.innerText =
+myOrders.length;
+
+}
+
+
+
+let revenueBox =
+document.getElementById("merchantRevenue");
 
 if(revenueBox){
 
-    revenueBox.innerText =
-    myRevenue;
+revenueBox.innerText =
+"$" + revenue;
 
 }
 
 
 
-// Followers
+let soldBox =
+document.getElementById("productsSold");
 
-let followers =
-localStorage.getItem("followers") || 0;
+if(soldBox){
 
-
-let followerBox =
-document.getElementById("storeFollowersCount");
-
-
-if(followerBox){
-
-    followerBox.innerText =
-    followers;
+soldBox.innerText =
+soldProducts;
 
 }
 
 
 
-// Store Views
+let totalRevenue =
+document.getElementById("totalRevenue");
 
-let views =
-localStorage.getItem("storeViews") || 0;
+if(totalRevenue){
+
+totalRevenue.innerText =
+revenue;
+
+}
+
 
 
 let viewsBox =
 document.getElementById("storeViews");
 
-
 if(viewsBox){
 
-    viewsBox.innerText =
-    views;
+viewsBox.innerText =
+localStorage.getItem("storeViews") || 0;
 
 }
 
-    // only this merchant products
 
-    let myProducts =
-    products.filter(function(product){
 
-        return product.merchantEmail === merchant.email;
+let followersBox =
+document.getElementById("storeFollowersCount");
 
-    });
+if(followersBox){
 
-
-
-    // orders belonging to this merchant
-
-    let myOrders =
-    orders.filter(function(order){
-
-        return order.items.some(function(item){
-
-            return item.merchantEmail === merchant.email;
-
-        });
-
-    });
-// ================= ADVANCED MERCHANT ANALYTICS =================
-
-
-let soldProducts = 0;
-
-let myRevenue = 0;
-
-
-myOrders.forEach(function(order){
-
-    myRevenue += Number(order.total || 0);
-
-    order.items.forEach(function(item){
-
-        soldProducts += item.quantity;
-
-    });
-
-});
-
-
-    let revenue = 0;
-
-
-    myOrders.forEach(function(order){
-
-        revenue += Number(order.total || 0);
-
-    });
-
-
-
-    let productCount =
-    document.getElementById("merchantProductCount");
-
-
-    if(productCount){
-
-        productCount.innerText =
-        myProducts.length;
-
-    }
-
-
-
-    let orderCount =
-    document.getElementById("merchantOrderCount");
-
-
-    if(orderCount){
-
-        orderCount.innerText =
-        myOrders.length;
-
-    }
-
-
-
-    let revenueBox =
-    document.getElementById("merchantRevenue");
-
-
-    if(revenueBox){
-
-        revenueBox.innerText =
-        "$" + revenue;
-
-    }
-
-
-
-    // analytics boxes
-
-    let totalProducts =
-    document.getElementById("merchantTotalProducts");
-
-
-    if(totalProducts){
-
-        totalProducts.innerText =
-        myProducts.length;
-
-    }
-
-
-    let totalOrders =
-    document.getElementById("merchantTotalOrders");
-
-
-    if(totalOrders){
-
-        totalOrders.innerText =
-        myOrders.length;
-
-    }
-
-
-    let totalRevenue =
-    document.getElementById("
-
-  if(totalRevenue){
-
-    totalRevenue.innerText =
-    revenue;
-
-}
-// ================= FINANCE ANALYTICS =================
-
-
-let salesCount = 0;
-
-let completedOrders = 0;
-
-
-
-
-myOrders.forEach(function(order){
-
-
-if(order.status === "Completed"){
-
-completedOrders++;
-
-totalRevenue += Number(order.total || 0);
+followersBox.innerText =
+localStorage.getItem("followers") || 0;
 
 }
 
 
-
-order.items.forEach(function(item){
-
-salesCount += item.quantity;
-
-});
-
-
-});
-
-
-
-let salesBox =
-document.getElementById("merchantSalesCount");
-
-
-if(salesBox){
-
-salesBox.innerText =
-salesCount;
-
 }
-
-
-
-let completedBox =
-document.getElementById("completedOrdersCount");
-
-
-if(completedBox){
-
-completedBox.innerText =
-completedOrders;
-
-}
-
-
-
-let averageBox =
-document.getElementById("averageOrderValue");
-
-
-if(averageBox && completedOrders > 0){
-
-averageBox.innerText =
-(totalRevenue / completedOrders).toFixed(2);
-
-        }
-    }
-
-}
-
 
 function acceptOrder(index){
 
