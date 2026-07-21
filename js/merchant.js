@@ -904,7 +904,14 @@ return;
 
 
 
-myOrders.forEach(function(order,index){
+myOrders.forEach(function(order){
+
+let realIndex =
+orders.findIndex(function(o){
+
+return o.id === order.id;
+
+});
 
 
 box.innerHTML += `
