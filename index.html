@@ -2,8 +2,11 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Product Finder</title>
 
@@ -11,28 +14,36 @@
 
 </head>
 
+<body onload="loadHomepageProducts()">
 
-<body onload="loadMarketplaceProducts()">
-
+<!-- Navigation -->
 
 <nav>
 
 <h2>🛍️ Product Finder</h2>
 
- <div class="menu">
+<div class="menu">
 
 <a href="index.html">Home</a>
+
+<a href="products.html">Products</a>
 
 <a href="categories.html">Categories</a>
 
 <a href="about.html">About</a>
 
 <a href="contact.html">Contact</a>
+
+<a href="notifications.html">
+🔔 Notifications
+</a>
+
 <a href="customer-dashboard.html">
 👤 My Account
 </a>
+
 <a href="merchant-login.html">
-🔐 Merchant Login
+🔐 Seller Login
 </a>
 
 <a href="merchant-register.html">
@@ -43,497 +54,243 @@
 
 </nav>
 
-
+<!-- Hero -->
 
 <header class="hero">
 
-<h1>
-🛍️ Product Finder
-</h1>
-<h2>🔥 Marketplace Products</h2>
-
-<div id="marketplaceProducts" class="product-grid">
-
-</div>
+<h1>🛍️ Welcome to Product Finder</h1>
 
 <p>
-Find, compare and buy the best products from trusted sellers.
-</p>
-<a href="notifications.html">🔔 Notifications</a>
 
-<a href="#products">
+Find, compare and buy products from trusted sellers around the world.
+
+</p>
+
+<a href="#marketplaceProducts">
 
 <button>
-Start Shopping
-</button>
-<button onclick="testConnection()">
-Test Script
-</button>
-</a>
 
+🚀 Start Shopping
+
+</button>
+
+</a>
 
 </header>
 
+<!-- Welcome -->
 
-
-<h3 id="welcomeUser"></h3>
+<h2 id="welcomeUser"></h2>
 
 <button onclick="logoutUser()">
+
 Logout
+
 </button>
 
-
+<!-- Search -->
 
 <section class="search-section">
-<section>
 
-<h2>
-📂 Popular Categories
-</h2>
+<h2>🔍 Search Products</h2>
 
-
-<div class="product-grid">
-
-
-<div class="product">
-
-<h3>
-📱 Electronics
-</h3>
-
-<p>
-Phones, gadgets and smart devices
-</p>
-
-</div>
-
-
-
-<div class="product">
-
-<h3>
-💻 Computers
-</h3>
-
-<p>
-Laptops and accessories
-</p>
-
-</div>
-
-
-
-
-<div class="product">
-
-<h3>
-🎧 Audio
-</h3>
-
-<p>
-Headphones and speakers
-</p>
-
-</div>
-
-
-</div>
-
-
-</section>
-<input 
-id="searchInput" 
-type="text" 
-placeholder="Search for products...">
-
+<input
+id="searchInput"
+type="text"
+placeholder="Search products...">
 
 <button onclick="searchProducts()">
+
 Search
+
 </button>
 
 </section>
 
+<!-- Filters -->
 
+<section class="search-section">
 
-<h2>🔍 Filter Products</h2>
+<h2>📂 Filter Products</h2>
 
-<select id="categoryFilter" onchange="filterProducts()">
+<select
+id="categoryFilter"
+onchange="filterProducts()">
 
-<option value="all">
-All Categories
-</option>
+<option value="all">All Categories</option>
 
-<option value="electronics">
-Electronics
-</option>
+<option value="electronics">Electronics</option>
 
-<option value="computers">
-Computers
-</option>
+<option value="computers">Computers</option>
 
-<option value="audio">
-Audio
-</option>
+<option value="audio">Audio</option>
 
 </select>
 
+<br><br>
 
-<h3>
-Sort Products
-</h3>
+<input
+id="maxPrice"
+type="number"
+placeholder="Maximum Price"
+onkeyup="filterProducts()">
 
-<select id="sortProducts" onchange="sortProducts()">
+<br><br>
+
+<select
+id="sortProducts"
+onchange="sortProducts()">
 
 <option value="default">
 Default
 </option>
 
 <option value="low">
-💰 Price Low to High
+Price Low → High
 </option>
 
 <option value="high">
-💰 Price High to Low
+Price High → Low
 </option>
 
 </select>
 
+</section>
+<!-- Marketplace Products -->
 
-<br><br>
+<section>
 
+<h2 id="products">
+🔥 Marketplace Products
+</h2>
 
-<input
-type="number"
-id="maxPrice"
-placeholder="Maximum Price"
-onkeyup="filterProducts()">
-
-
-
-<div class="cart-box">
-
-
-<div class="compare-box">
-
-⚖️ Compare Products:
-
-<a href="compare.html">
-
-<button>
-View Comparison
-</button>
-
-</a>
+<div
+id="marketplaceProducts"
+class="product-grid">
 
 </div>
 
+</section>
 
 
-<a href="checkout.html">
+<!-- Recently Viewed -->
 
-<button>
-Proceed to Checkout
-</button>
+<section>
 
-</a>
-
-
-<br><br>
-
-
-🛒 Cart Items:
-
-<span id="cartCount">
-0
-</span>
-
-
-<button onclick="viewCart()">
-View Cart
-</button>
-
-
-</div>
-
-
-
-<div id="cartList"></div>
-
-
-
-<div class="wishlist-box">
-
-
-❤️ Wishlist:
-
-<span id="wishlistCount">
-0
-</span>
-
-
-<button onclick="viewWishlist()">
-View Wishlist
-</button>
-
-
-</div>
-
-
-
-<div id="wishlistList"></div>
-
-
-
-
-<h2>🏪 Merchant Products</h2>
 <h2>
 👀 Recently Viewed
 </h2>
 
-
-<div id="recentProducts" class="product-grid">
-
-</div>
-
-<div id="merchantMarketplace" class="product-grid">
+<div
+id="recentProducts"
+class="product-grid">
 
 </div>
 
+</section>
 
 
+<!-- Featured Products -->
 
-<h2>⭐ Featured Products</h2>
-<div id="featuredProducts" class="product-grid">
-
-</div>
-
-<div class="product-grid">
-
-
-
-<div class="product" data-category="electronics">
-
-
-<img src="https://via.placeholder.com/200" alt="Smartphone">
-
-
-<h3>📱 Smartphone</h3>
-
-
-<p>
-<strong>Price:</strong> $499
-</p>
-
-
-<p>
-⭐⭐⭐⭐☆ (4.5/5)
-</p>
-
-
-<p>
-Latest Android smartphone with a great camera.
-</p>
-
-
-
-<a href="product.html">
-
-<button>
-View Details
-</button>
-
-</a>
-
-
-<button onclick="addToCart('Smartphone',499,10,'seller@email.com','Smartphone Store')">
-🛒 Add to Cart
-</button>
-
-
-<button onclick="addToCompare('Smartphone',499,'Electronics')">
-
-⚖️ Compare
-
-</button>
-
-
-
-<button onclick="addToWishlist('Smartphone')">
-
-❤️ Favorite
-
-</button>
-
-
-</div>
-
-
-
-
-
-<div class="product" data-category="computers">
-
-
-<img src="https://via.placeholder.com/200" alt="Laptop">
-
-
-<h3>💻 Laptop</h3>
-
-
-<p>
-<strong>Price:</strong> $899
-</p>
-
-
-<p>
-⭐⭐⭐⭐⭐ (5/5)
-</p>
-
-
-<p>
-Powerful laptop for work and gaming.
-</p>
-
-
-
-<a href="product.html">
-
-<button>
-View Details
-</button>
-
-</a>
-
-
- <button onclick="addToCart('Laptop',899,10,'seller@email.com','Laptop Store')">
-🛒 Add to Cart
-</button>
-
-
-
-<button onclick="addToCompare('Laptop',899,'Computers')">
-
-⚖️ Compare
-
-</button>
-
-
-
-<button onclick="addToWishlist('Laptop')">
-
-❤️ Favorite
-
-</button>
-
-
-</div>
-
-
-
-
-
-
-<div class="product" data-category="audio">
-
-
-<img src="https://via.placeholder.com/200" alt="Headphones">
-
-
-<h3>🎧 Headphones</h3>
-
-
-<p>
-<strong>Price:</strong> $149
-</p>
-
-
-<p>
-⭐⭐⭐⭐☆ (4/5)
-</p>
-
-
-<p>
-Premium wireless headphones.
-</p>
-
-<a href="wishlist.html">
-❤️ Wishlist
-</a>
-
-<a href="product.html">
-
-<button>
-View Details
-</button>
-
-</a>
-
-
-<button onclick="addToCart('Headphones',149,10,'seller@email.com','Audio Store')">
-🛒 Add to Cart
-</button>
-
-
-<button onclick="addToCompare('Headphones',149,'Audio')">
-
-⚖️ Compare
-
-</button>
-
-
-
-<button onclick="addToWishlist('Headphones')">
-
-❤️ Favorite
-
-</button>
-
-
-</div>
-
-
-
-</div>
-
-<section class="product">
+<section>
 
 <h2>
-🏪 Sell With Product Finder
+⭐ Featured Products
 </h2>
 
+<div
+id="featuredProducts"
+class="product-grid">
+
+</div>
+
+</section>
+
+
+<!-- Merchant Marketplace -->
+
+<section>
+
+<h2>
+🏪 Merchant Products
+</h2>
+
+<div
+id="merchantMarketplace"
+class="product-grid">
+
+</div>
+
+</section>
+<!-- Compare -->
+
+<section class="compare-box">
+
+<h2>⚖️ Compare Products</h2>
 
 <p>
-Join thousands of sellers and grow your business online.
+
+Products Selected:
+<span id="compareCount">0</span>
+
 </p>
 
-
-<a href="merchant-register.html">
+<a href="compare.html">
 
 <button>
-Become a Seller
+
+View Comparison
+
 </button>
 
 </a>
-
 
 </section>
 
 
 
-<footer>
+<!-- Shopping Cart -->
+
+<section class="cart-box">
+
+<h2>🛒 Shopping Cart</h2>
 
 <p>
-© 2026 Product Finder. All rights reserved.
+
+Items:
+<span id="cartCount">0</span>
+
 </p>
 
+<button onclick="viewCart()">
 
-</footer>
-<script src="js/cart.js"></script>
-<script src="js/wishlist.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/merchant.js"></script>
-<script src="js/products.js"></script>
-<script src="js/main.js"></script>
-</body>
+View Cart
 
-</html>
+</button>
+
+<a href="checkout.html">
+
+<button>
+
+Proceed to Checkout
+
+</button>
+
+</a>
+
+<div id="cartList"></div>
+
+</section>
+
+
+
+<!-- Wishlist -->
+
+<section class="wishlist-box">
+
+<h2>❤️ Wishlist</h2>
+
+<p>
+
+Saved Items:
+<span id="
