@@ -280,8 +280,9 @@ localStorage.getItem("followers") || 0;
 
 
 
-products.forEach(function(product){
+if(productBox){
 
+products.forEach(function(product){
 
 productBox.innerHTML += `
 
