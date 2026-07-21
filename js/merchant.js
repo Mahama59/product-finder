@@ -860,8 +860,7 @@ box.innerHTML += `
 
 
 <p>
-👤 Customer:
-${order.customer}
+👤 Customer: ${order.customer || "Guest"}
 </p>
 
 
