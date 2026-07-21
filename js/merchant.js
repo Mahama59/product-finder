@@ -1039,24 +1039,41 @@ function acceptOrder(index){
 
 function shipOrder(index){
 
-    let orders =
-    JSON.parse(localStorage.getItem("orders")) || [];
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
 
 
-    orders[index].status = "Shipped";
+let tracking =
+"PF" + Date.now();
 
 
-    localStorage.setItem(
-        "orders",
-        JSON.stringify(orders)
-    );
+
+orders[index].status = "Shipped";
+
+orders[index].shippingStatus =
+"Shipped";
+
+orders[index].trackingNumber =
+tracking;
 
 
-    loadMerchantOrders();
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+
+
+alert(
+"Order shipped. Tracking Number: " + tracking
+);
+
+
+
+loadMerchantOrders();
 
 }
-
-
 
 
 function completeOrderStatus(index){
