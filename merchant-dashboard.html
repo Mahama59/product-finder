@@ -161,17 +161,25 @@ $<span id="averageOrderValue">0</span>
 
 <p>© 2026 Product Finder</p>
 </footer>
-
-<script src="js/products.js"></script>
 <script src="js/merchant.js"></script>
+<script src="js/products.js"></script>
 <script src="js/main.js"></script>
+
 <script>
+
+loadMerchantDashboard();
+loadMerchantOrders();
+
+
 let merchant = JSON.parse(localStorage.getItem("merchant"));
 
 if(merchant){
-    document.getElementById("merchantWelcome").innerText =
-    "Welcome, " + merchant.name;
+
+document.getElementById("merchantWelcome").innerText =
+"Welcome, " + merchant.name;
+
 }
+
 </script>
 
 </body>
