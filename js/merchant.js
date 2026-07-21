@@ -278,6 +278,12 @@ localStorage.getItem("followers") || 0;
 
 if(productBox){
 
+productBox.innerHTML = "";
+
+
+products.forEach(function(product){
+
+
 productBox.innerHTML += `
 
 <div class="product">
@@ -309,13 +315,11 @@ productBox.innerHTML += `
 </button>
 
 
-
 <button onclick="addToCompare('${product.name}',${product.price},'${product.category}')">
 
 ⚖️ Compare
 
 </button>
-
 
 
 <button onclick="addToWishlist('${product.name}')">
@@ -329,16 +333,13 @@ productBox.innerHTML += `
 
 `;
 
+
 });
 
 
 }
 
 }
-
-
-
-
 function followStore(){
 
 let followers =
