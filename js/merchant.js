@@ -491,3 +491,50 @@ revenueBox.innerText =
 
 
 }
+function acceptOrder(index){
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+orders[index].status = "Accepted";
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+loadMerchantOrders();
+
+}
+
+function shipOrder(index){
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+orders[index].status = "Shipped";
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+loadMerchantOrders();
+
+}
+
+function completeOrder(index){
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+orders[index].status = "Completed";
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+loadMerchantOrders();
+
+}
