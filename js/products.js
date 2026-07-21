@@ -29,7 +29,8 @@ function saveProduct(){
 
     let stock =
     Number(document.getElementById("productStock").value);
-
+let image =
+document.getElementById("imagePreview").src;
 
 
     if(!name || !price || !category || !stock){
@@ -53,20 +54,22 @@ function saveProduct(){
 
     }
 
+let product = {
+
+    name: name,
+    price: Number(price),
+    category: category,
+    description: description,
+    stock: stock,
+    image: image,
+    status: "Pending",
+    merchantName: merchant.name,
+    merchantEmail: merchant.email
+
+};
 
 
-    let product = {
-
-        name:name,
-        price:Number(price),
-        category:category,
-        description:description,
-        stock:stock,
-        status:"Pending",
-        merchantName:merchant.name,
-        merchantEmail:merchant.email
-
-    };
+    
 
 
 
