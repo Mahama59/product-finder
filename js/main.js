@@ -184,3 +184,12 @@ alert("Payment cancelled");
 handler.openIframe();
 
 }
+
+function checkOrders(){
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+alert(JSON.stringify(orders));
+
+}
