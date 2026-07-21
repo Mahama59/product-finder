@@ -278,12 +278,6 @@ localStorage.getItem("followers") || 0;
 
 if(productBox){
 
-productBox.innerHTML="";
-
-
-products.forEach(function(product){
-
-
 productBox.innerHTML += `
 
 <div class="product">
@@ -294,11 +288,42 @@ productBox.innerHTML += `
 
 <p>📂 Category: ${product.category}</p>
 
-<button onclick="addToCart('${product.name}',${product.price},${product.stock})">
+<p>📦 Stock: ${product.stock}</p>
+
+<p>${product.description || ""}</p>
+
+
+<a href="product.html">
+
+<button>
+👀 View Details
+</button>
+
+</a>
+
+
+<button onclick="addToCart('${product.name}',${product.price},${product.stock},'${product.merchantEmail}','${merchant.storeName}')">
 
 🛒 Add To Cart
 
 </button>
+
+
+
+<button onclick="addToCompare('${product.name}',${product.price},'${product.category}')">
+
+⚖️ Compare
+
+</button>
+
+
+
+<button onclick="addToWishlist('${product.name}')">
+
+❤️ Favorite
+
+</button>
+
 
 </div>
 
