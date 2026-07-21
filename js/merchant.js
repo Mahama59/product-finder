@@ -943,10 +943,15 @@ ${order.customer || "Guest"}
 
 
 <p>
-💰 Total:
-$${order.total}
+💰 Merchant Total:
+$${order.items
+.filter(function(item){
+return item.merchantEmail === merchant.email;
+})
+.reduce(function(sum,item){
+return sum + (item.price * item.quantity);
+},0)}
 </p>
-
 
 <p>
 📦 Status:
