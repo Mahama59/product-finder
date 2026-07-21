@@ -237,10 +237,6 @@ function completeOrder(){
     JSON.parse(localStorage.getItem("orders")) || [];
 
 
-    let user =
-    JSON.parse(localStorage.getItem("user")) || {name:"Guest"};
-
-
     let cart =
     JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -253,26 +249,34 @@ function completeOrder(){
     }
 
 
-  let order = {
+    let user =
+    JSON.parse(localStorage.getItem("user")) || {
+        name:"Guest"
+    };
 
-    id: Date.now(),
 
-    customer:
-    JSON.parse(localStorage.getItem("user"))?.name || "Guest",
+    let order = {
 
-    items: cart,
+        id: Date.now(),
 
-    total:
-    cart.reduce(
-        (sum,item)=>sum + (item.price * item.quantity),
-        0
-    ),
+        customer:user.name,
 
-    status:"New",
+        items:cart,
 
-    date:new Date().toLocaleString()
+        total:cart.reduce(
+            function(sum,item){
 
-};
+                return sum + (item.price * item.quantity);
+
+            },0
+        ),
+
+        status:"New",
+
+        date:new Date().toLocaleString()
+
+    };
+
 
     orders.push(order);
 
@@ -283,7 +287,10 @@ function completeOrder(){
     );
 
 
-    // clear cart
+    console.log("ORDER SAVED:", order);
+
+
+    // empty cart
 
     localStorage.removeItem("cart");
 
