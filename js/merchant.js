@@ -846,11 +846,8 @@ document.getElementById("merchantOrders");
 
 if(!box) return;
 
-
-
 let merchant =
 JSON.parse(localStorage.getItem("merchant"));
-
 
 
 if(!merchant){
