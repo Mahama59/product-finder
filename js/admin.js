@@ -162,7 +162,41 @@ function loadAdminDashboard(){
         productsBox.innerText = products.length;
 
     }
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
 
+
+let totalOrders =
+document.getElementById("adminTotalOrders");
+
+
+if(totalOrders){
+
+totalOrders.innerText =
+orders.length;
+
+}
+
+
+let newOrders =
+orders.filter(function(order){
+
+return order.status === "New";
+
+});
+
+
+let newOrderBox =
+document.getElementById("adminNewOrders");
+
+
+if(newOrderBox){
+
+newOrderBox.innerText =
+newOrders.length;
+
+}
+    
 }
 // ================= ADMIN USERS =================
 
