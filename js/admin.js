@@ -508,3 +508,66 @@ box.innerHTML += `
 });
 
 }
+function loadAdminOrders(){
+
+let box =
+document.getElementById("adminOrders");
+
+
+if(!box) return;
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+box.innerHTML = "";
+
+
+if(orders.length === 0){
+
+box.innerHTML =
+"<p>No orders found.</p>";
+
+return;
+
+}
+
+
+orders.forEach(function(order){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>
+🛒 Order #${order.id}
+</h3>
+
+<p>
+👤 Customer: ${order.customer || "Guest"}
+</p>
+
+<p>
+💰 Total: $${order.total}
+</p>
+
+<p>
+📦 Status: ${order.status}
+</p>
+
+<p>
+📅 ${order.date}
+</p>
+
+
+</div>
+
+`;
+
+
+});
+
+
+}
