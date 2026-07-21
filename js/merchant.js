@@ -167,18 +167,11 @@ function loadMerchantDashboard(){
 
     // Dashboard Summary
 
-    document.getElementById("merchantProductCount").innerText =
-    myProducts.length;
-
-    document.getElementById("merchantOrderCount").innerText =
-    myOrders.length;
-
+    
     document.getElementById("newOrders").innerText =
     newOrders.length;
 
-    document.getElementById("merchantRevenue").innerText =
-    "$" + revenue;
-
+    
     document.getElementById("productsSold").innerText =
     soldProducts;
 
@@ -192,6 +185,17 @@ function loadMerchantDashboard(){
 
     document.getElementById("averageOrderValue").innerText =
     "$" + averageOrderValue;
+
+document.getElementById("merchantTotalProducts").innerText =
+myProducts.length;
+
+
+document.getElementById("merchantTotalOrders").innerText =
+myOrders.length;
+
+
+document.getElementById("merchantTotalRevenue").innerText =
+revenue;
 
     // Store Stats
 
