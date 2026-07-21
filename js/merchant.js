@@ -902,12 +902,26 @@ return;
 
 
 
+// Merchant Revenue (only this merchant products)
+
+let revenue = 0;
+
+let soldProducts = 0;
+
+
 myOrders.forEach(function(order){
 
-let realIndex =
-orders.findIndex(function(o){
+order.items.forEach(function(item){
 
-return o.id === order.id;
+if(item.merchantEmail === merchant.email){
+
+revenue += Number(item.price * item.quantity);
+
+soldProducts += Number(item.quantity);
+
+}
+
+});
 
 });
 
