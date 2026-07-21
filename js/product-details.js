@@ -4,7 +4,7 @@
 function loadProductDetails(){
 
 
-let selectedName =
+let selectedProduct =
 localStorage.getItem("selectedProduct");
 
 
@@ -16,7 +16,7 @@ JSON.parse(localStorage.getItem("merchantProducts")) || [];
 let product =
 products.find(function(item){
 
-return item.name === selectedName;
+return item.name === selectedProduct;
 
 });
 
@@ -32,25 +32,22 @@ return;
 
 
 
+// Product information
 
 document.getElementById("detailName").innerText =
 product.name;
-
 
 
 document.getElementById("detailPrice").innerText =
 "💰 Price: $" + product.price;
 
 
-
 document.getElementById("detailCategory").innerText =
 "📂 Category: " + product.category;
 
 
-
 document.getElementById("detailStock").innerText =
 "📦 Stock: " + product.stock;
-
 
 
 document.getElementById("detailDescription").innerText =
@@ -58,7 +55,7 @@ product.description || "No description available";
 
 
 
-// image support
+// Product image
 
 let image =
 document.getElementById("detailImage");
@@ -72,7 +69,7 @@ image.src = product.image;
 
 
 
-// Add cart button
+// Cart button
 
 let cartButton =
 document.getElementById("detailCartButton");
@@ -80,9 +77,7 @@ document.getElementById("detailCartButton");
 
 if(cartButton){
 
-
 cartButton.onclick = function(){
-
 
 addToCart(
 product.name,
@@ -92,21 +87,23 @@ product.merchantEmail,
 product.merchantName
 );
 
-
 };
-
 
 }
 
 
 
-// save seller for chat
+// Save seller
 
 localStorage.setItem(
 "selectedSeller",
 product.merchantEmail
 );
 
+
+// Load reviews
+
+loadReviews();
 
 }
 
@@ -137,10 +134,8 @@ seller
 );
 
 
-
 window.location.href =
 "customer-chat.html";
-
 
 }
 
@@ -193,7 +188,6 @@ alert("Review submitted ⭐");
 
 loadReviews();
 
-
 }
 
 
@@ -243,83 +237,6 @@ box.innerHTML += `
 
 
 });
-
-
-}
-
-// ================= PRODUCT DETAILS =================
-
-
-function loadProductDetails(){
-
-let selectedProduct =
-localStorage.getItem("selectedProduct");
-
-
-let products =
-JSON.parse(localStorage.getItem("merchantProducts")) || [];
-
-
-let product =
-products.find(function(item){
-
-return item.name === selectedProduct;
-
-});
-
-
-if(!product){
-
-alert("Product not found");
-return;
-
-}
-
-
-// Display product information
-
-document.getElementById("detailName").innerText =
-product.name;
-
-
-document.getElementById("detailPrice").innerText =
-"💰 Price: $" + product.price;
-
-
-document.getElementById("detailCategory").innerText =
-"📂 Category: " + product.category;
-
-
-document.getElementById("detailStock").innerText =
-"📦 Stock: " + product.stock;
-
-
-document.getElementById("detailDescription").innerText =
-product.description || "No description available";
-
-
-
-// Cart button
-
-let cartButton =
-document.getElementById("detailCartButton");
-
-
-if(cartButton){
-
-cartButton.onclick = function(){
-
-addToCart(
-product.name,
-product.price,
-product.stock,
-product.merchantEmail,
-product.merchantName
-);
-
-};
-
-}
 
 
 }
