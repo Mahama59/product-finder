@@ -112,7 +112,7 @@ function loadMarketplaceProducts(){
 
 
 
-    products.forEach(function(product){
+   products .filter(function(product){     return product.status === "Approved"; }) .forEach(function(product){
 
 
         box.innerHTML += `
