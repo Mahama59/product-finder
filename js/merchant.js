@@ -428,69 +428,142 @@ ${review.date}
 
 }
 // ================= MERCHANT DASHBOARD =================
+// ================= MERCHANT DASHBOARD =================
 
 function loadMerchantDashboard(){
 
-
-let products =
-JSON.parse(localStorage.getItem("merchantProducts")) || [];
-
-
-let orders =
-JSON.parse(localStorage.getItem("orders")) || [];
+    let merchant =
+    JSON.parse(localStorage.getItem("merchant"));
 
 
-// Product count
+    if(!merchant) return;
 
-let productCount =
-document.getElementById("merchantProductCount");
 
-if(productCount){
+    let products =
+    JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
-productCount.innerText =
-products.length;
+
+    let orders =
+    JSON.parse(localStorage.getItem("orders")) || [];
+
+
+
+    // only this merchant products
+
+    let myProducts =
+    products.filter(function(product){
+
+        return product.merchantEmail === merchant.email;
+
+    });
+
+
+
+    // orders belonging to this merchant
+
+    let myOrders =
+    orders.filter(function(order){
+
+        return order.items.some(function(item){
+
+            return item.merchantEmail === merchant.email;
+
+        });
+
+    });
+
+
+
+    let revenue = 0;
+
+
+    myOrders.forEach(function(order){
+
+        revenue += Number(order.total || 0);
+
+    });
+
+
+
+    let productCount =
+    document.getElementById("merchantProductCount");
+
+
+    if(productCount){
+
+        productCount.innerText =
+        myProducts.length;
+
+    }
+
+
+
+    let orderCount =
+    document.getElementById("merchantOrderCount");
+
+
+    if(orderCount){
+
+        orderCount.innerText =
+        myOrders.length;
+
+    }
+
+
+
+    let revenueBox =
+    document.getElementById("merchantRevenue");
+
+
+    if(revenueBox){
+
+        revenueBox.innerText =
+        "$" + revenue;
+
+    }
+
+
+
+    // analytics boxes
+
+    let totalProducts =
+    document.getElementById("merchantTotalProducts");
+
+
+    if(totalProducts){
+
+        totalProducts.innerText =
+        myProducts.length;
+
+    }
+
+
+    let totalOrders =
+    document.getElementById("merchantTotalOrders");
+
+
+    if(totalOrders){
+
+        totalOrders.innerText =
+        myOrders.length;
+
+    }
+
+
+    let totalRevenue =
+    document.getElementById("merchantTotalRevenue");
+
+
+    if(totalRevenue){
+
+        totalRevenue.innerText =
+        revenue;
+
+    }
 
 }
 
 
-// Order count
-
-let orderCount =
-document.getElementById("merchantOrderCount");
-
-if(orderCount){
-
-orderCount.innerText =
-orders.length;
-
-}
-
-
-// Revenue
-
-let revenue = 0;
-
-
-orders.forEach(function(order){
-
-revenue += Number(order.total || 0);
-
-});
-
-
-let revenueBox =
-document.getElementById("merchantRevenue");
-
-
-if(revenueBox){
-
-revenueBox.innerText =
-"$" + revenue;
-
-}
-
-
-}
 function acceptOrder(index){
 
 let orders =
