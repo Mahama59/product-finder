@@ -821,32 +821,72 @@ loadMerchantOrders();
 
 function loadMerchantOrders(){
 
-    let box =
-    document.getElementById("merchantOrders");
+let box =
+document.getElementById("merchantOrders");
 
 
-    if(!box) return;
-
-
-    let orders =
-    JSON.parse(localStorage.getItem("orders")) || [];
-
-
-    box.innerHTML = "";
-
-
-    if(orders.length === 0){
-
-        box.innerHTML =
-        "<p>No orders available.</p>";
-
-        return;
-
-    }
+if(!box) return;
 
 
 
-orders.forEach(function(order,index){
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+
+
+if(!merchant){
+
+box.innerHTML =
+"<p>No merchant account found.</p>";
+
+return;
+
+}
+
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+
+box.innerHTML = "";
+
+
+
+// Only this merchant orders
+
+let myOrders =
+orders.filter(function(order){
+
+
+return order.items.some(function(item){
+
+
+return item.merchantEmail === merchant.email;
+
+
+});
+
+
+});
+
+
+
+if(myOrders.length === 0){
+
+
+box.innerHTML =
+"<p>No orders available.</p>";
+
+
+return;
+
+}
+
+
+
+myOrders.forEach(function(order,index){
 
 
 box.innerHTML += `
@@ -860,7 +900,8 @@ box.innerHTML += `
 
 
 <p>
-👤 Customer: ${order.customer || "Guest"}
+👤 Customer:
+${order.customer || "Guest"}
 </p>
 
 
@@ -872,16 +913,13 @@ $${order.total}
 
 <p>
 📦 Status:
-<strong>${order.status}</strong>
+${order.status}
 </p>
 
 
 <p>
 📅 ${order.date}
 </p>
-
-
-<hr>
 
 
 <h4>
@@ -891,39 +929,36 @@ Products:
 
 ${order.items.map(function(item){
 
+if(item.merchantEmail === merchant.email){
+
 return `
 
 <p>
-${item.name} 
-x ${item.quantity}
+${item.name} x ${item.quantity}
 </p>
 
 `;
+
+}
+
+return "";
 
 }).join("")}
 
 
 
-<button onclick="updateOrderStatus(${index},'Accepted')">
-
+<button onclick="acceptOrder(${index})">
 ✅ Accept
-
 </button>
 
 
-
-<button onclick="updateOrderStatus(${index},'Shipped')">
-
+<button onclick="shipOrder(${index})">
 🚚 Ship
-
 </button>
 
 
-
-<button onclick="updateOrderStatus(${index},'Completed')">
-
+<button onclick="completeOrderStatus(${index})">
 ✔ Complete
-
 </button>
 
 
@@ -932,8 +967,9 @@ x ${item.quantity}
 `;
 
 });
-}
 
+
+}
 
 
 
