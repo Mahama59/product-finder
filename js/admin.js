@@ -473,3 +473,38 @@ function rejectProduct(index){
     loadAdminProducts();
 
 }
+
+function checkOrders(){
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+let box =
+document.getElementById("adminOrders");
+
+
+box.innerHTML="";
+
+
+orders.forEach(function(order){
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>Order #${order.id}</h3>
+
+<p>Customer: ${order.customer || "Guest"}</p>
+
+<p>Total: $${order.total}</p>
+
+<p>Status: ${order.status}</p>
+
+</div>
+
+`;
+
+});
+
+}
