@@ -140,6 +140,7 @@ function loadMarketplaceProducts(){
 
 
 }
+
 function checkout(){
 
     let orders =
@@ -161,11 +162,19 @@ function checkout(){
         JSON.stringify(orders)
     );
 
-    // Clear the cart
+    // Clear cart
     cart = [];
-    localStorage.setItem("cart", JSON.stringify(cart));
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    // Update cart display
+    updateCartCount();
 
     alert("Order placed successfully!");
 
     window.location.href = "success.html";
+
 }
