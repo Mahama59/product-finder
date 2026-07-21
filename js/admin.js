@@ -387,6 +387,7 @@ Status: ${product.status}
 
 });
 
+}
 // ================= APPROVE PRODUCT =================
 
 function approveProduct(index){
