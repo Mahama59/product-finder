@@ -302,3 +302,71 @@ name
 window.location.href="product.html";
 
 }
+
+// ================= MARKETPLACE HOME =================
+
+function loadHomepageProducts(){
+
+let box =
+document.getElementById("marketplaceProducts");
+
+if(!box) return;
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+box.innerHTML = "";
+
+let approvedProducts =
+products.filter(function(product){
+
+return product.status === "Approved";
+
+});
+
+
+if(approvedProducts.length === 0){
+
+box.innerHTML =
+"<p>No products available.</p>";
+
+return;
+
+}
+
+
+approvedProducts.forEach(function(product){
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>${product.name}</h3>
+
+<p>💰 $${product.price}</p>
+
+<p>📂 ${product.category}</p>
+
+<p>🏪 ${product.merchantName}</p>
+
+<button onclick="viewProduct('${product.name}')">
+👀 View Details
+</button>
+
+<button onclick="addToCart(
+'${product.name}',
+${product.price},
+${product.stock},
+'${product.merchantEmail}',
+'${product.merchantName}'
+)">
+🛒 Add To Cart
+</button>
+
+</div>
+
+`;
+
+});
+
+}
