@@ -372,10 +372,9 @@ loadStoreReviews();
 }
 
 
-
+// ================= STORE REVIEWS =================
 
 function loadStoreReviews(){
-
 
 let box =
 document.getElementById("storeReviews");
@@ -384,19 +383,16 @@ document.getElementById("storeReviews");
 if(!box) return;
 
 
-
 let reviews =
 JSON.parse(localStorage.getItem("storeReviews")) || [];
-
 
 
 box.innerHTML="";
 
 
-
 if(reviews.length===0){
 
-box.innerHTML=
+box.innerHTML =
 "<p>No reviews yet.</p>";
 
 return;
@@ -405,7 +401,12 @@ return;
 
 
 
+let totalRating = 0;
+
+
 reviews.forEach(function(review){
+
+totalRating += Number(review.rating);
 
 
 box.innerHTML += `
@@ -423,9 +424,8 @@ box.innerHTML += `
 
 
 <p>
-${review.date}
+📅 ${review.date}
 </p>
-
 
 </div>
 
@@ -434,7 +434,27 @@ ${review.date}
 });
 
 
+
+let average =
+(totalRating / reviews.length).toFixed(1);
+
+
+
+let ratingBox =
+document.getElementById("storeRatingDisplay");
+
+
+if(ratingBox){
+
+ratingBox.innerText =
+"⭐ " + average + "/5";
+
 }
+
+
+}
+
+
 // ================= MERCHANT DASHBOARD =================
 // ================= MERCHANT DASHBOARD =================
 
