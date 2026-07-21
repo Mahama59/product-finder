@@ -233,75 +233,73 @@ function checkout(){
 
 function completeOrder(){
 
-    let orders =
-    JSON.parse(localStorage.getItem("orders")) || [];
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
 
 
-    let cart =
-    JSON.parse(localStorage.getItem("cart")) || [];
+if(cart.length === 0){
 
-
-    if(cart.length === 0){
-
-        alert("Your cart is empty");
-        return;
-
-    }
-
-
-    let user =
-    JSON.parse(localStorage.getItem("user")) || {
-        name:"Guest"
-    };
-
-
-    let order = {
-
-        id: Date.now(),
-
-        customer:user.name,
-
-        items:cart,
-
-        total:cart.reduce(
-            function(sum,item){
-
-                return sum + (item.price * item.quantity);
-
-            },0
-        ),
-
-        status:"New",
-
-        date:new Date().toLocaleString()
-
-    };
-
-
-    orders.push(order);
-
-
-    localStorage.setItem(
-        "orders",
-        JSON.stringify(orders)
-    );
-
-
-    console.log("ORDER SAVED:", order);
-
-
-    // empty cart
-
-    localStorage.removeItem("cart");
-
-
-    alert("Order completed successfully");
-
-
-    window.location.href="success.html";
+alert("Your cart is empty");
+return;
 
 }
 
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+let user =
+JSON.parse(localStorage.getItem("user")) || {
+name:"Guest"
+};
+
+
+
+let order = {
+
+id: Date.now(),
+
+customer:user.name,
+
+items:cart,
+
+total:cart.reduce(
+(sum,item)=>sum + (item.price * item.quantity),
+0
+),
+
+status:"New",
+
+date:new Date().toLocaleString()
+
+};
+
+
+
+orders.push(order);
+
+
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+
+
+localStorage.removeItem("cart");
+
+
+
+alert("Order placed successfully");
+
+
+
+window.location.href="success.html";
+
+
+}
 // ================= PRODUCT VIEW =================
 function viewProduct(name){
 
