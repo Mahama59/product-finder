@@ -272,30 +272,25 @@ function loadAdminMerchants(){
 let box =
 document.getElementById("adminMerchants");
 
-
 if(!box) return;
 
+let merchants =
+JSON.parse(localStorage.getItem("merchants")) || [];
 
-let merchant =
-JSON.parse(localStorage.getItem("merchant"));
+box.innerHTML = "";
 
-
-
-box.innerHTML="";
-
-
-if(!merchant){
+if(merchants.length === 0){
 
 box.innerHTML =
-"<p>No merchants found</p>";
+"<p>No merchants found.</p>";
 
 return;
 
 }
 
+merchants.forEach(function(merchant,index){
 
-
-box.innerHTML = `
+box.innerHTML += `
 
 <div class="product">
 
@@ -304,20 +299,36 @@ box.innerHTML = `
 </h3>
 
 <p>
+👤 ${merchant.name}
+</p>
+
+<p>
 📧 ${merchant.email}
+</p>
+
+<p>
+📱 ${merchant.phone}
 </p>
 
 <p>
 ⭐ Rating: ${merchant.rating}
 </p>
 
+<p>
+📅 Joined: ${merchant.joined}
+</p>
+
+<button onclick="deleteMerchant(${index})">
+🗑 Delete Merchant
+</button>
 
 </div>
 
 `;
 
-}
+});
 
+}
 
 
 
