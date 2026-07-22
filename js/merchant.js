@@ -634,3 +634,78 @@ function acceptOrder(index){
     loadMerchantDashboard();
 
 }
+
+function loadMerchantProducts(){
+
+let box =
+document.getElementById("merchantProductsList");
+
+
+if(!box) return;
+
+
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+box.innerHTML = "";
+
+
+let myProducts =
+products.filter(function(product){
+
+return product.merchantEmail === merchant.email;
+
+});
+
+
+
+if(myProducts.length === 0){
+
+box.innerHTML =
+"<p>No products added yet.</p>";
+
+return;
+
+}
+
+
+
+myProducts.forEach(function(product){
+
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>${product.name}</h3>
+
+<p>
+💰 Price: $${product.price}
+</p>
+
+<p>
+📦 Stock: ${product.stock}
+</p>
+
+<p>
+📂 Category: ${product.category}
+</p>
+
+<p>
+Status: ${product.status}
+</p>
+
+
+</div>
+
+`;
+
+});
+
+
+}
