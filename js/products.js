@@ -8,92 +8,82 @@ JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
 // ================= SAVE PRODUCT =================
 
-
 function saveProduct(){
 
-    let name =
-    document.getElementById("productName").value;
+let name =
+document.getElementById("productName").value;
+
+let price =
+document.getElementById("productPrice").value;
+
+let category =
+document.getElementById("productCategory").value;
+
+let stock =
+document.getElementById("productStock").value;
+
+let description =
+document.getElementById("productDescription").value;
 
 
-    let price =
-    document.getElementById("productPrice").value;
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
 
 
-    let category =
-    document.getElementById("productCategory").value;
+if(!merchant){
 
+alert("Please login as merchant");
 
-    let description =
-    document.getElementById("productDescription").value;
-
-
-    let stock =
-    Number(document.getElementById("productStock").value);
-let image =
-document.getElementById("imagePreview").src;
-
-
-    if(!name || !price || !category || !stock){
-
-        alert("Please complete all product information");
-        return;
-
-    }
-
-
-
-    let merchant =
-    JSON.parse(localStorage.getItem("merchant"));
-
-
-
-    if(!merchant){
-
-        alert("Please register as a merchant first");
-        return;
-
-    }
-
-let product = {
-
-    name: name,
-    price: Number(price),
-    category: category,
-    description: description,
-    stock: stock,
-    image: image,
-    status: "Pending",
-    merchantName: merchant.name,
-    merchantEmail: merchant.email
-
-};
-
-
-    
-
-
-
-    allMerchantProducts.push(product);
-
-
-
-    localStorage.setItem(
-        "merchantProducts",
-        JSON.stringify(allMerchantProducts)
-    );
-
-
-
-    alert("Product saved successfully");
-
-
-    window.location.href="merchant-products.html";
+return;
 
 }
 
 
+let product = {
 
-// ================= LOAD MARKETPLACE PRODUCTS =================
+name:name,
+
+price:Number(price),
+
+category:category,
+
+stock:Number(stock),
+
+description:description,
+
+merchantEmail:merchant.email,
+
+merchantName:merchant.storeName,
+
+status:"Pending"
+
+};
+
+
+
+let products =
+JSON.parse(localStorage.getItem("merchantProducts")) || [];
+
+
+products.push(product);
+
+
+
+localStorage.setItem(
+"merchantProducts",
+JSON.stringify(products)
+);
+
+
+
+alert("Product added successfully");
+
+
+window.location.href="merchant-products.html";
+
+
+}
+
 
 // ================= LOAD MARKETPLACE PRODUCTS =================
 
