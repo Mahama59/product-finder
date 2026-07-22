@@ -187,11 +187,16 @@ function loadMerchantDashboard(){
 
     // Merchant Orders
     let myOrders = orders.filter(function(order){
-        return order.items.some(function(item){
-            return item.merchantEmail === merchant.email;
-        });
+
+    return order.items &&
+    order.items.some(function(item){
+
+        return item.merchantEmail === merchant.email;
+
     });
 
+});
+        
     // New Orders
     let newOrders = myOrders.filter(function(order){
         return order.status === "New";
@@ -239,8 +244,14 @@ function loadMerchantDashboard(){
     
 // ================= DASHBOARD SUMMARY =================
 
-document.getElementById("merchantProductCount").innerText =
-myProducts.length;
+let productCount =
+document.getElementById("merchantProductCount");
+
+if(productCount){
+
+productCount.innerText = myProducts.length;
+
+}
 
 document.getElementById("totalOrders").innerText =
 myOrders.length;
@@ -285,27 +296,32 @@ revenue;
     // Store Stats
 
    
-    let views =
-    localStorage.getItem("storeViews") || 0;
+let followers =
+Number(localStorage.getItem("followers") || 0);
 
-    let followersBox =
-    document.getElementById("storeFollowersCount");
+let views =
+Number(localStorage.getItem("storeViews") || 0);
 
-    if(followersBox){
 
-        followersBox.innerText = followers;
+let followersBox =
+document.getElementById("storeFollowersCount");
 
-    }
+if(followersBox){
 
-    let viewsBox =
-    document.getElementById("storeViews");
+    followersBox.innerText = followers;
 
-    if(viewsBox){
+}
 
-        viewsBox.innerText = views;
 
-    }
+let viewsBox =
+document.getElementById("storeViews");
 
+if(viewsBox){
+
+    viewsBox.innerText = views;
+
+}   
+ 
 // ================= STORE RATING =================
 
 let ratingBox =
