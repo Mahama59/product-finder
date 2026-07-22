@@ -118,12 +118,14 @@ function loadAdminDashboard(){
 let user =
 JSON.parse(localStorage.getItem("user"));
 
-let merchant =
-JSON.parse(localStorage.getItem("merchant"));
+let merchants =
+JSON.parse(localStorage.getItem("merchants")) || [];
 
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
 
 let usersBox =
 document.getElementById("totalUsers");
@@ -134,49 +136,33 @@ document.getElementById("totalMerchants");
 let productsBox =
 document.getElementById("totalProducts");
 
-
 if(usersBox){
-usersBox.innerText = user ? 1 : 0;
-}
 
+usersBox.innerText = user ? 1 : 0;
+
+}
 
 if(merchantsBox){
-merchantsBox.innerText = merchant ? 1 : 0;
-}
 
+merchantsBox.innerText = merchants.length;
+
+}
 
 if(productsBox){
-productsBox.innerText = products.length;
-}
 
+productsBox.innerText = products.length;
+
+}
 
 // ORDER STATISTICS
-
-let orders =
-JSON.parse(localStorage.getItem("orders")) || [];
-
-
-let orderBox =
-document.getElementById("adminTotalOrders");
-
-
-if(orderBox){
-
-orderBox.innerText = orders.length;
-
-}
-
-
 
 let revenue = 0;
 
 let productsSold = 0;
 
-
 orders.forEach(function(order){
 
 revenue += Number(order.total || 0);
-
 
 if(order.items){
 
@@ -190,11 +176,17 @@ productsSold += Number(item.quantity || 0);
 
 });
 
+let orderBox =
+document.getElementById("adminTotalOrders");
 
+if(orderBox){
+
+orderBox.innerText = orders.length;
+
+}
 
 let revenueBox =
 document.getElementById("adminTotalRevenue");
-
 
 if(revenueBox){
 
@@ -202,11 +194,8 @@ revenueBox.innerText = revenue;
 
 }
 
-
-
 let soldBox =
 document.getElementById("adminProductsSold");
-
 
 if(soldBox){
 
@@ -214,8 +203,8 @@ soldBox.innerText = productsSold;
 
 }
 
-
 }
+
 // ================= ADMIN USERS =================
 
 function loadAdminUsers(){
