@@ -77,33 +77,35 @@ totalBox.innerText = total;
 
 // ================= COMPLETE ORDER =================
 
+// ================= COMPLETE ORDER =================
 
 function completeOrder(){
 
-let cart =
-JSON.parse(localStorage.getItem("cart")) || [];
+let user =
+JSON.parse(localStorage.getItem("user"));
+
+let name =
+document.getElementById("customerName").value.trim();
+
+let email =
+document.getElementById("customerEmail").value.trim();
+
+let address =
+document.getElementById("customerAddress").value.trim();
+
+
+if(!name || !email || !address){
+
+alert("Please complete customer information");
+
+return;
+
+}
 
 
 if(cart.length === 0){
 
-alert("Cart is empty");
-
-return;
-
-}
-
-
-let customerName =
-document.getElementById("customerName").value;
-
-
-let customerEmail =
-document.getElementById("customerEmail").value;
-
-
-if(!customerName || !customerEmail){
-
-alert("Please enter customer information");
+alert("Your cart is empty");
 
 return;
 
@@ -111,8 +113,14 @@ return;
 
 
 
-let orders =
-JSON.parse(localStorage.getItem("orders")) || [];
+let total = 0;
+
+
+cart.forEach(function(item){
+
+total += Number(item.price) * Number(item.quantity);
+
+});
 
 
 
@@ -120,18 +128,17 @@ let order = {
 
 id: Date.now(),
 
-customer: customerName,
+customer:
+user ? user.name : name,
 
-email: customerEmail,
+customerEmail:
+user ? user.email : email,
 
-items: cart,
+address:address,
 
-total: cart.reduce(function(sum,item){
+items:cart,
 
-return sum +
-(Number(item.price) * Number(item.quantity));
-
-},0),
+total:total,
 
 status:"New",
 
@@ -145,8 +152,11 @@ date:new Date().toLocaleString()
 
 
 
-orders.push(order);
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
 
+
+orders.push(order);
 
 
 localStorage.setItem(
@@ -155,15 +165,128 @@ JSON.stringify(orders)
 );
 
 
+// Clear cart
 
-localStorage.removeItem("cart");
+cart = [];
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
 
 
 
 alert("Order completed successfully");
 
 
-window.location.href="orders.html";
+window.location.href =
+"my-orders.html";
+
+
+}// ================= COMPLETE ORDER =================
+
+function completeOrder(){
+
+let user =
+JSON.parse(localStorage.getItem("user"));
+
+let name =
+document.getElementById("customerName").value.trim();
+
+let email =
+document.getElementById("customerEmail").value.trim();
+
+let address =
+document.getElementById("customerAddress").value.trim();
+
+
+if(!name || !email || !address){
+
+alert("Please complete customer information");
+
+return;
+
+}
+
+
+if(cart.length === 0){
+
+alert("Your cart is empty");
+
+return;
+
+}
+
+
+
+let total = 0;
+
+
+cart.forEach(function(item){
+
+total += Number(item.price) * Number(item.quantity);
+
+});
+
+
+
+let order = {
+
+id: Date.now(),
+
+customer:
+user ? user.name : name,
+
+customerEmail:
+user ? user.email : email,
+
+address:address,
+
+items:cart,
+
+total:total,
+
+status:"New",
+
+shippingStatus:"Preparing",
+
+trackingNumber:"Not assigned",
+
+date:new Date().toLocaleString()
+
+};
+
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+
+orders.push(order);
+
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+
+// Clear cart
+
+cart = [];
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+
+
+alert("Order completed successfully");
+
+
+window.location.href =
+"my-orders.html";
 
 
 }
