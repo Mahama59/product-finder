@@ -72,53 +72,45 @@ function registerUser(){
 function loginUser(){
 
     let email =
-    document.getElementById("loginEmail").value;
-
+    document.getElementById("loginEmail").value.trim();
 
     let password =
     document.getElementById("loginPassword").value;
 
-
+    let users =
+    JSON.parse(localStorage.getItem("users")) || [];
 
     let user =
-    JSON.parse(localStorage.getItem("user"));
+    users.find(function(user){
 
+        return user.email === email &&
+               user.password === password;
 
+    });
 
     if(!user){
 
-        alert("Please register first");
+        alert("Incorrect email or password");
+
         return;
 
     }
 
+    localStorage.setItem(
+        "user",
+        JSON.stringify(user)
+    );
 
+    localStorage.setItem(
+        "loggedIn",
+        "true"
+    );
 
-    if(email === user.email && password === user.password){
+    alert("Login successful");
 
-
-        localStorage.setItem(
-            "loggedIn",
-            "true"
-        );
-
-
-        alert("Login successful");
-
-
-        window.location.href="index.html";
-
-
-    }else{
-
-
-        alert("Incorrect login details");
-
-
-    }
+    window.location.href = "index.html";
 
 }
-
 
 
 
