@@ -319,15 +319,20 @@ averageOrderValue
 
 // ================= ANALYTICS BOXES =================
 
-document.getElementById("merchantTotalProducts").innerText =
-myProducts.length;
+updateDashboard(
+"merchantTotalProducts",
+myProducts.length
+);
 
-document.getElementById("merchantTotalOrders").innerText =
-myOrders.length;
+updateDashboard(
+"merchantTotalOrders",
+myOrders.length
+);
 
-document.getElementById("merchantTotalRevenue").innerText =
-revenue;
-
+updateDashboard(
+"merchantTotalRevenue",
+revenue
+);
     // Store Stats
 
    
