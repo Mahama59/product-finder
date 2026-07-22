@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="loadMerchantProducts()">
+<body>
 
 <nav>
 <h2>🛍️ Product Finder</h2>
@@ -54,11 +54,16 @@
 <footer>
 <p>© 2026 Product Finder</p>
 </footer>
-
+<script src="js/main.js"></script>
 <script src="js/products.js"></script>
 <script src="js/merchant.js"></script>
-<script src="js/main.js"></script>
- 
+
+<script>
+window.onload = function(){
+    loadMerchantProducts();
+};
+</script>
+
 </body>
 
 </html>
