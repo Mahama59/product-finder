@@ -16,31 +16,40 @@ document.getElementById("merchantEmail").value.trim();
 let phone =
 document.getElementById("merchantPhone").value.trim();
 
+
 if(!name || !email || !phone){
 
-alert("Please complete all fields.");
-
+alert("Please complete all fields");
 return;
 
 }
 
+
+// Get existing merchants
+
 let merchants =
 JSON.parse(localStorage.getItem("merchants")) || [];
 
-// Check if email already exists
-let exists = merchants.find(function(merchant){
+
+// Check duplicate email
+
+let exists =
+merchants.find(function(merchant){
 
 return merchant.email === email;
 
 });
 
+
 if(exists){
 
-alert("Merchant already exists.");
+alert("Merchant already exists");
 
 return;
 
 }
+
+
 
 let merchant = {
 
@@ -60,27 +69,39 @@ rating:5
 
 };
 
+
+
 merchants.push(merchant);
+
+
 
 localStorage.setItem(
 "merchants",
 JSON.stringify(merchants)
 );
 
-// Keep this merchant logged in
+
+
+// login this merchant
+
 localStorage.setItem(
 "merchant",
 JSON.stringify(merchant)
 );
+
 
 localStorage.setItem(
 "merchantLoggedIn",
 "true"
 );
 
-alert("Merchant account created.");
+
+
+alert("Merchant registration successful");
+
 
 window.location.href="merchant-dashboard.html";
+
 
 }
 
@@ -91,41 +112,55 @@ function merchantLogin(){
 let email =
 document.getElementById("merchantEmail").value.trim();
 
+
 let phone =
 document.getElementById("merchantPhone").value.trim();
 
+
+
+let merchants =
+JSON.parse(localStorage.getItem("merchants")) || [];
+
+
+
 let merchant =
-JSON.parse(localStorage.getItem("merchant"));
+merchants.find(function(merchant){
+
+return merchant.email === email &&
+merchant.phone === phone;
+
+});
+
+
 
 if(!merchant){
 
-alert("Merchant account not found.");
+alert("Incorrect merchant details");
 
 return;
 
 }
 
-if(
 
-merchant.email===email &&
-merchant.phone===phone
 
-){
+localStorage.setItem(
+"merchant",
+JSON.stringify(merchant)
+);
+
 
 localStorage.setItem(
 "merchantLoggedIn",
 "true"
 );
 
-alert("Login successful.");
+
+
+alert("Merchant login successful");
+
 
 window.location.href="merchant-dashboard.html";
 
-}else{
-
-alert("Incorrect merchant details.");
-
-}
 
 }
 
