@@ -876,3 +876,245 @@ console.log(
 "Products:",
 JSON.parse(localStorage.getItem("merchantProducts"))
 );
+// ================= MERCHANT MARKETING =================
+
+
+function loadMarketing(){
+
+let box =
+document.getElementById("marketingList");
+
+
+if(!box) return;
+
+
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+
+if(!merchant) return;
+
+
+
+let announcements =
+JSON.parse(localStorage.getItem("announcements")) || [];
+
+
+let coupons =
+JSON.parse(localStorage.getItem("coupons")) || [];
+
+
+
+box.innerHTML = "";
+
+
+
+// Announcements
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>📢 Announcements</h3>
+
+${
+announcements.filter(function(item){
+
+return item.merchantEmail === merchant.email;
+
+})
+.map(function(item){
+
+return `
+
+<p>
+📢 ${item.text}
+</p>
+
+`;
+
+}).join("")
+|| "<p>No announcements yet.</p>"
+
+}
+
+</div>
+
+`;
+
+
+
+// Coupons
+
+box.innerHTML += `
+
+<div class="product">
+
+<h3>🎟 Coupons</h3>
+
+
+${
+coupons.filter(function(item){
+
+return item.merchantEmail === merchant.email;
+
+})
+.map(function(item){
+
+return `
+
+<p>
+🎟 ${item.code}
+-
+${item.discount}% OFF
+</p>
+
+`;
+
+}).join("")
+|| "<p>No coupons created.</p>"
+
+}
+
+
+</div>
+
+`;
+
+}
+
+
+
+// ================= SAVE ANNOUNCEMENT =================
+
+
+function saveAnnouncement(){
+
+
+let text =
+document.getElementById("announcementText").value.trim();
+
+
+if(!text){
+
+alert("Write announcement first");
+
+return;
+
+}
+
+
+
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+
+let announcements =
+JSON.parse(localStorage.getItem("announcements")) || [];
+
+
+
+announcements.push({
+
+id:Date.now(),
+
+merchantEmail:merchant.email,
+
+text:text,
+
+date:new Date().toLocaleString()
+
+});
+
+
+
+localStorage.setItem(
+"announcements",
+JSON.stringify(announcements)
+);
+
+
+
+alert("Announcement published 📢");
+
+
+document.getElementById("announcementText").value="";
+
+
+loadMarketing();
+
+
+}
+
+
+
+// ================= SAVE COUPON =================
+
+
+function saveCoupon(){
+
+
+let code =
+document.getElementById("couponCode").value.trim();
+
+
+let discount =
+document.getElementById("couponDiscount").value;
+
+
+
+if(!code || !discount){
+
+alert("Complete coupon details");
+
+return;
+
+}
+
+
+
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+
+
+let coupons =
+JSON.parse(localStorage.getItem("coupons")) || [];
+
+
+
+coupons.push({
+
+id:Date.now(),
+
+merchantEmail:merchant.email,
+
+code:code,
+
+discount:Number(discount),
+
+date:new Date().toLocaleString()
+
+});
+
+
+
+localStorage.setItem(
+"coupons",
+JSON.stringify(coupons)
+);
+
+
+
+alert("Coupon saved 🎟");
+
+
+document.getElementById("couponCode").value="";
+
+document.getElementById("couponDiscount").value="";
+
+
+loadMarketing();
+
+
+}
