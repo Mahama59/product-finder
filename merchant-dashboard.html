@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="loadMerchantDashboard(); loadMerchantOrders()">
+<body onload="protectMerchant(); loadMerchantDashboard(); loadMerchantOrders()">
 
 <nav>
 <h2>🛍️ Product Finder</h2>
@@ -176,7 +176,12 @@ Check Orders Data
 <script src="js/merchant.js"></script>
 <script>
 
-
+<script>
+console.log("main.js:", typeof loadHomepageProducts);
+console.log("products.js:", typeof saveProduct);
+console.log("merchant.js:", typeof loadMerchantDashboard);
+console.log("protectMerchant:", typeof protectMerchant);
+</script>
 let merchant = JSON.parse(localStorage.getItem("merchant"));
 
 if(merchant){
