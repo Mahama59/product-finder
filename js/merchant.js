@@ -709,3 +709,13 @@ Status: ${product.status}
 
 
 }
+
+console.log(
+"Merchant:",
+JSON.parse(localStorage.getItem("merchant"))
+);
+
+console.log(
+"Products:",
+JSON.parse(localStorage.getItem("merchantProducts"))
+);
