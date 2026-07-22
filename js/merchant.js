@@ -1,7 +1,4 @@
-// ================= MERCHANT SYSTEM =================
 
-let merchantProducts =
-JSON.parse(localStorage.getItem("merchantProducts")) || [];
 
 // ================= MERCHANT REGISTER =================
 
@@ -253,34 +250,72 @@ productCount.innerText = myProducts.length;
 
 }
 
-document.getElementById("totalOrders").innerText =
-myOrders.length;
+function updateDashboard(id,value){
 
-document.getElementById("newOrders").innerText =
-newOrders.length;
+let element =
+document.getElementById(id);
 
-document.getElementById("totalRevenue").innerText =
-revenue;
+if(element){
 
-document.getElementById("productsSold").innerText =
-soldProducts;
+element.innerText = value;
 
+}
+
+}
+
+
+updateDashboard(
+"totalOrders",
+myOrders.length
+);
+
+
+updateDashboard(
+"newOrders",
+newOrders.length
+);
+
+
+updateDashboard(
+"totalRevenue",
+revenue
+);
+
+
+updateDashboard(
+"productsSold",
+soldProducts
+);
 // ================= FINANCE SUMMARY =================
 
-document.getElementById("merchantSalesCount").innerText =
-totalSales;
+updateDashboard(
+"merchantSalesCount",
+totalSales
+);
 
-document.getElementById("completedOrdersCount").innerText =
-completedOrders.length;
 
-document.getElementById("merchantOrderCount").innerText =
-myOrders.length;
+updateDashboard(
+"completedOrdersCount",
+completedOrders.length
+);
 
-document.getElementById("merchantRevenue").innerText =
-"$" + revenue;
 
-document.getElementById("averageOrderValue").innerText =
-averageOrderValue;
+updateDashboard(
+"merchantOrderCount",
+myOrders.length
+);
+
+
+updateDashboard(
+"merchantRevenue",
+"$"+revenue
+);
+
+
+updateDashboard(
+"averageOrderValue",
+averageOrderValue
+);
 
 // ================= ANALYTICS BOXES =================
 
