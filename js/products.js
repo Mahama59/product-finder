@@ -51,6 +51,8 @@ stock:Number(stock),
 
 description:description,
 
+image:document.getElementById("imagePreview").src,
+
 merchantEmail:merchant.email,
 
 merchantName:merchant.storeName,
@@ -58,7 +60,6 @@ merchantName:merchant.storeName,
 status:"Pending"
 
 };
-
 
 
 let products =
