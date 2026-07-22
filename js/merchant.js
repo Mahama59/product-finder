@@ -19,21 +19,55 @@ document.getElementById("merchantPhone").value.trim();
 if(!name || !email || !phone){
 
 alert("Please complete all fields.");
+
 return;
 
 }
 
-let merchant={
+let merchants =
+JSON.parse(localStorage.getItem("merchants")) || [];
+
+// Check if email already exists
+let exists = merchants.find(function(merchant){
+
+return merchant.email === email;
+
+});
+
+if(exists){
+
+alert("Merchant already exists.");
+
+return;
+
+}
+
+let merchant = {
+
+id: Date.now(),
 
 name:name,
+
 email:email,
+
 phone:phone,
+
 storeName:name + "'s Store",
+
 joined:new Date().toLocaleDateString(),
+
 rating:5
 
 };
 
+merchants.push(merchant);
+
+localStorage.setItem(
+"merchants",
+JSON.stringify(merchants)
+);
+
+// Keep this merchant logged in
 localStorage.setItem(
 "merchant",
 JSON.stringify(merchant)
@@ -44,7 +78,7 @@ localStorage.setItem(
 "true"
 );
 
-alert("Merchant account created successfully.");
+alert("Merchant account created.");
 
 window.location.href="merchant-dashboard.html";
 
