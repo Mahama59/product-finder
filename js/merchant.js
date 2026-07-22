@@ -650,7 +650,8 @@ JSON.parse(localStorage.getItem("merchant"));
 
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
-
+console.log("Merchant:", merchant);
+console.log("All Products:", products);
 
 box.innerHTML = "";
 
