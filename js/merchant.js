@@ -168,31 +168,47 @@ function loadMerchantDashboard(){
     // Dashboard Summary
 
     
-    document.getElementById("newOrders").innerText =
-    newOrders.length;
+// ================= DASHBOARD SUMMARY =================
 
-    
-    document.getElementById("productsSold").innerText =
-    soldProducts;
+document.getElementById("merchantProductCount").innerText =
+myProducts.length;
 
-    // Finance Summary
+document.getElementById("totalOrders").innerText =
+myOrders.length;
 
-    document.getElementById("merchantSalesCount").innerText =
-    totalSales;
+document.getElementById("newOrders").innerText =
+newOrders.length;
 
-    document.getElementById("completedOrdersCount").innerText =
-    completedOrders.length;
+document.getElementById("totalRevenue").innerText =
+revenue;
 
-    document.getElementById("averageOrderValue").innerText =
-    "$" + averageOrderValue;
+document.getElementById("productsSold").innerText =
+soldProducts;
+
+// ================= FINANCE SUMMARY =================
+
+document.getElementById("merchantSalesCount").innerText =
+totalSales;
+
+document.getElementById("completedOrdersCount").innerText =
+completedOrders.length;
+
+document.getElementById("merchantOrderCount").innerText =
+myOrders.length;
+
+document.getElementById("merchantRevenue").innerText =
+"$" + revenue;
+
+document.getElementById("averageOrderValue").innerText =
+averageOrderValue;
+
+// ================= ANALYTICS BOXES =================
 
 document.getElementById("merchantTotalProducts").innerText =
 myProducts.length;
 
-
 document.getElementById("merchantTotalOrders").innerText =
 myOrders.length;
-
 
 document.getElementById("merchantTotalRevenue").innerText =
 revenue;
@@ -224,8 +240,7 @@ revenue;
     }
 
     let ratingBox =
-    document.getElementById("storeRating");
-
+document.getElementById("storeRatingDisplay");
     if(ratingBox){
 
         let reviews =
