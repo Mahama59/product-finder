@@ -878,6 +878,23 @@ JSON.parse(localStorage.getItem("merchantProducts"))
 );
 // ================= MERCHANT MARKETING =================
 
+// ================= MERCHANT SECURITY =================
+
+function protectMerchant(){
+
+let merchant =
+JSON.parse(localStorage.getItem("merchant"));
+
+if(!merchant){
+
+alert("Please login as merchant");
+
+window.location.href="merchant-login.html";
+
+}
+
+}
+
 
 function loadMarketing(){
 
