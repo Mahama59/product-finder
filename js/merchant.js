@@ -333,8 +333,126 @@ document.getElementById("storeRatingDisplay");
             ratingBox.innerText = "No ratings";
 
         }
+// ================= MERCHANT EXTRA STATS =================
 
-    }
+
+// Wishlist Saves
+
+let wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
+
+
+let wishlistBox =
+document.getElementById("totalWishlist");
+
+
+if(wishlistBox){
+
+wishlistBox.innerText =
+wishlist.length;
+
+}
+
+
+// Compared Products
+
+let compare =
+JSON.parse(localStorage.getItem("compareList")) || [];
+
+
+let compareBox =
+document.getElementById("totalCompare");
+
+
+if(compareBox){
+
+compareBox.innerText =
+compare.length;
+
+}
+
+
+
+// Store Followers
+
+let followers =
+Number(localStorage.getItem("followers") || 0);
+
+
+let followersBox =
+document.getElementById("storeFollowersCount");
+
+
+if(followersBox){
+
+followersBox.innerText =
+followers;
+
+}
+
+
+
+// Store Views
+
+let views =
+Number(localStorage.getItem("storeViews") || 0);
+
+
+let viewsBox =
+document.getElementById("storeViews");
+
+
+if(viewsBox){
+
+viewsBox.innerText =
+views;
+
+}
+
+
+
+// Store Rating
+
+let reviews =
+JSON.parse(localStorage.getItem("storeReviews")) || [];
+
+
+let ratingBox =
+document.getElementById("storeRatingDisplay");
+
+
+if(ratingBox){
+
+
+if(reviews.length === 0){
+
+ratingBox.innerText =
+"No ratings";
+
+
+}else{
+
+
+let totalRating = 0;
+
+
+reviews.forEach(function(review){
+
+totalRating += Number(review.rating);
+
+});
+
+
+let average =
+(totalRating / reviews.length).toFixed(1);
+
+
+ratingBox.innerText =
+"⭐ " + average + "/5";
+
+
+}
+
 
 }
 
