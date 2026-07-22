@@ -284,9 +284,7 @@ revenue;
 
     // Store Stats
 
-    let followers =
-    localStorage.getItem("followers") || 0;
-
+   
     let views =
     localStorage.getItem("storeViews") || 0;
 
