@@ -547,3 +547,27 @@ box.innerHTML += `
 
 
 }
+
+function deleteMerchant(index){
+
+let merchants =
+JSON.parse(localStorage.getItem("merchants")) || [];
+
+if(!confirm("Delete this merchant?")){
+
+return;
+
+}
+
+merchants.splice(index,1);
+
+localStorage.setItem(
+"merchants",
+JSON.stringify(merchants)
+);
+
+loadAdminMerchants();
+
+alert("Merchant deleted.");
+
+}
