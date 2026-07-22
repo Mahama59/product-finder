@@ -1,5 +1,5 @@
 
-
+alert("merchant.js loaded");
 // ================= MERCHANT REGISTER =================
 
 function registerMerchant(){
@@ -867,15 +867,7 @@ Status: ${product.status}
 
 }
 
-console.log(
-"Merchant:",
-JSON.parse(localStorage.getItem("merchant"))
-);
 
-console.log(
-"Products:",
-JSON.parse(localStorage.getItem("merchantProducts"))
-);
 // ================= MERCHANT MARKETING =================
 
 // ================= MERCHANT SECURITY =================
@@ -1133,5 +1125,26 @@ document.getElementById("couponDiscount").value="";
 
 loadMarketing();
 
+
+}
+
+function merchantLogout(){
+
+localStorage.removeItem("merchant");
+localStorage.removeItem("merchantLoggedIn");
+
+alert("Logged out successfully");
+
+window.location.href="merchant-login.html";
+
+}
+
+function checkOrders(){
+
+console.log(
+JSON.parse(localStorage.getItem("orders"))
+);
+
+alert("Orders data shown in console");
 
 }
