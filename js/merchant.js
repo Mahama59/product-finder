@@ -738,6 +738,16 @@ let merchant =
 JSON.parse(localStorage.getItem("merchant"));
 
 
+if(!merchant){
+
+box.innerHTML =
+"<p>Please login as merchant</p>";
+
+return;
+
+}
+
+
 let products =
 JSON.parse(localStorage.getItem("merchantProducts")) || [];
 console.log("Merchant:", merchant);
